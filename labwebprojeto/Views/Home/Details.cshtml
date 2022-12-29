@@ -19,6 +19,7 @@
                     <e-carousel-items>
                         <e-carousel-item template="#templateItem1"></e-carousel-item>
                         <e-carousel-item template="#templateItem2"></e-carousel-item>
+                        <e-carousel-item template="#templateItem3"></e-carousel-item>
 
                     </e-carousel-items>
                 </ejs-carousel>
@@ -86,7 +87,12 @@
         </script>
         <script id="templateItem2" type="text/x-template">
             <figure class="img-container">
-                <img src=@Model.FotoDescricao alt="bridge" style="height:100%; width: 100%" />
+                <img src=@Model.Foto1 alt="bridge" style="height:100%; width: 100%" />
+            </figure>
+        </script>
+        <script id="templateItem3" type="text/x-template">
+            <figure class="img-container">
+                <img src=@Model.Foto2 alt="bridge" style="height:100%; width: 100%" />
             </figure>
         </script>
 
@@ -110,16 +116,6 @@
                 <li>@Model.IdCategoria</li>
                 <li>@Model.IdConsola</li>
             </ul>
-        </div>
-    </div>
-    <h3 class="my-4">Related Projects</h3>
-
-    <div class="row">
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="@Model.FotoDescricao" alt="">
-            </a>
         </div>
     </div>
 </div>

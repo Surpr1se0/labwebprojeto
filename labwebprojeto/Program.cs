@@ -1,6 +1,8 @@
 using labwebprojeto.Data;
+using labwebprojeto.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using utadlabwebprojeto.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
 });
+
+// Add Cloudinary API Service
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddControllersWithViews();
