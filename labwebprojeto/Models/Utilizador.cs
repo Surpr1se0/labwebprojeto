@@ -32,6 +32,10 @@ namespace labwebprojeto.Models
         [StringLength(20)]
         public string? Telefone { get; set; }
 
+        [Column("email")]
+        [DisplayName("Email")]
+        [StringLength(40)]
+        [Required(ErrorMessage = "Email is Required!")]
         public string Email { get; set; }
 
         [InverseProperty("IdUtilizadorNavigation")]

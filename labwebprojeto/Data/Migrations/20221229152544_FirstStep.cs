@@ -55,7 +55,8 @@ namespace labwebprojeto.Data.Migrations
                     Id_Utilizador = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                    telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable:false)
                 },
                 constraints: table =>
                 {
