@@ -79,7 +79,7 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            public string Role { get; set; }
+            public string Role { get; set; } = "Client";
 
             [Required]
             [Display(Name ="UserName")]
