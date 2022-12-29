@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Services;
-using utadlabwebprojeto.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
