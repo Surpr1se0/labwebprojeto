@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace labwebprojeto.Models
 {
     [Table("Favorito")]
-    public partial class Favorito
+    public class Favorito
     {
         [Key]
         [Column("Id_Favorito")]
@@ -19,7 +19,8 @@ namespace labwebprojeto.Models
 
         [ForeignKey("IdCategoria")]
         [InverseProperty("Favoritos")]
-        public virtual Categorium IdCategoriaNavigation { get; set; } = null!;
+        public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
+
         [ForeignKey("IdUtilizador")]
         [InverseProperty("Favoritos")]
         public virtual Utilizador IdUtilizadorNavigation { get; set; } = null!;

@@ -16,7 +16,7 @@ namespace labwebprojeto.Data
         {
         }
 
-        public virtual DbSet<Categorium> Categoria { get; set; } = null!;
+        public virtual DbSet<Categoria> Categoria { get; set; } = null!;
         public virtual DbSet<Compra> Compras { get; set; } = null!;
         public virtual DbSet<Consola> Consolas { get; set; } = null!;
         public virtual DbSet<Favorito> Favoritos { get; set; } = null!;
@@ -35,7 +35,7 @@ namespace labwebprojeto.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Categorium>(entity =>
+            modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
                     .HasName("PK__Categori__CB90334950410431");

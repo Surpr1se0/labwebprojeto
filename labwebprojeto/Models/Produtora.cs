@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace labwebprojeto.Models
 {
     [Table("Produtora")]
-    public partial class Produtora
+    public class Produtora
     {
         public Produtora()
         {
@@ -17,9 +18,12 @@ namespace labwebprojeto.Models
         [Key]
         [Column("Id_Produtora")]
         public int IdProdutora { get; set; }
+
         [Column("nome")]
         [StringLength(50)]
+        [DisplayName("Produtora")]
         public string? Nome { get; set; }
+
 
         [InverseProperty("IdProdutoraNavigation")]
         public virtual ICollection<Jogo> Jogos { get; set; }

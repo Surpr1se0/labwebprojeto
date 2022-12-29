@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace labwebprojeto.Models
 {
     [Table("Jogo")]
-    public partial class Jogo
+    public class Jogo
     {
         public Jogo()
         {
@@ -46,7 +46,7 @@ namespace labwebprojeto.Models
 
         [ForeignKey("IdCategoria")]
         [InverseProperty("Jogos")]
-        public virtual Categorium IdCategoriaNavigation { get; set; } = null!;
+        public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
         [ForeignKey("IdConsola")]
         [InverseProperty("Jogos")]
         public virtual Consola IdConsolaNavigation { get; set; } = null!;
