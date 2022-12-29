@@ -157,9 +157,11 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Created Successfully";
 
-                //Add Email Sender Notification
-                var email = HttpContext.User.Identity.ToString();
-                //await _emailService.SendEmailAsync();
+                //Add Email Sender Notification - Problem
+                var email = _context.Utilizadors
+                    .Include(x => x.Email)
+                    .ToString();
+                await _emailService.SendEmailAsync(email, "New Game", "New game added!");
 
                 return RedirectToAction(nameof(Index));
             }

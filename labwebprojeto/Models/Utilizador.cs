@@ -32,6 +32,8 @@ namespace labwebprojeto.Models
         [StringLength(20)]
         public string? Telefone { get; set; }
 
+        public string? Email { get; set; }
+
         [InverseProperty("IdUtilizadorNavigation")]
         public virtual ICollection<Compra> Compras { get; set; }
 

@@ -140,7 +140,7 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     // Add New User to Class
-                    Utilizador new_utilizador = new Utilizador { Nome = Input.UserName };
+                    Utilizador new_utilizador = new Utilizador { Nome = Input.UserName, Email = Input.Email };
                     _context.Utilizadors.Add(new_utilizador);
                     await _context.SaveChangesAsync();
 
