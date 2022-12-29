@@ -13,6 +13,10 @@ dotnet user-secrets init -p utadlabwebprojeto
 dotnet user-secrets set "Authentication:Google:ClientId" "437193130672-9ig7r2sn61ikt0q5p11vdgbmoi7lfh81.apps.googleusercontent.com"  
 dotnet user-secrets set "Authentication:Google:ClientSecret" "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"   
 
+**Microsoft API Settings**:  
+ClientId: 4zQ8Q~LNRk305NFfeb1sJKWfrkO2YJW37g-shcMO  
+ClientSecret: e5fd4201-f502-46da-af65-194dc64d8626  
+
 **Cloudinary API Settings**:   
 Check JsonFile
 
