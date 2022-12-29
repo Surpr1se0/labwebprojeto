@@ -16,11 +16,15 @@ namespace labwebprojeto.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IPhotoService _photoService;
+        private readonly IEmailService _emailService;
 
-        public JogosController(ApplicationDbContext context, IPhotoService photoService)
+        public JogosController(ApplicationDbContext context, 
+            IPhotoService photoService, 
+            IEmailService emailService)
         {
             _context = context;
             _photoService = photoService;
+            _emailService = emailService;
         }
 
         // GET: Jogos
@@ -152,6 +156,11 @@ namespace labwebprojeto.Controllers
                 _context.Add(jogo);
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Created Successfully";
+
+                //Add Email Sender Notification
+                var email = HttpContext.User.Identity.ToString();
+                //await _emailService.SendEmailAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             if (!ModelState.IsValid)
