@@ -1,0 +1,125 @@
+﻿@model Jogo
+
+<!-- Page Content -->
+<div class="container">
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        Detalhes
+        <small>@Model.Nome</small>
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <!-- ============================================= -->
+        <!-- ============================================= -->
+        <div class="col-lg-12 control-section default-carousel-section">
+            <div class="e-sample-resize-container carousel-sample">
+                <ejs-carousel id="defaultCarousel" cssClass="default-carousel">
+                    <e-carousel-items>
+                        <e-carousel-item template="#templateItem1"></e-carousel-item>
+                        <e-carousel-item template="#templateItem2"></e-carousel-item>
+
+                    </e-carousel-items>
+                </ejs-carousel>
+            </div>
+        </div>
+
+        <style>
+            .control-container {
+                background-color: #adb5bd;
+                height: 300px;
+                margin: 0 auto;
+                width: 300px;
+            }
+
+            .e-carousel .slide-content {
+                align-items: center;
+                display: flex;
+                font-size: 1.25rem;
+                height: 100%;
+                justify-content: center;
+            }
+
+            /* Parallax animation */
+            .parallax .e-carousel-item {
+                transition: transform 1s ease-in-out;
+            }
+
+                .parallax .e-carousel-item.e-next {
+                    animation: ParallaxIn 1s ease-in-out;
+                }
+
+                .parallax .e-carousel-item.e-prev {
+                    animation: ParallaxOut 1s ease-in-out;
+                }
+
+            @@keyframes ParallaxIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0) translateY(100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            @@keyframes ParallaxOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: scale(0) translateY(-100%);
+                }
+            }
+        </style>
+
+        <script id="templateItem1" type="text/x-template">
+            <figure class="img-container">
+                <img src=@Model.Foto alt="bridge" style="height:100%; width: 100%" />
+            </figure>
+        </script>
+        <script id="templateItem2" type="text/x-template">
+            <figure class="img-container">
+                <img src=@Model.FotoDescricao alt="bridge" style="height:100%; width: 100%" />
+            </figure>
+        </script>
+
+        <!-- ============================================= -->
+        <!-- ============================================= -->
+
+        <div class="col-md-4">
+            @*To Change*@
+            <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
+            <a href="/Identity/Account/Login" class="nav-link text-light justify-content-end">Login</a>
+            <a href="/Identity/Account/Register" class="nav-link text-light justify-content-end">Sign up</a>
+
+            <h3 class="my-3">@Model.Nome</h3>
+            <h3 class="my-3">@Model.Descricao</h3>
+            <ul>
+
+                @*VER PREÇO: DIOGO*@
+                <li>@Model.Preco</li>
+                @*VER PREÇO: DIOGO*@
+                <li>@Model.IdProdutora</li>
+                <li>@Model.IdCategoria</li>
+                <li>@Model.IdConsola</li>
+            </ul>
+        </div>
+    </div>
+    <h3 class="my-4">Related Projects</h3>
+
+    <div class="row">
+
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+                <img class="img-fluid" src="@Model.FotoDescricao" alt="">
+            </a>
+        </div>
+    </div>
+</div>

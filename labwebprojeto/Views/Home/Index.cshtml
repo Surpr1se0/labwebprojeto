@@ -1,8 +1,66 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<utadlabwebprojeto.Models.Jogo>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/utadlabwebprojeto.styles.css" asp-append-version="true" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body style="background-color:#4618ac">
+    <form class="d-flex" asp-controller="Home" asp-action="Index" method="get">
+        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+        <button class="btn" type="submit" value="Filter">Search</button>
+    </form>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Can't Stop</h1>
+            <p class="lead">A website <strong> for gamers</strong> by gamers.</p>
+            <p>
+            </p>
+        </div>
+
+        @*        <div>
+        <h1>@ViewData["IdUtilizador"]</h1>
+        </div>*@
+    </section>
+
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="@item.Foto" width="100%" height="235" alt="Imagem Exemplo">
+                        <div class="card-body">
+                            <p class="card-text">@item.Nome.ToUpper()</p>
+                            @*<h5 class="card-text2">@item.Descricao</h5>*@
+                            <input value="@Math.Round(@item.Preco,2)€">
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex">
+                        <div class="btn-group">
+                            <a type="btn btn-success" button asp-controller="Home" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
+                                Comprar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

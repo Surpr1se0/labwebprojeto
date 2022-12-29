@@ -54,6 +54,10 @@ namespace labwebprojeto.Models
         [InverseProperty("Jogos")]
         public virtual Produtora IdProdutoraNavigation { get; set; } = null!;
         [InverseProperty("IdJogoNavigation")]
+
         public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<Categoria> Categorias { get; set; }
+        public virtual ICollection<Produtora> Produtoras { get; set; }
+        public virtual ICollection<Consola> Consolas { get; set; }
     }
 }

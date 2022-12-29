@@ -63,6 +63,10 @@
                 <input asp-for="Descricao1" class="form-control" />
                 <span asp-validation-for="Descricao1" class="text-danger"></span>
             </div>
+            <form action="" method="post">
+                <input type="submit" name="submitButton" value="fav" />
+            </form>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -75,5 +79,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

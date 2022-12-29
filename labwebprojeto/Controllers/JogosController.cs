@@ -7,22 +7,49 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Data;
 using labwebprojeto.Models;
+using labwebprojeto.Services.Interfaces;
+using labwebprojeto.ViewModels;
 
 namespace labwebprojeto.Controllers
 {
     public class JogosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IPhotoService _photoService;
 
-        public JogosController(ApplicationDbContext context)
+        public JogosController(ApplicationDbContext context, IPhotoService photoService)
         {
             _context = context;
+            _photoService = photoService;
         }
 
         // GET: Jogos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Jogos.Include(j => j.IdCategoriaNavigation).Include(j => j.IdConsolaNavigation).Include(j => j.IdProdutoraNavigation);
+            //Show Category, Consola and Produtora Name
+            var categoria = _context.Jogos
+                .Include(x => x.Categorias)
+                .Distinct()
+                .ToList();
+
+            var consola = _context.Jogos
+                .Include(x => x.Consolas)
+                .Distinct()
+                .ToList();
+
+            var produtora = _context.Jogos
+                .Include(x => x.Produtoras)
+                .Distinct()
+                .ToList();
+
+            ViewData["Categoria"] = categoria;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = produtora;
+
+            var applicationDbContext = _context.Jogos.
+                Include(j => j.IdCategoriaNavigation)
+                .Include(j => j.IdConsolaNavigation)
+                .Include(j => j.IdProdutoraNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -44,12 +71,52 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
+            //Show Category, Consola and Produtora Name
+            var categoria = _context.Jogos
+                .Include(x => x.Categorias)
+                .Distinct()
+                .ToList();
+
+            var consola = _context.Jogos
+                .Include(x => x.Consolas)
+                .Distinct()
+                .ToList();
+
+            var produtora = _context.Jogos
+                .Include(x => x.Produtoras)
+                .Distinct()
+                .ToList();
+
+            ViewData["Categoria"] = categoria;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = produtora;
+
             return View(jogo);
         }
 
         // GET: Jogos/Create
         public IActionResult Create()
         {
+            //Show Category, Consola and Produtora Name
+            var categoria = _context.Jogos
+                .Include(x => x.Categorias)
+                .Distinct()
+                .ToList();
+
+            var consola = _context.Jogos
+                .Include(x => x.Consolas)
+                .Distinct()
+                .ToList();
+
+            var produtora = _context.Jogos
+                .Include(x => x.Produtoras)
+                .Distinct()
+                .ToList();
+
+            ViewData["Categoria"] = categoria;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = produtora;
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria");
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola");
             ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora");
@@ -61,23 +128,65 @@ namespace labwebprojeto.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdJogos,Nome,Foto,Foto1,Foto2,IdCategoria,IdConsola,IdProdutora,Preco,Descricao,Descricao1")] Jogo jogo)
+        public async Task<IActionResult> Create(CreateJogoViewModel jogoVM)
         {
             if (ModelState.IsValid)
             {
+                var result_pic = await _photoService.AddPhotoAsync(jogoVM.Foto);
+                var result_pic1 = await _photoService.AddPhotoAsync(jogoVM.Foto1);
+                var result_pic2 = await _photoService.AddPhotoAsync(jogoVM.Foto2);
+                var jogo = new Jogo
+                {
+                    IdJogos = jogoVM.IdJogos,
+                    Nome = jogoVM.Nome,
+                    Foto = result_pic.Url.ToString(),
+                    Foto1 = result_pic1.Url.ToString(),
+                    Foto2 = result_pic2.Url.ToString(),
+                    IdCategoria = jogoVM.IdCategoria,
+                    IdConsola = jogoVM.IdConsola,
+                    IdProdutora = jogoVM.IdProdutora,
+                    Preco = Math.Round(jogoVM.Preco, 2),
+                    Descricao = jogoVM.Descricao,
+                    Descricao1 = jogoVM.Descricao1,
+                };
                 _context.Add(jogo);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Game Created Successfully";
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", jogo.IdCategoria);
-            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola", jogo.IdConsola);
-            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora", jogo.IdProdutora);
-            return View(jogo);
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Game Created Successfully";
+            }
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", jogoVM.IdCategoria);
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola", jogoVM.IdConsola);
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora", jogoVM.IdProdutora);
+
+            return View(jogoVM);
         }
 
         // GET: Jogos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //Show Category, Consola and Produtora Name
+            var categoria = _context.Jogos
+                .Include(x => x.Categorias)
+                .Distinct()
+                .ToList();
+
+            var consola = _context.Jogos
+                .Include(x => x.Consolas)
+                .Distinct()
+                .ToList();
+
+            var produtora = _context.Jogos
+                .Include(x => x.Produtoras)
+                .Distinct()
+                .ToList();
+            ViewData["Categoria"] = categoria;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = produtora;
+
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();
@@ -135,6 +244,25 @@ namespace labwebprojeto.Controllers
         // GET: Jogos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            //Show Category, Consola and Produtora Name
+            var categoria = _context.Jogos
+                .Include(x => x.Categorias)
+                .Distinct()
+                .ToList();
+
+            var consola = _context.Jogos
+                .Include(x => x.Consolas)
+                .Distinct()
+                .ToList();
+
+            var produtora = _context.Jogos
+                .Include(x => x.Produtoras)
+                .Distinct()
+                .ToList();
+            ViewData["Categoria"] = categoria;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = produtora;
+
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();

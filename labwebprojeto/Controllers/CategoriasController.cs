@@ -10,6 +10,7 @@ using labwebprojeto.Models;
 
 namespace labwebprojeto.Controllers
 {
+    //In the future:[Authorize(Roles="Func, Admin")]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,9 +21,17 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Categorias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.Categoria.ToListAsync());
+            var categorias = from c in _context.Categoria
+                             select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                categorias = categorias.Where(j => j.Nome!.Contains(searchString));
+            }
+
+            return View(await categorias.ToListAsync());
         }
 
         // GET: Categorias/Details/5

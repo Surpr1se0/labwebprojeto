@@ -1,4 +1,5 @@
-﻿@model labwebprojeto.Models.Jogo
+﻿@using labwebprojeto.ViewModels;
+@model CreateJogoViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -18,31 +19,37 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
+                <label asp-for="Foto">Image</label>
+                <input asp-for="Foto" type="file" class="form-control" placeholder="Foto">
                 <span asp-validation-for="Foto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Foto1" class="control-label"></label>
-                <input asp-for="Foto1" class="form-control" />
+                <label asp-for="Foto1">Image</label>
+                <input asp-for="Foto1" type="file" class="form-control" placeholder="FotoDescricao">
                 <span asp-validation-for="Foto1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Foto2" class="control-label"></label>
-                <input asp-for="Foto2" class="form-control" />
+                <label asp-for="Foto2">Image</label>
+                <input asp-for="Foto2" type="file" class="form-control" placeholder="FotoDescricao">
                 <span asp-validation-for="Foto2" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCategoria" class="control-label"></label>
-                <select asp-for="IdCategoria" class ="form-control" asp-items="ViewBag.IdCategoria"></select>
+                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria" asp-items="ViewData.Categoria"></select>
             </div>
+            <ul>
+                @foreach (string categoria in (List<string>)ViewData["Categoria"])
+                {
+                    <li>@categoria</li>
+                }
+            </ul>
             <div class="form-group">
                 <label asp-for="IdConsola" class="control-label"></label>
-                <select asp-for="IdConsola" class ="form-control" asp-items="ViewBag.IdConsola"></select>
+                <select asp-for="IdConsola" class="form-control" asp-items="ViewBag.IdConsola"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdProdutora" class="control-label"></label>
-                <select asp-for="IdProdutora" class ="form-control" asp-items="ViewBag.IdProdutora"></select>
+                <select asp-for="IdProdutora" class="form-control" asp-items="ViewBag.IdProdutora"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label"></label>
@@ -71,5 +78,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
