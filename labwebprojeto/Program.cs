@@ -1,8 +1,10 @@
 using labwebprojeto.Data;
 using labwebprojeto.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Services;
+using utadlabwebprojeto.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +54,13 @@ services.AddAuthentication().AddGoogle(googleOptions =>
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
 });
+
+// Add Email Sender
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+// Add Email Notifications
+builder.Services.AddTransient<IEmailService, SendGridMailService>();
 
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddControllersWithViews();
