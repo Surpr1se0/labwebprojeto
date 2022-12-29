@@ -3,7 +3,7 @@ using CloudinaryDotNet.Actions;
 using labwebprojeto.Services.Interfaces;
 using Microsoft.Extensions.Options;
 
-namespace utadlabwebprojeto.Services
+namespace labwebprojeto.Services
 {
     public class PhotoService : IPhotoService
     {

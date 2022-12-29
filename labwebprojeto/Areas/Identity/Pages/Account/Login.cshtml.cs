@@ -61,7 +61,7 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "User Name")]
+            [Display(Name = "UserName")]
             public string UserName { get; set; }
 
             /// <summary>

@@ -2,7 +2,7 @@ using labwebprojeto.Data;
 using labwebprojeto.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using utadlabwebprojeto.Services;
+using labwebprojeto.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

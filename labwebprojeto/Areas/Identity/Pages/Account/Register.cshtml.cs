@@ -82,7 +82,7 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
             public string Role { get; set; }
 
             [Required]
-            [Display(Name ="User Name")]
+            [Display(Name ="UserName")]
             public string UserName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

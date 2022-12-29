@@ -1,4 +1,4 @@
-﻿namespace utadlabwebprojeto.Services
+﻿namespace labwebprojeto.Services
 {
     public class CloudinarySettings
     {

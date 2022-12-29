@@ -6,6 +6,11 @@
 
 <h1>Index</h1>
 
+<form class="d-flex" asp-controller="Categorias" asp-action="Index" method="get">
+    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+</form>
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -33,3 +38,27 @@
 }
     </tbody>
 </table>
+
+
+<ejs-button id="custom" cssClass="e-custom" content="CUSTOM"></ejs-button>
+
+<style>
+    .e-custom {
+        border-radius: 0;
+        height: 100px;
+        width: 100px;
+    }
+        .e-custom, .e-custom:hover, .e-custom:focus, .e-custom:active {
+            background-color: #ff6e40;
+            color: #fff;
+        }
+    button {
+        
+    }
+</style>
+
+<script>
+    document.getElementById('button').onclick = function () {
+        window.open("https://www.google.com");
+    };
+</script>
