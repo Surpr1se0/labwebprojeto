@@ -16,6 +16,7 @@
 </head>
 <body>
     <header>
+        
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#1C1C1C">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/Home/Index">Can't Stop</a>
@@ -32,12 +33,23 @@
 
                 <div class="justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")) || (User.IsInRole("Client")))
+                        {
+                        <li>
+                            <a href="/Identity/Account/Logout" class="nav-link text-light justify-content-end">Logout</a>
+                        </li>
+                        <li>
+                            <a href="/Identity/Account/Manage" class="nav-link text-light justify-content-end">Profile</a>
+                        </li>
+                        }
+                        else {
                         <li>
                             <a href="/Identity/Account/Login" class="nav-link text-light justify-content-end">Login</a>
                         </li>
                         <li>
                             <a href="/Identity/Account/Register" class="nav-link text-light justify-content-end">Sign up</a>
                         </li>
+                        }
                     </ul>
                 </div>
 
