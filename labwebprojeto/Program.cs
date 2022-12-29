@@ -43,6 +43,16 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 
+// Add API Google Services
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+});
+
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddControllersWithViews();
 
