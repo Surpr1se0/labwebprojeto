@@ -1,9 +1,7 @@
-﻿CREATE TABLE Utilizador(
+CREATE TABLE Utilizador(
     Id_Utilizador INTEGER IDENTITY(1, 1) NOT NULL,
-    nome NVARCHAR(50) NOT NULL,
+    nome NVARCHAR(50) NOT NULL,s
     telefone NVARCHAR(20),
-
-    PRIMARY KEY (Id_Utilizador),
 )
 
 CREATE TABLE Categoria(
@@ -68,3 +66,17 @@ CREATE TABLE Favorito(
     FOREIGN KEY (Id_Utilizador) REFERENCES Utilizador(Id_Utilizador)
 )
 
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace utadlabwebteste.Data
+{
+    public class ApplicationDbContext : IdentityDbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+    }
+}
