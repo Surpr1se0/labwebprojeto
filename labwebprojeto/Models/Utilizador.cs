@@ -38,6 +38,15 @@ namespace labwebprojeto.Models
         [Required(ErrorMessage = "Email is Required!")]
         public string Email { get; set; }
 
+        [Column("isFunc")]
+        public bool IsFunc { get; set; }
+
+        [Column("isAdmin")]
+        public bool IsAdmin { get; set; }
+
+        [Column("isCliente")]
+        public bool IsCliente { get; set; }
+
         [InverseProperty("IdUtilizadorNavigation")]
         public virtual ICollection<Compra> Compras { get; set; }
 

@@ -56,7 +56,10 @@ namespace labwebprojeto.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable:false)
+                    email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable:false),
+                    isFunc = table.Column<bool>(type: "bit", nullable: false),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    isCliente = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

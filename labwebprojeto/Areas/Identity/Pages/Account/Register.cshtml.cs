@@ -97,6 +97,13 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Display(Name = "Telefone")]
+            public string? Telefone { get; set; }
+
+            /// <summary>
+            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            ///     directly from your code. This API may change or be removed in future releases.
+            /// </summary>
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -137,12 +144,61 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    //Inject new input data into the Users Model
 
-                    // Add New User to Class
-                    Utilizador new_utilizador = new Utilizador { Nome = Input.UserName, Email = Input.Email };
-                    _context.Utilizadors.Add(new_utilizador);
-                    await _context.SaveChangesAsync();
+                    if(Input.Role == null)
+                    {
+                        Input.Role = "Client";
+                        Utilizador new_utilizador = new Utilizador {
+                            Nome = Input.UserName, 
+                            Email = Input.Email ,
+                            IsCliente = true};
+                        _context.Utilizadors.Add(new_utilizador);
+                        await _context.SaveChangesAsync();
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+                    else if(Input.Role == "Admin")
+                    {
+                        Input.Role = "Admin";
+                        Utilizador new_utilizador = new Utilizador
+                        {
+                            Nome = Input.UserName,
+                            Email = Input.Email,
+                            IsAdmin = true
+                        };
+                        _context.Utilizadors.Add(new_utilizador);
+                        await _context.SaveChangesAsync();
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+                    else if(Input.Role == "Func")
+                    {
+                        Input.Role = "Func";
+                        Utilizador new_utilizador = new Utilizador
+                        {
+                            Nome = Input.UserName,
+                            Email = Input.Email,
+                            Telefone = Input.Telefone,
+                            IsFunc = true
+                        };
+                        _context.Utilizadors.Add(new_utilizador);
+                        await _context.SaveChangesAsync();
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+                    else if(Input.Role == "Client")
+                    {
+                        Input.Role = "Client";
+                        Utilizador new_utilizador = new Utilizador
+                        {
+                            Nome = Input.UserName,
+                            Email = Input.Email,
+                            IsCliente = true
+                        };
+                        _context.Utilizadors.Add(new_utilizador);
+                        await _context.SaveChangesAsync();
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+
+                    _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
