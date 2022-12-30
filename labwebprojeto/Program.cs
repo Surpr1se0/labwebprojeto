@@ -63,6 +63,13 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
     microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
 });
 
+// Add API Twitter Services
+services.AddAuthentication().AddTwitter(twitterOptions =>
+{
+    twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
+    twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
+});
+
 // Add Email Sender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
