@@ -38,10 +38,10 @@
                 <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria" asp-items="ViewData.Categoria"></select>
             </div>
             <ul>
-                @foreach (string categoria in (List<string>)ViewData["Categoria"])
+               @* @foreach (string categoria in (List<string>)ViewData["Categoria"])
                 {
                     <li>@categoria</li>
-                }
+                }*@
             </ul>
             <div class="form-group">
                 <label asp-for="IdConsola" class="control-label"></label>
