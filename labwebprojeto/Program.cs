@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Services;
+using System.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,9 +50,6 @@ builder.Services.AddScoped<IPhotoService, PhotoService>();
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-// 2FAuth
-
-
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
@@ -75,6 +74,10 @@ builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// 2FAuth
+services.AddTransient<ISmsSender, AuthMessageSender>();
+services.Configure<SMSoptions>(configuration);
 
 // Add Scoped RoleManager
 using (var scope = app.Services.CreateScope())
