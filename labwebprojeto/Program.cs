@@ -75,9 +75,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// 2FAuth
-services.AddTransient<ISmsSender, AuthMessageSender>();
-services.Configure<SMSoptions>(configuration);
+
 
 // Add Scoped RoleManager
 using (var scope = app.Services.CreateScope())
