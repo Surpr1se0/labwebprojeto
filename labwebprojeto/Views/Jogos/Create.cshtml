@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdCategoria" class="control-label"></label>
-                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria" asp-items="ViewData.Categoria"></select>
+                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria"></select>
             </div>
             <ul>
                @* @foreach (string categoria in (List<string>)ViewData["Categoria"])
@@ -47,10 +47,22 @@
                 <label asp-for="IdConsola" class="control-label"></label>
                 <select asp-for="IdConsola" class="form-control" asp-items="ViewBag.IdConsola"></select>
             </div>
+            <ul>
+                @foreach (string consola in (List<string>)ViewData["Consola"])
+                {
+                    <li>@consola</li>
+                }
+            </ul>
             <div class="form-group">
                 <label asp-for="IdProdutora" class="control-label"></label>
                 <select asp-for="IdProdutora" class="form-control" asp-items="ViewBag.IdProdutora"></select>
             </div>
+            <ul>
+                @foreach (string produtora in (List<string>)ViewData["Produtora"])
+                {
+                    <li>@produtora</li>
+                }
+            </ul>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label"></label>
                 <input asp-for="Preco" class="form-control" />
