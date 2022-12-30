@@ -17,6 +17,11 @@ dotnet user-secrets set "Authentication:Google:ClientSecret" "GOCSPX-4inuGKOLuyI
 dotnet user-secrets set "Authentication:Microsoft:ClientId" "4zQ8Q~LNRk305NFfeb1sJKWfrkO2YJW37g-shcMO"  
 dotnet user-secrets set "Authentication:Microsoft:ClientSecret" "e5fd4201-f502-46da-af65-194dc64d8626"
 
+**Twitter API Settings**: 
+dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "gzSzFteUJ8vkHeGcyvw2Tx8AC"  
+dotnet user-secrets set "Authentication:Twitter:ConsumerSecret" "BfcYETqWN3XnqxHhi9Czwgtb798ZP20VI7YpraaHj18FZoAlit"  
+Bearer Token: AAAAAAAAAAAAAAAAAAAAANazkwEAAAAACo2u3Zy%2BfGJvdCuKs%2BtCfQWdMj8%3DfIZ8zm5eCaJe2Bj4y5afrgqcxoCGjDDwN1KMmXiO4zm9gmyZTS  
+
 **Cloudinary API Settings**:   
 Check JsonFile
 
