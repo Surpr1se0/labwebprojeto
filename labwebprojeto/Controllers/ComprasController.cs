@@ -49,14 +49,12 @@ namespace labwebprojeto.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
-            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "IdJogos");
+            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "Nome");
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
             return View();
         }
 
         // POST: Compras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdCompra,IdJogo,IdUtilizador,DataCompra")] Compra compra)
@@ -67,7 +65,7 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "IdJogos", compra.IdJogo);
+            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "Nome", compra.IdJogo);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", compra.IdUtilizador);
             return View(compra);
         }
@@ -85,14 +83,12 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "IdJogos", compra.IdJogo);
+            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "Nome", compra.IdJogo);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", compra.IdUtilizador);
             return View(compra);
         }
 
         // POST: Compras/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdCompra,IdJogo,IdUtilizador,DataCompra")] Compra compra)
@@ -122,7 +118,7 @@ namespace labwebprojeto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "IdJogos", compra.IdJogo);
+            ViewData["IdJogo"] = new SelectList(_context.Jogos, "IdJogos", "Nome", compra.IdJogo);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", compra.IdUtilizador);
             return View(compra);
         }

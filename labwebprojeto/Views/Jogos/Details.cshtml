@@ -51,20 +51,6 @@
                     @*VER PREÇO: DIOGO*@
                     <li>@Math.Round(@Model.Preco,2)€</li>
                     @*VER PREÇO: DIOGO*@
-                    @foreach (string produtora in (List<string>)ViewData["Produtora"])
-                    {
-                        <li>@produtora</li>
-                    }
-
-                    @foreach (string categoria in (List<string>)ViewData["Categoria"])
-                    {
-                        <li>@categoria</li>
-                    }
-
-                    @foreach (string consola in (List<string>)ViewData["Consola"])
-                    {
-                        <li>@consola</li>
-                    }
                 </ul>
 
 

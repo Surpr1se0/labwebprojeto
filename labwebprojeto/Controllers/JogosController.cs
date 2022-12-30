@@ -30,21 +30,9 @@ namespace labwebprojeto.Controllers
         // GET: Jogos
         public async Task<IActionResult> Index()
         {
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
 
             var applicationDbContext = _context.Jogos.
                 Include(j => j.IdCategoriaNavigation)
@@ -71,53 +59,19 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
-
             return View(jogo);
         }
 
         // GET: Jogos/Create
         public IActionResult Create()
         {
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
-
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria");
-            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola");
-            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora");
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
             return View();
         }
 
         // POST: Jogos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateJogoViewModel jogoVM)
@@ -145,15 +99,15 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Created Successfully";
 
-                //Add Email Sender Notification - Problem
-                var name = HttpContext.User.Identity.Name.ToString();
+                ////Add Email Sender Notification - Problem
+                //var name = HttpContext.User.Identity.Name.ToString();
 
-                //Testar com LINQ
-                var email = _context.Utilizadors
-                    .Include(x => x.Email)
-                    .FirstOrDefaultAsync(x => x.Nome == name)
-                    .ToString();
-                await _emailService.SendEmailAsync(email, "New Game", "New game added!");
+                ////Testar com LINQ
+                //var email = _context.Utilizadors
+                //    .Include(x => x.Email)
+                //    .FirstOrDefaultAsync(x => x.Nome == name)
+                //    .ToString();
+                //await _emailService.SendEmailAsync(email, "New Game", "New game added!");
 
                 return RedirectToAction(nameof(Index));
             }
@@ -161,9 +115,9 @@ namespace labwebprojeto.Controllers
             {
                 TempData["Error"] = "Game Created Successfully";
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", jogoVM.IdCategoria);
-            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola", jogoVM.IdConsola);
-            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora", jogoVM.IdProdutora);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", jogoVM.IdCategoria);
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome", jogoVM.IdConsola);
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome", jogoVM.IdProdutora);
 
             return View(jogoVM);
         }
@@ -171,22 +125,6 @@ namespace labwebprojeto.Controllers
         // GET: Jogos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
-
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();
@@ -197,18 +135,21 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", jogo.IdCategoria);
-            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola", jogo.IdConsola);
-            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora", jogo.IdProdutora);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", jogo.IdCategoria);
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome", jogo.IdConsola);
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome", jogo.IdProdutora);
             return View(jogo);
         }
 
         // POST: Jogos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdJogos,Nome,Foto,Foto1,Foto2,IdCategoria,IdConsola,IdProdutora,Preco,Descricao,Descricao1")] Jogo jogo)
+        public async Task<IActionResult> Edit(int id, 
+            [Bind("IdJogos," +
+            "Nome,Foto,Foto1," +
+            "Foto2,IdCategoria," +
+            "IdConsola,IdProdutora," +
+            "Preco,Descricao,Descricao1")] Jogo jogo)
         {
             if (id != jogo.IdJogos)
             {
@@ -235,31 +176,15 @@ namespace labwebprojeto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", jogo.IdCategoria);
-            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "IdConsola", jogo.IdConsola);
-            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "IdProdutora", jogo.IdProdutora);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", jogo.IdCategoria);
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome", jogo.IdConsola);
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome", jogo.IdProdutora);
             return View(jogo);
         }
 
         // GET: Jogos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
-
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();

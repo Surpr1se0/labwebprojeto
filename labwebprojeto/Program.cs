@@ -48,6 +48,9 @@ builder.Services.AddScoped<IPhotoService, PhotoService>();
 var services = builder.Services;
 var configuration = builder.Configuration;
 
+// 2FAuth
+
+
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];

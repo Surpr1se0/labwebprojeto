@@ -33,7 +33,6 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-
             var favorito = await _context.Favoritos
                 .Include(f => f.IdCategoriaNavigation)
                 .Include(f => f.IdUtilizadorNavigation)
@@ -49,7 +48,7 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos/Create
         public IActionResult Create()
         {
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria");
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
             return View();
         }
@@ -67,7 +66,7 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", favorito.IdCategoria);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
             return View(favorito);
         }
@@ -85,7 +84,7 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", favorito.IdCategoria);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
             return View(favorito);
         }
@@ -122,7 +121,7 @@ namespace labwebprojeto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "IdCategoria", favorito.IdCategoria);
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
             return View(favorito);
         }

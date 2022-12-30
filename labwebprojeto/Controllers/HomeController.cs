@@ -2,6 +2,7 @@
 using labwebprojeto.Models;
 using labwebprojeto.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -31,21 +32,9 @@ namespace labwebprojeto.Controllers
                 jogos = jogos.Where(j => j.Nome!.Contains(searchString));
             }
 
-            // Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
+            ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
+            ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
 
             return View(await jogos.ToListAsync());
         }
@@ -63,22 +52,6 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-
-            //Show Category, Consola and Produtora Name
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
 
             return View(jogo);
         }
