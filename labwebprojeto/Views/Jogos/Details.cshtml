@@ -2,7 +2,7 @@
 
 <!-- Page Content -->
 
-<body style="background-color:#4618ac">
+<body style="background-color:#004460">
     <div class="containerT">
         <!-- Portfolio Item Heading -->
         <h1 class="my-4">
@@ -46,26 +46,57 @@
             <div class="LetrasYa col-md-7">
                 <h3 class="my-3">@Model.Descricao</h3>
                 <h3 class="my-3">@Model.Descricao1</h3>
+                <div class="ApenasInf">
                 <ul>
+                    
 
                     @*VER PREÇO: DIOGO*@
                     <li>@Math.Round(@Model.Preco,2)€</li>
                     @*VER PREÇO: DIOGO*@
                 </ul>
-
+                
+                <ul>
+                    @foreach (string produtora in (List<string>)ViewData["Produtora"])
+                    {
+                        <li>@produtora</li>
+                    }
+                </ul>
+                <ul>
+                    @foreach (string categoria in (List<string>)ViewData["Categoria"])
+                    {
+                        <li>@categoria</li>
+                    }
+                </ul>
+                <ul>
+                    @foreach (string consola in (List<string>)ViewData["Consola"])
+                    {
+                        <li>@consola</li>
+                    }
+                </ul>
+                </div>
 
 
             </div>
-            @*To Change*@
-            <div class="detailsButton">
-                <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
-            </div>
-            <div class="detailsButtonJust">
+                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
+                    {
+                <div class="buttonBuy">
+                    <button>Comprar</button>
+                        </div>
 
-                <a>Click </a> <a href="/Identity/Account/Login">Here</a> <a>to Login</a>
+                    }
+                    else
+                    {
+                          <div class="detailsButton">
+                                 <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
+                          </div>
+                          <div class="detailsButtonJust">
+                                  <a>Click </a> <a href="/Identity/Account/Login">Here</a> <a>to Login</a>
+                           </div>
 
-            </div>
-
+                    }
+ 
+            
+           
         </div>
 
 
