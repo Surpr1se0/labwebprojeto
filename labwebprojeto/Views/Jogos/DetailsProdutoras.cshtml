@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<labwebprojeto.Models.Jogo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "DetailsProdutoras";
 }
 
 <partial name="_Notification" />
@@ -26,7 +26,6 @@
         <button class="btn" type="submit" value="Filter">Search</button>
     </form>
 
-
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Can't Stop</h1>
@@ -35,8 +34,6 @@
             </p>
         </div>
     </section>
-
-
 
     <div class="container">
         <div class="row">
@@ -70,59 +67,3 @@
     </div>
 </body>
 </html>
-
-
-
-@*
-
-
-
-                        ========================
-                        This Needs to be altered
-                        ========================
-
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                        }
-                        @if (User.IsInRole("Func"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                        }
-                        @if (User.IsInRole("Client"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Admins</a>
-                            </li>
-                        }
-                    </ul>
-                    Search bar was here
-                </div>
-            </div>
-        </nav>
-
-
-
-*@

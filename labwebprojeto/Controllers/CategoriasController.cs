@@ -34,28 +34,6 @@ namespace labwebprojeto.Controllers
             return View(await categorias.ToListAsync());
         }
 
-        public IActionResult IndexSquare()
-        {
-            var categorias = from c in _context.Categoria
-                             join j in _context.Jogos
-                             on c.IdCategoria equals j.IdCategoria
-                             select c;
-
-            return View(categorias.Distinct());
-        }
-
-        public IActionResult DetailSquare(int id) //IdCategoria
-        {
-
-            var jogo = from j in _context.Jogos
-                        join c in _context.Categoria
-                        on j.IdCategoria equals id
-                        select j;
-
-            return View(jogo.ToList().Distinct()); 
-        }
-
-
         // GET: Categorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {

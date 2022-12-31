@@ -26,7 +26,6 @@ namespace labwebprojeto.Controllers
             var jogos = from j in _context.Jogos
                         select j;
 
-            // Search 
             if (!String.IsNullOrEmpty(searchString))
             {
                 jogos = jogos.Where(j => j.Nome!.Contains(searchString));

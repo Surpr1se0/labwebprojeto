@@ -28,23 +28,25 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Jogos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            var jogos = from j in _context.Jogos
+                        select j;
 
-
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                jogos = jogos.Where(j => j.Nome!.Contains(searchString));
+            }
 
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
             ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
 
-
-
-
             var applicationDbContext = _context.Jogos.
                 Include(j => j.IdCategoriaNavigation)
                 .Include(j => j.IdConsolaNavigation)
                 .Include(j => j.IdProdutoraNavigation);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await jogos.ToListAsync());
         }
 
         // GET: Jogos/Details/5
@@ -250,7 +252,72 @@ namespace labwebprojeto.Controllers
         {
           return _context.Jogos.Any(e => e.IdJogos == id);
         }
+
+
+        /*--------CATEGORIAS*---------*/
+        public async Task<IActionResult> IndexCategorias()
+        {
+            var categorias = (from c in _context.Categoria
+                              join j in _context.Jogos
+                              on c.IdCategoria equals j.IdCategoria
+                              select c).Distinct();
+
+            return View(await categorias.ToListAsync());
+        }
+
+        public async Task<IActionResult> DetailsCategorias(int id)
+        {
+            var jogo = (from j in _context.Jogos
+                        join c in _context.Categoria
+                        on j.IdCategoria equals id
+                        select j).Distinct();
+
+            return View(await jogo.ToListAsync());
+        }
+
+        /*--------PRODUTORAS*---------*/
+        public async Task<IActionResult> IndexProdutoras()
+        {
+            var produtoras = (from p in _context.Produtoras
+                              join j in _context.Jogos
+                              on p.IdProdutora equals j.IdProdutora
+                              select p).Distinct();
+
+            return View(await produtoras.ToListAsync());
+        }
+
+        public async Task<IActionResult> DetailsProdutoras(int id)
+        {
+            var jogo = (from j in _context.Jogos
+                        join p in _context.Produtoras
+                        on j.IdCategoria equals id
+                        select j).Distinct();
+
+            return View(await jogo.ToListAsync());
+        }
+
+        /*--------CONSOLAS*---------*/
+        public async Task<IActionResult> IndexConsolas()
+        {
+            var consolas = (from c in _context.Consolas
+                              join j in _context.Jogos
+                              on c.IdConsola equals j.IdCategoria
+                              select c).Distinct();
+
+            return View(await consolas.ToListAsync());
+        }
+
+        public async Task<IActionResult> DetailsConsolas(int id)
+        {
+            var jogo = (from j in _context.Jogos
+                        join c in _context.Categoria
+                        on j.IdCategoria equals id
+                        select j).Distinct();
+
+            return View(await jogo.ToListAsync());
+        }
     }
+
 
 
 }
