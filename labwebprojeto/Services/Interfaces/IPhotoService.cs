@@ -6,7 +6,7 @@ namespace labwebprojeto.Services.Interfaces
     {
         Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
 
-        Task<ImageUploadResult> AddBackgroundAsync(IFormFile file)
+        Task<ImageUploadResult> AddBackgroundAsync(IFormFile file);
 
         Task<DeletionResult> DeletePhotoAsync(string publicId);
     }

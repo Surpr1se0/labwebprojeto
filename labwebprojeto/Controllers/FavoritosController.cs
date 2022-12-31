@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Data;
 using labwebprojeto.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace labwebprojeto.Controllers
 {
@@ -48,6 +50,10 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos/Create
         public IActionResult Create()
         {
+            //to work: true in Service
+            TempData["idJogos_Atual"] = User.Identity.Name.ToString();
+
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
             return View();
