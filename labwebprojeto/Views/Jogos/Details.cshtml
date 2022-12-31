@@ -31,9 +31,13 @@
                 <div class="precotal">
                     <h2>@Math.Round(@Model.Preco,2)€ </h2>
                 </div>
-                <div class="maisumbutton">
-                    <button> Comprar</button>
-                </div>
+                @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
+                {
+                    <div class="maisumbutton">
+                        <button> Comprar</button>
+                    </div>
+                }
+                
                 <div class="Versepinta">
                     <ul>
                         @foreach (string produtora in (List<string>)ViewData["Produtora"])
