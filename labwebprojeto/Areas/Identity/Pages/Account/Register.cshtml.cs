@@ -123,7 +123,6 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            // IF NECESSARY TO ENTER ROLES IN THE VIEW
             ViewData["roles"] = _roleManager.Roles.ToList();
 
             ReturnUrl = returnUrl;
@@ -145,7 +144,6 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     //Inject new input data into the Users Model
-
                     if(Input.Role == null)
                     {
                         Input.Role = "Client";

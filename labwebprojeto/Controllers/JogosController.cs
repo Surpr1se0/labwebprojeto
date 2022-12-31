@@ -27,15 +27,23 @@ namespace labwebprojeto.Controllers
             _emailService = emailService;
         }
 
-        // GET: Jogos
-        public async Task<IActionResult> Index()
+        // GET: Jogos/Index/5
+        public async Task<IActionResult> Index(string searchString)
         {
+            var jogos = from j in _context.Jogos
+                        select j;
+            
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                jogos = jogos.Where(j => j.Nome!.Contains(searchString));
+            }
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
             ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
 
-            var applicationDbContext = _context.Jogos.
-                Include(j => j.IdCategoriaNavigation)
+            var applicationDbContext = _context.Jogos
+                .Include(j => j.IdCategoriaNavigation)
                 .Include(j => j.IdConsolaNavigation)
                 .Include(j => j.IdProdutoraNavigation);
             return View(await applicationDbContext.ToListAsync());

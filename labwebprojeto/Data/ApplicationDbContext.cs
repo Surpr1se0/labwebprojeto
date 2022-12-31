@@ -16,6 +16,7 @@ namespace labwebprojeto.Data
         {
         }
 
+        // Fazer alterações ao DbContext
         public virtual DbSet<Categoria> Categoria { get; set; } = null!;
         public virtual DbSet<Compra> Compras { get; set; } = null!;
         public virtual DbSet<Consola> Consolas { get; set; } = null!;

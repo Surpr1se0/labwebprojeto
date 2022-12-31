@@ -77,12 +77,11 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 // Add Email Notifications
 builder.Services.AddTransient<IEmailService, SendGridMailService>();
 
+// Add Role Manager
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
-
 
 // Add Scoped RoleManager
 using (var scope = app.Services.CreateScope())
