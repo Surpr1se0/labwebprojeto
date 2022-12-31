@@ -539,4 +539,69 @@ body {
 
 
 
+.table {
+    overflow-y: scroll;
+    height: 200px;
+    display: block;
+}
 
+
+
+
+/*----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------*/
+
+.container .d-flex {
+    padding-left: .6rem;
+}
+
+.d-flex {
+    padding: 1rem;
+
+    
+}
+
+.about-login .fartodisto2 .about-rightcena button {
+    padding: .4rem; 
+}
+
+
+
+.about-login .fartodisto2 .about-image {
+    padding: 0rem 13rem;
+}
+
+
+
+    .about-login .fartodisto2 .about-rightcena {
+
+        background-color: white;
+        padding: 2rem 2rem;
+        padding-bottom: 4rem;
+        border-radius: 2rem;
+        margin: auto;
+    }
+
+a.buttonCat {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: none;
+    background-color:green;
+}
+
+.about-rightcena table  {
+    padding-left:2.5rem;
+}
+.about-rightcena .butNew {
+    padding-left:7.5rem;
+    padding-top:2rem;
+}
+
+/*----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------*/
