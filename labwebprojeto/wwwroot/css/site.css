@@ -281,6 +281,25 @@ body {
 }
 
 
+.ApenasInf {
+    padding-top:2rem;
+}
+
+
+.buttonBuy {
+    padding-left: 13rem;
+    
+    
+}
+
+    .buttonBuy button {
+        border-radius: 6rem;
+        font-size: 18px;
+        padding: 10px 35px;
+        background-color: greenyellow;
+        font-weight: bold;
+
+    }
 
 
 

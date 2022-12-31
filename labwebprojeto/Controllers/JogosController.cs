@@ -30,9 +30,15 @@ namespace labwebprojeto.Controllers
         // GET: Jogos
         public async Task<IActionResult> Index()
         {
+
+
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
             ViewData["IdProdutora"] = new SelectList(_context.Produtoras, "IdProdutora", "Nome");
+
+
+
 
             var applicationDbContext = _context.Jogos.
                 Include(j => j.IdCategoriaNavigation)
@@ -44,6 +50,24 @@ namespace labwebprojeto.Controllers
         // GET: Jogos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            var categoria = (from j in _context.Jogos
+                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
+                             select c.Nome).Distinct().ToList();
+            ViewData["Categoria"] = categoria;
+
+            var consola = (from j in _context.Jogos
+                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
+                           select c.Nome).Distinct().ToList();
+            ViewData["Consola"] = consola;
+
+            var produtora = (from j in _context.Jogos
+                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
+                             select c.Nome).Distinct().ToList();
+            ViewData["Produtora"] = produtora;
+
+
+
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();
@@ -227,4 +251,6 @@ namespace labwebprojeto.Controllers
           return _context.Jogos.Any(e => e.IdJogos == id);
         }
     }
+
+
 }
