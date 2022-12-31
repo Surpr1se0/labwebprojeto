@@ -9,6 +9,8 @@ using labwebprojeto.Data;
 using labwebprojeto.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Security.Claims;
+using CloudinaryDotNet;
 
 namespace labwebprojeto.Controllers
 {
@@ -24,6 +26,15 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos
         public async Task<IActionResult> Index()
         {
+            /*Ir buscar o nome do user atual
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var user = (from u in _context.Utilizadors
+                        select u);
+
+            var userlog = user.Where(x => x.IdUtilizador.Equals(claims.Value));*/
+
             var applicationDbContext = _context.Favoritos.Include(f => f.IdCategoriaNavigation).Include(f => f.IdUtilizadorNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -50,22 +61,17 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos/Create
         public IActionResult Create()
         {
-            //to work: true in Service
-            TempData["idJogos_Atual"] = User.Identity.Name.ToString();
-
-
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
             return View();
         }
 
         // POST: Favoritos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdFavorito,IdCategoria,IdUtilizador")] Favorito favorito)
         {
+            //ta a dar erro
             if (ModelState.IsValid)
             {
                 _context.Add(favorito);
@@ -172,6 +178,37 @@ namespace labwebprojeto.Controllers
         private bool FavoritoExists(int id)
         {
           return _context.Favoritos.Any(e => e.IdFavorito == id);
+        }
+
+
+        /*------------Utilizadores---------------*/
+        public async Task<IActionResult> UtilizadorIndex()
+        {
+                //List of Users
+            var user = (from u in _context.Utilizadors
+                        select u);
+                //Fetch Actual Identity
+            var identity = (ClaimsIdentity)User.Identity;
+
+                //Fetch of First User With Name Specified - returns ID
+            //var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+                //Email of Identity
+            var claims = identity.Name;
+
+                //Utilizador objet where Email = Actual Email
+            var userlog = user.Where(x => x.Email.Equals(claims));
+
+                //Favoritos of Actual User
+            var userFavs = (from f in _context.Favoritos
+                            join u in userlog 
+                            on f.IdUtilizador equals u.IdUtilizador
+                            select f);
+
+            ViewData["IdCategoria"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
+            ViewData["IdUtilizador"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
+
+            return View(await userFavs.ToListAsync());
         }
     }
 }
