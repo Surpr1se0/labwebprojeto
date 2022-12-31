@@ -9,6 +9,7 @@ using labwebprojeto.Data;
 using labwebprojeto.Models;
 using labwebprojeto.Services.Interfaces;
 using labwebprojeto.ViewModels;
+using System.Security.Claims;
 
 namespace labwebprojeto.Controllers
 {
@@ -125,15 +126,30 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Created Successfully";
 
-                ////Add Email Sender Notification - Problem
-                //var name = HttpContext.User.Identity.Name.ToString();
+                //Add Email Notification
+                var userClients = (from u in _context.Utilizadors
+                                 select u)
+                                 .Where(x => x.IsCliente == true);
 
-                ////Testar com LINQ
-                //var email = _context.Utilizadors
-                //    .Include(x => x.Email)
-                //    .FirstOrDefaultAsync(x => x.Nome == name)
-                //    .ToString();
-                //await _emailService.SendEmailAsync(email, "New Game", "New game added!");
+                //Lista de emails
+                var emailClients = (from u in userClients
+                                    select u.Email);
+
+                //favoritos que tem um cliente associado
+                var categoryClients = (from f in _context.Favoritos
+                                       join u in userClients
+                                       on f.IdUtilizador equals u.IdUtilizador
+                                       select f);
+
+                var favourites = categoryClients.Where(x => x.IdCategoria == jogoVM.IdCategoria);
+
+                if(favourites.Any())
+                {
+                    foreach (var c in emailClients)
+                    {
+                        await _emailService.SendEmailAsync(c, "New Game - " + jogoVM.Nome, "New game added!");
+                    }
+                }
 
                 return RedirectToAction(nameof(Index));
             }
