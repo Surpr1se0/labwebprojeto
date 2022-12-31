@@ -128,12 +128,21 @@ body {
 
 
 
+.comeon a {
+    position:relative;
+    left:5.1rem;
+}
+
+.detailsButton a{
+    color:white;
+} 
 
 
+#msg_default   {
+    position:relative;
+    
 
-
-
-
+}
 
 /*-----------------------------------DETAILS JOGO (NOVO)-----------------------
 -----------------------------------DETAILS JOGO (NOVO)-----------------------

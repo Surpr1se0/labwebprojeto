@@ -37,7 +37,12 @@
                         <button> Comprar</button>
                     </div>
                 }
-                
+                else {
+                    
+                    <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
+                    <a style="color:white">Click </a> <a href="/Identity/Account/Login">Here</a> <a style="color:white">to Login</a>
+                    
+                }
                 <div class="Versepinta">
                     <ul>
                         @foreach (string produtora in (List<string>)ViewData["Produtora"])
