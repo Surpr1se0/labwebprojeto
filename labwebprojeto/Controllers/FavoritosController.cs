@@ -71,7 +71,6 @@ namespace labwebprojeto.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdFavorito,IdCategoria,IdUtilizador")] Favorito favorito)
         {
-            //ta a dar erro
             if (ModelState.IsValid)
             {
                 _context.Add(favorito);
@@ -197,7 +196,7 @@ namespace labwebprojeto.Controllers
             var claims = identity.Name;
 
                 //Utilizador objet where Email = Actual Email
-            var userlog = user.Where(x => x.Email.Equals(claims));
+            var userlog = user.Where(x => x.Nome.Equals(claims));
 
                 //Favoritos of Actual User
             var userFavs = (from f in _context.Favoritos
