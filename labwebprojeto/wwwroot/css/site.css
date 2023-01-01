@@ -52,6 +52,7 @@ body {
     list-style: none;
     color: white;
     padding-top: 2rem;
+    text-align:center;
 }
 
 
@@ -86,11 +87,11 @@ body {
 
 .lolok .comeon .nametal h1 {
     padding-top: 2rem;
-    padding-left: 2.3rem;
+    text-align:center;
 }
 
 .lolok .comeon .precotal {
-    padding-left: 6.1rem;
+    text-align:center;
 }
 
 .lolok .comeon h2 {
@@ -111,7 +112,7 @@ body {
 }
 
 .lolok .comeon .maisumbutton {
-    padding-left: 3.8rem;
+    padding-left: 4.6rem;
 }
 
 .temdedar img {
