@@ -53,34 +53,40 @@ namespace labwebprojeto.Controllers
         // GET: Jogos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-
-            var categoria = (from j in _context.Jogos
-                             join c in _context.Categoria on j.IdCategoria equals c.IdCategoria
-                             select c.Nome).Distinct().ToList();
-            ViewData["Categoria"] = categoria;
-
-            var consola = (from j in _context.Jogos
-                           join c in _context.Consolas on j.IdCategoria equals c.IdConsola
-                           select c.Nome).Distinct().ToList();
-            ViewData["Consola"] = consola;
-
-            var produtora = (from j in _context.Jogos
-                             join c in _context.Produtoras on j.IdCategoria equals c.IdProdutora
-                             select c.Nome).Distinct().ToList();
-            ViewData["Produtora"] = produtora;
-
-
-
             if (id == null || _context.Jogos == null)
             {
                 return NotFound();
             }
+
+            var game = (from j in _context.Jogos
+                       select j)
+                       .Where(x=>x.IdJogos == id);
+
+            var cat = ((from j in game
+                        join c in _context.Categoria
+                      on j.IdCategoria equals c.IdCategoria
+                      select c.Nome).Distinct()).ToList();
+
+            var consola = ((from j in game
+                            join c in _context.Consolas
+                        on j.IdConsola equals c.IdConsola
+                        select c.Nome).Distinct()).ToList();
+
+            var prod = ((from j in game
+                         join c in _context.Produtoras
+                        on j.IdProdutora equals c.IdProdutora
+                        select c.Nome).Distinct()).ToList();
+
+            ViewData["Categoria"] = cat;
+            ViewData["Consola"] = consola;
+            ViewData["Produtora"] = prod;
 
             var jogo = await _context.Jogos
                 .Include(j => j.IdCategoriaNavigation)
                 .Include(j => j.IdConsolaNavigation)
                 .Include(j => j.IdProdutoraNavigation)
                 .FirstOrDefaultAsync(m => m.IdJogos == id);
+
             if (jogo == null)
             {
                 return NotFound();
@@ -193,7 +199,7 @@ namespace labwebprojeto.Controllers
             "IdConsola,IdProdutora," +
             "Preco,Descricao,Descricao1")] Jogo jogo)
         {
-            if (id != jogo.IdJogos)
+            if (id != jogo.IdJogos) 
             {
                 return NotFound();
             }
