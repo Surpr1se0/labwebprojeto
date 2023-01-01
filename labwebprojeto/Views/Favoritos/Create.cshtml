@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Favorito</h4>
+<h4>Select your favourite category @foreach (string nome in (List<string>)ViewData["NomeUtilizador"]){<strong>@nome</strong>}</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,10 +15,6 @@
             <div class="form-group">
                 <label asp-for="IdCategoria" class="control-label"></label>
                 <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdUtilizador" class="control-label"></label>
-                <select asp-for="IdUtilizador" class="form-control" asp-items="ViewBag.IdUtilizador"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Claims;
 using CloudinaryDotNet;
+using labwebprojeto.ViewModels;
+using Syncfusion.EJ2.Buttons;
 
 namespace labwebprojeto.Controllers
 {
@@ -61,25 +63,40 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos/Create
         public IActionResult Create()
         {
+            var userName = GetCurrentUserName();
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
-            ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
+            ViewData["NomeUtilizador"] = userName;
             return View();
         }
 
         // POST: Favoritos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFavorito,IdCategoria,IdUtilizador")] Favorito favorito)
+        public async Task<IActionResult> Create(CreateFavoritoViewModel favVM)
         {
+            var user = GetCurrentUser();
+            var userID = GetCurrentUserID();
+            var userName = GetCurrentUserName();
+
             if (ModelState.IsValid)
             {
-                _context.Add(favorito);
+                var fav = new Favorito
+                {
+                    IdFavorito = favVM.IdFavorito,
+                    IdCategoria = favVM.IdCategoria,
+                    IdUtilizador = userID
+                };
+                userID = favVM.IdUtilizador;
+
+                _context.Add(fav);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
-            ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
-            return View(favorito);
+
+            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favVM.IdCategoria);
+            ViewData["NomeUtilizador"] = userName;
+            return View(favVM);
         }
 
         // GET: Favoritos/Edit/5
@@ -105,6 +122,10 @@ namespace labwebprojeto.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdFavorito,IdCategoria,IdUtilizador")] Favorito favorito)
         {
+            var user = GetCurrentUser();
+            var userID = GetCurrentUserID();
+            var userName = GetCurrentUserName();
+
             if (id != favorito.IdFavorito)
             {
                 return NotFound();
@@ -130,6 +151,7 @@ namespace labwebprojeto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
             ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
             return View(favorito);
@@ -183,24 +205,11 @@ namespace labwebprojeto.Controllers
         /*------------Utilizadores---------------*/
         public async Task<IActionResult> UtilizadorIndex()
         {
-                //List of Users
-            var user = (from u in _context.Utilizadors
-                        select u);
-                //Fetch Actual Identity
-            var identity = (ClaimsIdentity)User.Identity;
+            var user = GetCurrentUser();
 
-                //Fetch of First User With Name Specified - returns ID
-            //var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-                //Email of Identity
-            var claims = identity.Name;
-
-                //Utilizador objet where Email = Actual Email
-            var userlog = user.Where(x => x.Nome.Equals(claims));
-
-                //Favoritos of Actual User
+            //Favoritos of Actual User
             var userFavs = (from f in _context.Favoritos
-                            join u in userlog 
+                            join u in user
                             on f.IdUtilizador equals u.IdUtilizador
                             select f);
 
@@ -209,5 +218,62 @@ namespace labwebprojeto.Controllers
 
             return View(await userFavs.ToListAsync());
         }
+
+
+        /*------------GetCurrentUer---------------*/
+        public IQueryable<Utilizador> GetCurrentUser()
+        {
+            var user = (from u in _context.Utilizadors
+                        select u);
+            //Fetch Actual Identity
+            var identity = (ClaimsIdentity)User.Identity;
+
+            //Fetch of First User With Name Specified - returns ID
+            //var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            //Email of Identity
+            var claims = identity.Name;
+
+            //Utilizador objet where Email = Actual Email
+            var userlog = user.Where(x => x.Nome.Equals(claims));
+
+            return (userlog);
+        }
+
+        /*------------GetCurrentID---------------*/
+        public int GetCurrentUserID()
+        {
+            var user = (from u in _context.Utilizadors
+                        select u);
+            //Fetch Actual Identity
+            var identity = (ClaimsIdentity)User.Identity;
+
+            //Fetch of First User With Name Specified - returns ID
+            //var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            //Email of Identity
+            var claims = identity.Name;
+
+            //Utilizador objet where Email = Actual Email
+            var userlog = user.Where(x => x.Nome.Equals(claims));
+
+            var userID = (from u in _context.Utilizadors
+                         join i in userlog
+                         on u.IdUtilizador equals i.IdUtilizador
+                         select i.IdUtilizador).First();
+            return (userID);
+        }
+
+        public List<string>? GetCurrentUserName()
+        {
+            var user = GetCurrentUser();
+            var userName = ((from u in _context.Utilizadors
+                             join f in user
+                             on u.IdUtilizador equals f.IdUtilizador
+                             select u.Nome).ToList());
+
+            return userName;
+        }
+
     }
 }
