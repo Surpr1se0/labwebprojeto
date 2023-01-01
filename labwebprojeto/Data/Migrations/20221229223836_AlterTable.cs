@@ -8,20 +8,20 @@ namespace labwebprojeto.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "email",
-                table: "Utilizador",
-                type: "nvarchar(40)",
-                maxLength: 40,
-                nullable: false,
-                defaultValue: "");
+            //migrationBuilder.AddColumn<string>(
+            //    name: "email",
+            //    table: "Utilizador",
+            //    type: "nvarchar(40)",
+            //    maxLength: 40,
+            //    nullable: false,
+            //    defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "email",
-                table: "Utilizador");
+            //migrationBuilder.DropColumn(
+            //    name: "email",
+            //    table: "Utilizador");
         }
     }
 }
