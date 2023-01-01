@@ -28,15 +28,6 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos
         public async Task<IActionResult> Index()
         {
-            /*Ir buscar o nome do user atual
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-            var user = (from u in _context.Utilizadors
-                        select u);
-
-            var userlog = user.Where(x => x.IdUtilizador.Equals(claims.Value));*/
-
             var applicationDbContext = _context.Favoritos.Include(f => f.IdCategoriaNavigation).Include(f => f.IdUtilizadorNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -97,64 +88,6 @@ namespace labwebprojeto.Controllers
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favVM.IdCategoria);
             ViewData["NomeUtilizador"] = userName;
             return View(favVM);
-        }
-
-        // GET: Favoritos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Favoritos == null)
-            {
-                return NotFound();
-            }
-
-            var favorito = await _context.Favoritos.FindAsync(id);
-            if (favorito == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
-            ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
-            return View(favorito);
-        }
-
-        // POST: Favoritos/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdFavorito,IdCategoria,IdUtilizador")] Favorito favorito)
-        {
-            var user = GetCurrentUser();
-            var userID = GetCurrentUserID();
-            var userName = GetCurrentUserName();
-
-            if (id != favorito.IdFavorito)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(favorito);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FavoritoExists(favorito.IdFavorito))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-
-            ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", favorito.IdCategoria);
-            ViewData["IdUtilizador"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome", favorito.IdUtilizador);
-            return View(favorito);
         }
 
         // GET: Favoritos/Delete/5
@@ -219,7 +152,6 @@ namespace labwebprojeto.Controllers
             return View(await userFavs.ToListAsync());
         }
 
-
         /*------------GetCurrentUer---------------*/
         public IQueryable<Utilizador> GetCurrentUser()
         {
@@ -264,6 +196,7 @@ namespace labwebprojeto.Controllers
             return (userID);
         }
 
+        /*------------GetCurretnUserName---------------*/
         public List<string>? GetCurrentUserName()
         {
             var user = GetCurrentUser();
