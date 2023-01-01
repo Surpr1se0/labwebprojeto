@@ -20,6 +20,131 @@ body {
 }
 
 
+/*-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------*/
+
+.row > * {
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.comeon {
+}
+
+.lolok {
+    position: relative;
+    bottom: 13rem;
+    backdrop-filter: blur(60px) saturate(100%);
+    -webkit-backdrop-filter: blur(60px) saturate(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(1turn,var(--color-dark),rgba(39,39,39,0) 70%);
+    background-color: transparent;
+    height: 40rem;
+}
+
+
+.Versepinta {
+    display: flex;
+    list-style: none;
+    color: white;
+    padding-top: 2rem;
+}
+
+
+
+
+
+.lolok .comeon h1 {
+    color: white;
+}
+
+.header-top-gradient {
+    height: 30rem;
+    width: 98rem;
+    padding: 0px 0px;
+}
+
+    .header-top-gradient img {
+        background-repeat: no-repeat;
+    }
+
+
+.barra:after {
+    content: "";
+    clip-path: polygon(0 100%,100% 100%,0 0);
+    background-color: #004460;
+    height: 100px;
+    min-width: 1200px;
+    width: 95rem;
+    position: absolute;
+    bottom: 710px;
+}
+
+.lolok .comeon .nametal h1 {
+    padding-top: 2rem;
+    padding-left: 2.3rem;
+}
+
+.lolok .comeon .precotal {
+    padding-left: 6.1rem;
+}
+
+.lolok .comeon h2 {
+    padding-top: 2rem;
+}
+
+.lolok .comeon button {
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: greenyellow;
+    font-size: 15px;
+    padding: .5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+    left: 1.4rem;
+    border-style: none;
+}
+
+.lolok .comeon .maisumbutton {
+    padding-left: 3.8rem;
+}
+
+.temdedar img {
+    width: 34rem;
+    height: 20rem;
+    border-radius: 3rem;
+    position: absolute;
+    left: 15rem;
+    bottom: 0px;
+    top: 20rem;
+}
+
+
+.comeon a {
+    position:relative;
+    left:5.1rem;
+}
+
+.detailsButton a{
+    color:white;
+} 
+
+
+#msg_default   {
+    position:relative;
+    
+
+}
+
+/*-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------
+-----------------------------------DETAILS JOGO (NOVO)-----------------------*/
 
 .about-login {
     margin-left: 0rem;
@@ -403,3 +528,80 @@ body {
 .paratodos h3 {
     color: white;
 }
+
+
+
+
+
+.sigasiga {
+    padding-left:2rem;
+}
+
+
+
+.table {
+    overflow-y: scroll;
+    height: 200px;
+    display: block;
+}
+
+
+
+
+/*----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------*/
+
+.container .d-flex {
+    padding-left: .6rem;
+}
+
+.d-flex {
+    padding: 1rem;
+
+    
+}
+
+.about-login .fartodisto2 .about-rightcena button {
+    padding: .4rem; 
+}
+
+
+
+.about-login .fartodisto2 .about-image {
+    padding: 0rem 13rem;
+}
+
+
+
+    .about-login .fartodisto2 .about-rightcena {
+
+        background-color: white;
+        padding: 2rem 2rem;
+        padding-bottom: 4rem;
+        border-radius: 2rem;
+        margin: auto;
+    }
+
+a.buttonCat {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: none;
+    background-color:green;
+}
+
+.about-rightcena table  {
+    padding-left:2.5rem;
+}
+.about-rightcena .butNew {
+    padding-left:7.5rem;
+    padding-top:2rem;
+}
+
+/*----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------
+----------------------CATEGORIAS INDEX----------------------*/

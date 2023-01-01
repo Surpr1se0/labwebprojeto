@@ -2,104 +2,79 @@
 
 <!-- Page Content -->
 
-<body style="background-color:#004460">
-    <div class="containerT">
-        <!-- Portfolio Item Heading -->
-        <h1 class="my-4">
-            @Model.Nome
-        </h1>
+<body style="background-color: #004460; overflow: hidden" scroll="no">
 
-        <!-- Portfolio Item Row -->
-        <div class="row">
 
-            <!-- ============================================= -->
-            <!-- ============================================= -->
-            <div class="col-lg-5 control-section default-carousel-section">
-                <div class="e-sample-resize-container carousel-sample">
-                    <ejs-carousel id="defaultCarousel" cssClass="default-carousel">
-                        <e-carousel-items>
-                            <e-carousel-item template="#templateItem1"></e-carousel-item>
-                            <e-carousel-item template="#templateItem2"></e-carousel-item>
-                        </e-carousel-items>
-                    </ejs-carousel>
+    <!-- Portfolio Item Heading -->
+    <!-- Portfolio Item Row -->
+
+    <div class="row">
+        <div class="col-12 nopadding">
+            <div class="TESTE">
+                <img class="header-top-gradient" src="/Images/aranha.jpg" />
+                <div class="barra">
                 </div>
             </div>
-
-            <script id="templateItem1" type="text/x-template">
-                <figure class="img-container">
-                    <img src=@Model.Foto alt="bridge" style="height:100%; width: 100%" />
-                </figure>
-            </script>
-            <script id="templateItem2" type="text/x-template">
-                <figure class="img-container">
-                    <img src=@Model.Foto1 alt="bridge" style="height:100%; width: 100%" />
-                </figure>
-            </script>
-            <script id="templateItem2" type="text/x-template">
-                <figure class="img-container">
-                    <img src=@Model.Foto2 alt="bridge" style="height:100%; width: 100%" />
-                </figure>
-            </script>
-
-            <!-- ============================================= -->
-            <!-- ============================================= -->
-            <div class="LetrasYa col-md-7">
-                <h3 class="my-3">@Model.Descricao</h3>
-                <h3 class="my-3">@Model.Descricao1</h3>
-                <div class="ApenasInf">
-                <ul>
-                    
-
-                    @*VER PREÇO: DIOGO*@
-                    <li>@Math.Round(@Model.Preco,2)€</li>
-                    @*VER PREÇO: DIOGO*@
-                </ul>
-                
-                <ul>
-                    @foreach (string produtora in (List<string>)ViewData["Produtora"])
-                    {
-                        <li>@produtora</li>
-                    }
-                </ul>
-                <ul>
-                    @foreach (string categoria in (List<string>)ViewData["Categoria"])
-                    {
-                        <li>@categoria</li>
-                    }
-                </ul>
-                <ul>
-                    @foreach (string consola in (List<string>)ViewData["Consola"])
-                    {
-                        <li>@consola</li>
-                    }
-                </ul>
-                </div>
-
-
-            </div>
-                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
-                    {
-                <div class="buttonBuy">
-                    <button>Comprar</button>
-                        </div>
-
-                    }
-                    else
-                    {
-                          <div class="detailsButton">
-                                 <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
-                          </div>
-                          <div class="detailsButtonJust">
-                                  <a>Click </a> <a href="/Identity/Account/Login">Here</a> <a>to Login</a>
-                           </div>
-
-                    }
- 
-            
-           
         </div>
-
-
-
     </div>
+    <div class="row">
+        <div class="col-8 nopadding">
+            <div class="temdedar">
+                <img src="/Images/sm4.jpg" />
+            </div>
+        </div>
+        <div class="lolok col-4 nopadding">
+            <div class="comeon">
+                <div class="nametal">
+                    <h1> @Model.Nome </h1>
+                </div>
+                <div class="precotal">
+                    <h2>@Math.Round(@Model.Preco,2)€ </h2>
+                </div>
+                @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
+                {
+                    <div class="maisumbutton">
+                        <button> Comprar</button>
+                    </div>
+                }
+                else {
+                    
+                    <ejs-message id="msg_default" content="You must be logged in to Buy a Game!"></ejs-message>
+                    <a style="color:white">Click </a> <a href="/Identity/Account/Login">Here</a> <a style="color:white">to Login</a>
+                    
+                }
+                <div class="Versepinta">
+                    <ul>
+                        @foreach (string produtora in (List<string>)ViewData["Produtora"])
+                        {
+                            <li>@produtora</li>
+                        }
+                    </ul>
+                    <ul>
+                        @foreach (string categoria in (List<string>)ViewData["Categoria"])
+                        {
+                            <li>@categoria</li>
+                        }
+                    </ul>
+                    <ul>
+                        @foreach (string consola in (List<string>)ViewData["Consola"])
+                        {
+                            <li>@consola</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- ============================================= -->
+    <!-- ============================================= -->
+    <!-- ============================================= -->
+
+
+
 </body>
