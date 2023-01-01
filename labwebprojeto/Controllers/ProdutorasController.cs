@@ -20,9 +20,17 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Produtoras
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.Produtoras.ToListAsync());
+            var produtoras = from p in _context.Produtoras
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                produtoras = produtoras.Where(j => j.Nome!.Contains(searchString));
+            }
+
+            return View(await produtoras.ToListAsync());
         }
 
         // GET: Produtoras/Details/5
