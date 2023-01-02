@@ -873,52 +873,60 @@ body {
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS--------------------- */
 
-.container .d-flex {
-    padding-left: .6rem;
+.CategoriasBoddy {
+    background-image: url(/Images/TESTE.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fartodisto2 {
+    padding-left:50rem;
+
 }
 
 .d-flex {
-    padding: 1rem;
-
-    
+    padding-left: 5rem;
+    padding-right:5rem;
 }
+
+
 
 .about-login .fartodisto2 .about-rightcena button {
     padding: .4rem; 
+    
 }
 
 
 
-.about-login .fartodisto2 .about-image {
-    padding: 0rem 13rem;
+.about-login .fartodisto2 .about-rightcena h2{
+    color:black;
+    text-align:center;
+    padding-top:1.2rem;
 }
-
 
 
 .about-login .fartodisto2 .about-rightcena {
 
     background-color: white;
-    padding: 2rem 2rem;
-    padding-bottom: 4rem;
+    position:relative;
+    top:8rem;
+    right:19rem;
     border-radius: 2rem;
     margin: auto;
-}
 
-a.buttonCat {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    color: none;
-    background-color:green;
 }
 
 .about-rightcena table  {
-    padding-left:2.5rem;
+    padding-left:9.5rem;
 }
+
+
 .about-rightcena .butNew {
-    padding-left:7.5rem;
-    padding-top:2rem;
+    padding-top: 2rem;
+    position: relative;
+    bottom: 1rem;
+    text-align:center;
+    padding-bottom: 4rem;
 }
 
 .about-login .fartodisto2 .form-group h10 {
@@ -927,6 +935,25 @@ a.buttonCat {
     padding: 0rem;
     text-align: start;
     font-size: 20px;
+}
+
+
+
+
+
+
+
+.fartodisto2 .form-group {
+    padding-left:5rem;
+    padding-top:0.5rem;
+    padding-right:5rem;
+}
+
+.fartodisto2 .form-groupbutton {
+    padding-top:0.0rem;
+    padding-bottom:3rem;
+    
+
 }
 
 
