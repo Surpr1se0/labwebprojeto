@@ -9,6 +9,12 @@ html {
 }
 
 
+.container {
+    margin-left: inherit;
+    padding-right: 0rem;
+}
+
+
 ::-webkit-scrollbar {
     width:10px;
 }
@@ -194,18 +200,153 @@ body {
 -----------------------------------DETAILS JOGO (NOVO)-----------------------
 -----------------------------------DETAILS JOGO (NOVO)-----------------------*/
 
-.about-login {
+
+
+
+/*-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------*/
+
+.registerserio {
+    background-image: url(/Images/BACKREGISTER.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 2rem;
+    width: 900px;
+    margin-left: 22rem;
+    margin-right: auto;
+    padding: 20px 50px;
+    margin-top: 15vh;
+}
+
+
+.classmain .registerserio h3 {
+    color: white;
+    padding-bottom: 0rem;
+    text-align: center;
+    font-size: 50px;
+}
+
+.registerserio h3, h1 {
+    color: white;
+    padding-bottom: 0rem;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+
+.registerserio hr {
+    color: white;
+}
+
+.registerserio .checkbox {
+    color: white;
+}
+
+.registerserio .col-5 {
+    padding-left: 3rem;
+}
+
+
+.sinup a {
+    color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------
+-----------------------------------REGISTER (NOVO)-----------------------*/
+
+
+/*-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------*/
+
+
+
+.bodylogin {
+    background-image: url(/Images/TESTE.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+.fartodisto {
+    background-image: url(/Images/galaxy-gaming-background-damb7.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 2rem;
+    width: 900px;
+    margin-left: 22rem;
+    margin-right: auto;
+    padding: 20px 50px;
+    margin-top: 15vh;
+}
+
+.classmain .fartodisto h3 {
+    color: white;
+    padding-bottom: 0rem;
+    text-align: center;
+
+    font-size: 50px;
+}
+
+.fartodisto h3, h1 {
+    color: white;
+    padding-bottom: 0rem;
+    text-align: center;
+    font-size: 40px;
+}
+
+.form-floating {
+    padding: 0.2rem;
+
+    
+}
+
+.form-floating .form-control {
+    border-radius:0.5rem;
+
+
+}
+
+.fartodisto hr {
+    color: white;
+}
+
+.fartodisto .checkbox {
+    color:white;
+}
+
+.fartodisto .col-5 {
+    padding-left: 3rem;
+}
+
+/*.about-login {
     margin-left: 0rem;
     margin: 1rem;
-}
+}*/
 
 
-.container {
-    margin-left: inherit;
-    padding-right: 0rem;
-}
 
-.about-login .about-image img {
+/*.about-login .about-image img {
     width: 650px;
     height: 550px;
     border-style: unset;
@@ -219,27 +360,27 @@ body {
 }
 
 .about-login {
-    padding: 0rem 0rem;
-    padding-right: 0rem;
+    
+    
 }
 
-.about-login .fartodisto .about-rightcena {
+.about-login .fartodisto  {
+  
         padding-right: 0rem;
         padding: 0rem 0rem;
         background-color: white;
-        padding: 2rem 2rem;
-        padding-bottom: 5rem;
+        padding: 0rem 0rem;
         border-radius: 2rem;
-        margin: auto;
+        
 }
-
-.classmain .fartodisto h3 {
+*/
+/*.classmain .fartodisto h3 {
     color: blue;
     padding-bottom: 3rem;
     text-align: center;
     font-family: fantasy;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .about-login .fartodisto .about-rightcena button {
@@ -262,7 +403,19 @@ body {
 .checkbox {
     padding: 0.2rem;
 }
+*/
 
+
+
+
+
+
+
+
+    /*-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------
+-----------------------------------LOGIN (NOVO)-----------------------*/
 
 
 /*----------------------------------------SEGUNDA view (TENHO DE VER O NOME)-----------------------------------
