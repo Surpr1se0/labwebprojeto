@@ -33,8 +33,10 @@
                 </div>
                 @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
                 {
-                    <div class="maisumbutton">
-                        <button> Comprar</button>
+                    <div class="maisumbutton">                                  <!--Ver o MODEL-->
+                        <a asp-controller="Compras" asp-action="Checkout" asp-route-id="@Model.IdJogos" class="btn btn-sm btn-outline-secondary">
+                            Comprar
+                        </a>
                     </div>
                 }
                 else {
@@ -64,17 +66,6 @@
                     </ul>
                 </div>
             </div>
-
-
-
         </div>
     </div>
-
-    <!-- ============================================= -->
-    <!-- ============================================= -->
-    <!-- ============================================= -->
-    <!-- ============================================= -->
-
-
-
 </body>

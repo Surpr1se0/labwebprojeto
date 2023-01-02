@@ -78,6 +78,8 @@ namespace labwebprojeto.Controllers
                     IdCategoria = favVM.IdCategoria,
                     IdUtilizador = userID
                 };
+                //verificar se nao está mal
+                    //Acho que deveria ser ao contrario
                 userID = favVM.IdUtilizador;
 
                 _context.Add(fav);
