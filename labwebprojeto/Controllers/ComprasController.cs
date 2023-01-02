@@ -26,10 +26,15 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Compras
-        public IActionResult Index()
+        public IActionResult Index(string SearchString)
         {
             var nome = GetCurrentUserName();
             ViewData["userNome"] = nome;
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    categorias = categorias.Where(j => j.Nome!.Contains(searchString));
+            //}
 
             var applicationDbContext = _context.Compras
                 .Include(c => c.IdJogoNavigation)
