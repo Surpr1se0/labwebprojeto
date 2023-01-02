@@ -4,41 +4,56 @@
     ViewData["Title"] = "Index";
 }
 
-<h4>
-    This is your game library <strong>@ViewData["userNome"]</strong>.
-</h4>
-
-<form class="d-flex" asp-controller="Compras" asp-action="Index" method="get">
-    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
-    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
-</form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCompra)
-            </th>
-            <th>
-                Jogo
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataCompra)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdJogoNavigation.Nome)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.IdCompra">Details</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-login">
+            <div class="fartodisto2">
+                <div class="row">
+                    <div class="col-md-12 about-rightcena nopadding">
+                        <h2>Categories</h2>
+                        <h2>
+                            This is your game library <strong>@ViewData["userNome"]</strong>.
+                        </h2>
+                        <div class="searchbar">
+                            <form class="d-flex" asp-controller="Compras" asp-action="Index" method="get">
+                                <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+                                <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+                            </form>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DataCompra)
+                                    </th>
+                                    <th>
+                                        Jogo
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DataCompra)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem=>item.IdJogoNavigation.Nome)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@item.IdCompra">Details</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="butNew">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body><
