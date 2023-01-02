@@ -32,19 +32,6 @@ namespace labwebprojeto.Controllers
             var user = GetCurrentUserName();
             ViewData["NomeUser"] = user;
 
-            //Jogos Comprados por utilizador
-            var game = (from c in _context.Compras
-                        join u in userObj
-                        on c.IdUtilizador equals u.IdUtilizador
-                        select c);
-
-            //Nome comprado
-            var gameName = ((from c in game
-                            join j in _context.Jogos
-                            on c.IdJogo equals j.IdJogos
-                            select j.Nome).ToList());
-
-            ViewData["NomeGame"] = gameName;
             var applicationDbContext = _context.Compras.Include(c => c.IdJogoNavigation).Include(c => c.IdUtilizadorNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
