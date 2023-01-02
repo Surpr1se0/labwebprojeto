@@ -23,7 +23,7 @@ namespace labwebprojeto.Models
 
         [Column("data_compra", TypeName = "datetime")]
         [DisplayName("Data de Compra")]
-        public DateTime DataCompra { get; set; }
+        public DateTime DataCompra { get; set; } = DateTime.Now;
 
         [ForeignKey("IdJogo")]
         [InverseProperty("Compras")]
