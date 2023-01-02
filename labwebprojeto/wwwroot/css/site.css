@@ -549,10 +549,10 @@ body {
 
 
 
-/*----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------*/
+/*----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS--------------------- */
 
 .container .d-flex {
     padding-left: .6rem;
@@ -602,7 +602,17 @@ a.buttonCat {
     padding-top:2rem;
 }
 
-/*----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------
-----------------------CATEGORIAS INDEX----------------------*/
+.about-login .fartodisto2 .form-group h10 {
+    color: black;
+    font-family: var(--bs-body-font-family);
+    padding: 0rem;
+    text-align: start;
+    font-size: 20px;
+}
+
+
+/*----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
+----------------------CATEGORIAS INDEX, CREATE, DETAILS--------------------- */
+
