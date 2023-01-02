@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using labwebprojeto.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection.Emit;
 
 namespace labwebprojeto.Data
 {
@@ -15,15 +16,13 @@ namespace labwebprojeto.Data
             : base(options)
         {
         }
-
-        // Fazer alterações ao DbContext
-        public virtual DbSet<Categoria> Categoria { get; set; } = null!;
-        public virtual DbSet<Compra> Compras { get; set; } = null!;
-        public virtual DbSet<Consola> Consolas { get; set; } = null!;
-        public virtual DbSet<Favorito> Favoritos { get; set; } = null!;
+        public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Compra> Compras { get; set; }
+        public virtual DbSet<Consola> Consolas { get; set; }
+        public virtual DbSet<Favorito> Favoritos { get; set; }
         public virtual DbSet<Jogo> Jogos { get; set; } = null!;
-        public virtual DbSet<Produtora> Produtoras { get; set; } = null!;
-        public virtual DbSet<Utilizador> Utilizadors { get; set; } = null!;
+        public virtual DbSet<Produtora> Produtoras { get; set; }
+        public virtual DbSet<Utilizador> Utilizadors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,58 +31,52 @@ namespace labwebprojeto.Data
                 optionsBuilder.UseSqlServer("name=DefaultConnection");
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            _configureCategoria(modelBuilder);
+            _configureUtilizador(modelBuilder);
+            _configureCompras(modelBuilder);
+            _configureConsola(modelBuilder);
+            _configureFavorito(modelBuilder);
+            _configureJogo(modelBuilder);
+            _configureProdutora(modelBuilder);
+            _configureUtilizador(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
+            OnModelCreatingPartial(modelBuilder);
+        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        #region helpers
+        private void _configureCategoria(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
                     .HasName("PK__Categori__CB90334950410431");
             });
+        }
 
-            modelBuilder.Entity<Compra>(entity =>
+        private void _configureUtilizador(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Utilizador>(entity =>
             {
-                entity.HasKey(e => e.IdCompra)
-                    .HasName("PK__Compra__661E0ED0060EB70A");
-
-                entity.HasOne(d => d.IdJogoNavigation)
-                    .WithMany(p => p.Compras)
-                    .HasForeignKey(d => d.IdJogo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Compra__Id_Jogo__693CA210");
-
-                entity.HasOne(d => d.IdUtilizadorNavigation)
-                    .WithMany(p => p.Compras)
-                    .HasForeignKey(d => d.IdUtilizador)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Compra__Id_Utili__6A30C649");
+                entity.HasKey(e => e.IdUtilizador)
+                    .HasName("PK__Utilizad__FEC354F1E2DADB37");
             });
+        }
 
-            modelBuilder.Entity<Consola>(entity =>
+        private void _configureProdutora(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produtora>(entity =>
             {
-                entity.HasKey(e => e.IdConsola)
-                    .HasName("PK__Consola__EF167BDDD47BBD8A");
+                entity.HasKey(e => e.IdProdutora)
+                    .HasName("PK__Produtor__4FC8329532DCF4E4");
             });
+        }
 
-            modelBuilder.Entity<Favorito>(entity =>
-            {
-                entity.HasKey(e => e.IdFavorito)
-                    .HasName("PK__Favorito__6DACC00DC83C35E0");
-
-                entity.HasOne(d => d.IdCategoriaNavigation)
-                    .WithMany(p => p.Favoritos)
-                    .HasForeignKey(d => d.IdCategoria)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Favorito__Id_Cat__6D0D32F4");
-
-                entity.HasOne(d => d.IdUtilizadorNavigation)
-                    .WithMany(p => p.Favoritos)
-                    .HasForeignKey(d => d.IdUtilizador)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Favorito__Id_Uti__6E01572D");
-            });
-
+        private void _configureJogo(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Jogo>(entity =>
             {
                 entity.HasKey(e => e.IdJogos)
@@ -107,22 +100,58 @@ namespace labwebprojeto.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Jogo__Id_Produto__66603565");
             });
-
-            modelBuilder.Entity<Produtora>(entity =>
-            {
-                entity.HasKey(e => e.IdProdutora)
-                    .HasName("PK__Produtor__4FC8329532DCF4E4");
-            });
-
-            modelBuilder.Entity<Utilizador>(entity =>
-            {
-                entity.HasKey(e => e.IdUtilizador)
-                    .HasName("PK__Utilizad__FEC354F1E2DADB37");
-            });
-
-            OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        private void _configureFavorito(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Favorito>(entity =>
+            {
+                entity.HasKey(e => e.IdFavorito)
+                    .HasName("PK__Favorito__6DACC00DC83C35E0");
+
+                entity.HasOne(d => d.IdCategoriaNavigation)
+                    .WithMany(p => p.Favoritos)
+                    .HasForeignKey(d => d.IdCategoria)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Favorito__Id_Cat__6D0D32F4");
+
+                entity.HasOne(d => d.IdUtilizadorNavigation)
+                    .WithMany(p => p.Favoritos)
+                    .HasForeignKey(d => d.IdUtilizador)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Favorito__Id_Uti__6E01572D");
+            });
+        }
+
+        private void _configureConsola(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Consola>(entity =>
+            {
+                entity.HasKey(e => e.IdConsola)
+                    .HasName("PK__Consola__EF167BDDD47BBD8A");
+            });
+        }
+
+        private void _configureCompras(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Compra>(entity =>
+            {
+                entity.HasKey(e => e.IdCompra)
+                    .HasName("PK__Compra__661E0ED0060EB70A");
+
+                entity.HasOne(d => d.IdJogoNavigation)
+                    .WithMany(p => p.Compras)
+                    .HasForeignKey(d => d.IdJogo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Compra__Id_Jogo__693CA210");
+
+                entity.HasOne(d => d.IdUtilizadorNavigation)
+                    .WithMany(p => p.Compras)
+                    .HasForeignKey(d => d.IdUtilizador)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Compra__Id_Utili__6A30C649");
+            });
+        }
+        #endregion
     }
 }
