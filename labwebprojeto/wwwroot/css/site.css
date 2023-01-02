@@ -8,6 +8,19 @@ html {
     }
 }
 
+
+::-webkit-scrollbar {
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: dimgrey;
+}
+
+::-webkit-scrollbar-track {
+    background-color: lightgrey /* color of the tracking area */
+}
+
 html {
     position: relative;
     min-height: 100%;
@@ -176,7 +189,7 @@ body {
     padding-right: 0rem;
 }
 
-    .about-login .fartodisto .about-rightcena {
+.about-login .fartodisto .about-rightcena {
         padding-right: 0rem;
         padding: 0rem 0rem;
         background-color: white;
@@ -184,7 +197,7 @@ body {
         padding-bottom: 5rem;
         border-radius: 2rem;
         margin: auto;
-    }
+}
 
 .classmain .fartodisto h3 {
     color: blue;
@@ -239,6 +252,121 @@ body {
 ----------------------------------------SEGUNDA view (INDEX)-----------------------------------
 ----------------------------------------SEGUNDA view (INDEX)-----------------------------------*/
 
+.naoentendo .hero-content {
+    background-image: url(/Images/TESTE.jpg);
+    padding-top: 200px;
+    width: 95.4rem;
+    height:50rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+   
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
+
+
+.line {
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: 0rem;
+    padding-left:0rem;
+    
+    
+}
+
+.site-title {
+    position: relative;
+    text-align: center;
+}
+
+.texto1 {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+
+    text-align: center;
+    text-align: center;
+}
+
+.texto2 {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    text-align: center;
+}
+
+
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 14.3em;
+    }
+}
+
+
+
+.typing-animation {
+    animation: blinkCursor 500ms steps(40) infinite normal, typing 4s steps(40) 1s normal both;
+}
+
+
+@keyframes blinkCursor {
+    from {
+        border-right-color: rgba(255, 255, 255, 0.75);
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+.setacrl {
+    position:relative;
+    text-align:center;
+
+}
+
+.sera2 i {
+    padding-top: 16%;
+    
+}
+
+
+.fa.icone {
+    font-size: 60px;
+    color: white;
+    opacity: 1;
+    animation: anima 1500ms ease infinite;
+}
+
+@keyframes anima {
+    to {
+        opacity: 0.1;
+        transform: scale(0.85) translateY(20px);
+    }
+}
+
+
 .d-flex {
     padding: 1rem;
     padding-left: 10rem;
@@ -256,81 +384,87 @@ body {
     padding-left: 10rem;
 }
 
-    .jumbotron .container h1 {
+.jumbotron .container h1 {
         font-size: 100px;
-    }
-
-    .jumbotron .container .lead {
-        color: white;
-    }
-
-
-.container .card {
-    border-radius: 2rem;
-    width: 16rem;
-    height: 24rem;
-    text-align: justify;
-    box-shadow: 13px 5px 5px MidnightBlue;
 }
 
-.container .d-flex {
+.jumbotron .container .lead {
+        color: white;
+}
+
+
+.containerIndex {
+    position: relative;
+    left: 7rem;
+    top: 5rem;
+}
+
+.containerIndex img {
+        
+        border-radius: 2rem;
+        width: 380px;
+        height: 218px;
+}
+
+    .containerIndex .card {
+        border-radius: 2rem;
+        width: 380px;
+        height: 218px;
+        text-align: justify;
+        background-color: transparent;
+        box-shadow: 5px 0px 10px blue;
+    }
+
+
+.card-img-top:hover {
+    transform:scale(1.05);
+    transition: 0.8s all cubic-bezier(0.175,0.885,0.32,1.275)
+}
+
+
+.containerIndex .d-flex {
     padding-left: 5.6rem;
 }
 
-    .container .d-flex .btn-group a {
+.containerIndex .d-flex .btn-group a {
         bottom: 3.7rem;
         border-radius: 2rem;
         background-color: #05fa87;
         color: black;
         font-weight: bold;
         font-size: 17px;
-    }
-
-
-.container .card img {
-    border-radius: 2rem;
-    border-color: blue;
 }
 
-.container .card .btn-group a, small {
+
+
+
+.containerIndex .card .btn-group a, small {
     right: 6.5rem;
 }
 
 
-.container .card .btn-group small {
+.containerIndex .card .btn-group small {
     font-size: 20px;
 }
 
 
-.container .card .btn-group {
+.containerIndex .card .btn-group {
     right: 1rem
 }
 
 
-.container .col-md-3 {
-    padding-left: 7.5rem;
-}
+    .containerIndex .card .card-body p {
+        text-align: initial;
+        color: white;
+        font-size: 15px;
+        font-weight:normal;
+        display: inline-block;
+        position:relative;
+        left:.7rem;
+        bottom:1rem;
+    }
 
-.container .card .card-body .card-text {
-    text-align: initial;
-    margin: 0rem;
-    font-size: 15px;
-    font-weight: bold;
-}
 
-.container .card .card-body .card-text2 {
-    text-align: initial;
-    font-size: 15px;
-    font-weight: unset;
-}
-
-.container .card-body input {
-    border: 0 none;
-    outline: 0;
-    width: 7rem;
-    font-size: 25px;
-    font-weight: bold;
-}
 
 
 
@@ -338,13 +472,10 @@ body {
 ---------------------------------------- view (DETAILS)-----------------------------------
 ---------------------------------------- view (DETAILS)-----------------------------------
 ---------------------------------------- view (DETAILS)-----------------------------------*/
-
-
 /*.img-container {
     width:20rem;
 }
 */
-
 .control-section {
     margin: auto;
     width: 500px;

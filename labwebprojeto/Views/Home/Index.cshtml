@@ -17,13 +17,110 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 
-<body style="background-color:#4618ac">
-    <form class="d-flex" asp-controller="Home" asp-action="Index" method="get">
-        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
-        <button class="btn" type="submit" value="Filter">Search</button>
-    </form>
+<body style="background-color:#410698">
+    <section class="naoentendo">
+        <div class="hero-content section d-flex min-vh-100">
+            <div class="col-12 site-title">
+                <h2 class="texto2">Welcome</h2>
+                <p class="line typing-animation ">A website for gamers by gamers.</p>
+                <h1 class="texto1">Can't Stop</h1>
+                <div class="setacrl">
+                    <a href="#Second" class="sera2">
+                        <i class="fa fa-angle-double-down icone"></i>
+                    </a>
+                </div>
+            </div>
+            @*<form class="d-flex" asp-controller="Home" asp-action="Index" method="get">
+                <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+                <button class="btn" type="submit" value="Filter">Search</button>
+            </form>*@
 
-    <section class="jumbotron text-center">
+
+        </div>
+    </section>
+
+
+
+
+
+    <section id="Second" >
+
+        <div class="containerIndex">
+        <div class="row">
+            
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3 box-shadow">
+                        <img class="card-img-top" src="@item.Foto"  alt="Imagem Exemplo">
+                        <div class="colocarladoeasyway">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-10">
+                                       <p>@item.Nome.ToUpper()</p>
+                                </div>
+                                <div class="col-2">
+                                            <p>@Math.Round(@item.Preco,2)€</p>
+                                    </div>
+                              </div>
+                        </div>
+                            </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="btn-group">
+                            @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func"))) 
+                            {
+                                <div class="btn-group">
+                                    <a type="btn btn-success" button asp-controller="Home" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
+                                        Buy
+                                    </a>
+                                </div>
+                                
+                            }
+                            else {
+                                @*<a type="btn btn-success" button asp-controller="Home" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>*@
+                            }
+                           
+                        </div>
+                    </div>
+                   
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+
+    </section>
+
+    <script src="https://kit.fontawesome.com/d7325001d6.js" crossorigin="anonymous"></script>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Can't Stop</h1>
             <p class="lead">A website <strong> for gamers</strong> by gamers.</p>
@@ -33,21 +130,22 @@
 
         @*        <div>
         <h1>@ViewData["IdUtilizador"]</h1>
-        </div>*@
+        </div>
+       
     </section>
 
-    <div class="container">
+    <div class="containerIndex">
         <div class="row">
             
             @foreach (var item in Model)
             {
-                <div class="col-md-3">
-                    <div class="card mb-4 box-shadow">
+                <div class="col-md-4">
+                    <div class="card mb-3 box-shadow">
                         <img class="card-img-top" src="@item.Foto" width="100%" height="235" alt="Imagem Exemplo">
                         <div class="card-body">
                             <p class="card-text">@item.Nome.ToUpper()</p>
                             @*<h5 class="card-text2">@item.Descricao</h5>*@
-                            <input value="@Math.Round(@item.Preco,2)€">
+                            @*<input value="@Math.Round(@item.Preco,2)€">
 
                         </div>
 
@@ -75,6 +173,6 @@
                 </div>
             }
         </div>
-    </div>
+    </div>*@
 </body>
 </html>
