@@ -1,0 +1,30 @@
+﻿@using labwebprojeto.Models;
+@model Tuple<List<Categoria>, List<Consola>, List<Produtora>>
+
+<h3><strong>Category</strong></h3>
+
+    @foreach(Categoria cat in Model.Item1)
+    {
+        <button class="btn btn-outline-success" type="submit" value="Filter">
+            <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@cat.IdCategoria">@Html.DisplayFor(modelItem => cat.Nome)</a>
+        </button>
+        <br>
+    }
+
+<h3><strong>Console</strong></h3>
+    @foreach (Consola cons in Model.Item2)
+    {
+        <button class="btn btn-outline-success" type="submit" value="Filter">
+            <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@cons.IdConsola">@Html.DisplayFor(modelItem => cons.Nome)</a>
+        </button>
+        <br>
+    }
+
+<h3><strong>Produtora</strong></h3>
+    @foreach (Produtora prod in Model.Item3)
+    {
+        <button class="btn btn-outline-success" type="submit" value="Filter">
+            <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@prod.IdProdutora">@Html.DisplayFor(modelItem => prod.Nome)</a>
+        </button>
+        <br>
+    }

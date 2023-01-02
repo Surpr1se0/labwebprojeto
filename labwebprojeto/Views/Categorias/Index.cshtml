@@ -38,9 +38,9 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
                                         </td>
                                         <td>
+                                            
                                             <a asp-action="Edit" asp-route-id="@item.IdCategoria">Edit</a> |
                                             <a asp-action="Details" asp-route-id="@item.IdCategoria">Details</a> |
                                             <a asp-action="Delete" asp-route-id="@item.IdCategoria">Delete</a>
@@ -49,16 +49,11 @@
                                 }
                             </tbody>
                         </table>
-
                         <div class="butNew">
                             <a asp-controller="Categorias" asp-action="Create" class="btn btn-sm btn-outline-secondary">
                                 Create New
                             </a>
                         </div>
-
-
-
-
                     </div>
                     </div>
                     </div>
