@@ -277,66 +277,34 @@ namespace labwebprojeto.Controllers
 
 
         /*--------CATEGORIAS*---------*/
-        public async Task<IActionResult> IndexCategorias()
+        public async Task<IActionResult> IndexCategorias(int? id)
         {
-            var categorias = (from c in _context.Categoria
-                              join j in _context.Jogos
-                              on c.IdCategoria equals j.IdCategoria
-                              select c).Distinct();
 
-            return View(await categorias.ToListAsync());
-        }
+            var jogos = (from j in _context.Jogos
+                         select j)
+                         .Where(x => x.IdCategoria == id);
 
-        public async Task<IActionResult> DetailsCategorias(int id)
-        {
-            var jogo = (from j in _context.Jogos
-                        join c in _context.Categoria
-                        on j.IdCategoria equals id
-                        select j).Distinct();
-
-            return View(await jogo.ToListAsync());
+            return View(await jogos.ToListAsync());
         }
 
         /*--------PRODUTORAS*---------*/
-        public async Task<IActionResult> IndexProdutoras()
+        public async Task<IActionResult> IndexProdutoras(int? id)
         {
-            var produtoras = (from p in _context.Produtoras
-                              join j in _context.Jogos
-                              on p.IdProdutora equals j.IdProdutora
-                              select p).Distinct();
+            var jogos = (from j in _context.Jogos
+                         select j)
+                         .Where(x => x.IdProdutora == id);
 
-            return View(await produtoras.ToListAsync());
-        }
-
-        public async Task<IActionResult> DetailsProdutoras(int id)
-        {
-            var jogo = (from j in _context.Jogos
-                        join p in _context.Produtoras
-                        on j.IdCategoria equals id
-                        select j).Distinct();
-
-            return View(await jogo.ToListAsync());
+            return View(await jogos.ToListAsync());
         }
 
         /*--------CONSOLAS*---------*/
-        public async Task<IActionResult> IndexConsolas()
+        public async Task<IActionResult> IndexConsolas(int? id)
         {
-            var consolas = (from c in _context.Consolas
-                              join j in _context.Jogos
-                              on c.IdConsola equals j.IdCategoria
-                              select c).Distinct();
+            var jogos = (from j in _context.Jogos
+                         select j)
+                         .Where(x => x.IdConsola == id);
 
-            return View(await consolas.ToListAsync());
-        }
-
-        public async Task<IActionResult> DetailsConsolas(int id)
-        {
-            var jogo = (from j in _context.Jogos
-                        join c in _context.Categoria
-                        on j.IdCategoria equals id
-                        select j).Distinct();
-
-            return View(await jogo.ToListAsync());
+            return View(await jogos.ToListAsync());
         }
     }
 
