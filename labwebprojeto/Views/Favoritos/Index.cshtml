@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<labwebprojeto.Models.Favorito>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Favoritos";
 }
 
-<h1>Index</h1>
+<h1>Favourite categories for <strong>@ViewData["userNome"]</strong></>.</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add new Favourite</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdCategoriaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUtilizadorNavigation)
+                Categoria
             </th>
             <th></th>
         </tr>
@@ -26,10 +23,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdCategoriaNavigation.IdCategoria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdUtilizadorNavigation.Nome)
+                    @Html.DisplayFor(modelItem => item.IdCategoriaNavigation.Nome)
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.IdFavorito">Details</a> |
