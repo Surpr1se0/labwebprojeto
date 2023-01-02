@@ -4,12 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1> Biblioteca de 
-    @foreach (var item in (List<string>)ViewData["NomeUser"])
-    {
-        <strong>@item</strong>
-    }
-</h1>
+<h4>
+    This is your game library <strong>@ViewData["userNome"]</strong>.
+</h4>
 
 <table class="table">
     <thead>
@@ -18,7 +15,7 @@
                 @Html.DisplayNameFor(model => model.DataCompra)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdJogoNavigation)
+                Jogo
             </th>
             <th></th>
         </tr>

@@ -26,14 +26,18 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Compras
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var userObj = GetCurrentUser();
-            var user = GetCurrentUserName();
-            ViewData["NomeUser"] = user;
+            var nome = GetCurrentUserName();
+            ViewData["userNome"] = nome;
 
-            var applicationDbContext = _context.Compras.Include(c => c.IdJogoNavigation).Include(c => c.IdUtilizadorNavigation);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.Compras
+                .Include(c => c.IdJogoNavigation)
+                .Include(c => c.IdUtilizadorNavigation)
+                .Include(c => c.IdJogoNavigation.IdConsolaNavigation)
+                .Include(c => c.IdJogoNavigation.IdProdutoraNavigation)
+                .Include(c => c.IdJogoNavigation.IdCategoriaNavigation);
+            return View(applicationDbContext.ToList());
         }
 
         // GET: Compras/Details/5
@@ -47,7 +51,11 @@ namespace labwebprojeto.Controllers
             var compra = await _context.Compras
                 .Include(c => c.IdJogoNavigation)
                 .Include(c => c.IdUtilizadorNavigation)
+                .Include(c => c.IdJogoNavigation.IdConsolaNavigation)
+                .Include(c => c.IdJogoNavigation.IdProdutoraNavigation)
+                .Include(c => c.IdJogoNavigation.IdCategoriaNavigation)
                 .FirstOrDefaultAsync(m => m.IdCompra == id);
+
             if (compra == null)
             {
                 return NotFound();
@@ -110,9 +118,7 @@ namespace labwebprojeto.Controllers
                 };
                 checkVM.IdUtilizador = userID;
                 checkVM.IdJogo = id;
-
                 _context.Add(checkout);
-                TempData["Success"] = "Game Bought Successfully";
 
                 //Actual User
                 var userClients = (from u in _context.Utilizadors
@@ -133,11 +139,11 @@ namespace labwebprojeto.Controllers
                         "<br> <img src=wwwroot/Images/logo.png>"
                         );
                 }
-                TempData["Error"] = "Game Not Bought Successfully";
-
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Game Bought Successfully";
                 return RedirectToAction(nameof(Index));
             }
+            TempData["Error"] = "Game Not Bought Successfully";
             return View(checkVM);
         }
 
@@ -184,15 +190,17 @@ namespace labwebprojeto.Controllers
             return (userID);
         }
 
-        public List<string>? GetCurrentUserName()
+        public string? GetCurrentUserName()
         {
-            var user = GetCurrentUser();
-            var userName = ((from u in _context.Utilizadors
-                             join f in user
-                             on u.IdUtilizador equals f.IdUtilizador
-                             select u.Nome).ToList());
+            var user = (from u in _context.Utilizadors
+                        select u);
+            //Fetch Actual Identity
+            var identity = (ClaimsIdentity)User.Identity;
 
-            return userName;
+            //Email of Identity
+            var claims = identity.Name;
+
+            return claims;
         }
 
         /*------------JOGOS---------------*/

@@ -13,6 +13,7 @@ using System.Security.Claims;
 using CloudinaryDotNet;
 using labwebprojeto.ViewModels;
 using Syncfusion.EJ2.Buttons;
+using Syncfusion.EJ2.Linq;
 
 namespace labwebprojeto.Controllers
 {
@@ -28,7 +29,14 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Favoritos.Include(f => f.IdCategoriaNavigation).Include(f => f.IdUtilizadorNavigation);
+            var nome = GetCurrentUserName();
+            ViewData["userNome"] = nome;
+
+            var applicationDbContext = _context.Favoritos
+                .Include(f => f.IdCategoriaNavigation)
+                .Include(f => f.IdUtilizadorNavigation)
+                .Where(f => f.IdUtilizadorNavigation.IdUtilizador
+                == GetCurrentUserID());
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -39,6 +47,22 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
+            var userID = GetCurrentUserID();
+
+            var jogosUti = (from f in _context.Favoritos
+                            join u in _context.Utilizadors
+                            on f.IdUtilizador equals userID
+                            select f)
+                            .Where(x=>x.IdFavorito == id)
+                            .Distinct();
+
+            var jogos = from j in _context.Jogos
+                        join f in jogosUti
+                        on j.IdCategoria equals f.IdCategoria
+                        select j.Nome;
+
+            ViewData["ListaJogos"] = jogos;
+
             var favorito = await _context.Favoritos
                 .Include(f => f.IdCategoriaNavigation)
                 .Include(f => f.IdUtilizadorNavigation)
@@ -54,10 +78,7 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos/Create
         public IActionResult Create()
         {
-            var userName = GetCurrentUserName();
-
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
-            ViewData["NomeUtilizador"] = userName;
             return View();
         }
 
@@ -136,25 +157,7 @@ namespace labwebprojeto.Controllers
           return _context.Favoritos.Any(e => e.IdFavorito == id);
         }
 
-
-        /*------------Utilizadores---------------*/
-        public async Task<IActionResult> UtilizadorIndex()
-        {
-            var user = GetCurrentUser();
-
-            //Favoritos of Actual User
-            var userFavs = (from f in _context.Favoritos
-                            join u in user
-                            on f.IdUtilizador equals u.IdUtilizador
-                            select f);
-
-            ViewData["IdCategoria"] = new SelectList(_context.Utilizadors, "IdUtilizador", "Nome");
-            ViewData["IdUtilizador"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
-
-            return View(await userFavs.ToListAsync());
-        }
-
-        /*------------GetCurrentUer---------------*/
+        /*------------USER---------------*/
         public IQueryable<Utilizador> GetCurrentUser()
         {
             var user = (from u in _context.Utilizadors
@@ -174,7 +177,6 @@ namespace labwebprojeto.Controllers
             return (userlog);
         }
 
-        /*------------GetCurrentID---------------*/
         public int GetCurrentUserID()
         {
             var user = (from u in _context.Utilizadors
@@ -188,7 +190,7 @@ namespace labwebprojeto.Controllers
             //Email of Identity
             var claims = identity.Name;
 
-            //Utilizador objet where Email = Actual Email
+            //Utilizador objet where Nome = Actual Nome
             var userlog = user.Where(x => x.Nome.Equals(claims));
 
             var userID = (from u in _context.Utilizadors
@@ -198,16 +200,17 @@ namespace labwebprojeto.Controllers
             return (userID);
         }
 
-        /*------------GetCurretnUserName---------------*/
-        public List<string>? GetCurrentUserName()
+        public string? GetCurrentUserName()
         {
-            var user = GetCurrentUser();
-            var userName = ((from u in _context.Utilizadors
-                             join f in user
-                             on u.IdUtilizador equals f.IdUtilizador
-                             select u.Nome).ToList());
+            var user = (from u in _context.Utilizadors
+                        select u);
+            //Fetch Actual Identity
+            var identity = (ClaimsIdentity)User.Identity;
 
-            return userName;
+            //Email of Identity
+            var claims = identity.Name;
+
+            return claims;
         }
 
     }
