@@ -17,16 +17,40 @@
             @Html.DisplayFor(model => model.DataCompra)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdJogoNavigation)
+            Nome do Jogo
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdJogoNavigation.IdJogos)
+            @Html.DisplayFor(model => model.IdJogoNavigation.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdUtilizadorNavigation)
+            Preco do Jogo
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdUtilizadorNavigation.Nome)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdJogoNavigation.Preco)
+        </dd>
+        <dt class="col-sm-2">
+            Categoria
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdJogoNavigation.IdConsolaNavigation.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Consola
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdJogoNavigation.IdCategoriaNavigation.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Produtora
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdJogoNavigation.IdProdutoraNavigation.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Descricao
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdJogoNavigation.Descricao)
         </dd>
     </dl>
 </div>

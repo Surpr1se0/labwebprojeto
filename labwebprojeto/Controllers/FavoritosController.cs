@@ -28,7 +28,9 @@ namespace labwebprojeto.Controllers
         // GET: Favoritos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Favoritos.Include(f => f.IdCategoriaNavigation).Include(f => f.IdUtilizadorNavigation);
+            var applicationDbContext = _context.Favoritos
+                .Include(f => f.IdCategoriaNavigation)
+                .Include(f => f.IdUtilizadorNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -188,7 +190,7 @@ namespace labwebprojeto.Controllers
             //Email of Identity
             var claims = identity.Name;
 
-            //Utilizador objet where Email = Actual Email
+            //Utilizador objet where Nome = Actual Nome
             var userlog = user.Where(x => x.Nome.Equals(claims));
 
             var userID = (from u in _context.Utilizadors
@@ -198,7 +200,7 @@ namespace labwebprojeto.Controllers
             return (userID);
         }
 
-        /*------------GetCurretnUserName---------------*/
+        /*------------GetCurrentUserName---------------*/
         public List<string>? GetCurrentUserName()
         {
             var user = GetCurrentUser();
