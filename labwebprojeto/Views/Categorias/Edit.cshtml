@@ -4,9 +4,44 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<body style="background-color: #004460">
+    <main class="classmain">
+        <section class="about-login">
 
-<h4>Category</h4>
+            <div class="fartodisto2">
+                <div class="row">
+
+                    <div class="col-md-8 about-image nopadding">
+                        <h2>Edit Categories</h2>
+                        <img alt="about-image" src="/Images/backgroundfinal.png" />
+                    </div>
+                    <div class="col-md-4 about-rightcena nopadding">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="IdCategoria" />
+                        <div class="form-group">
+                            <label asp-for="Nome" class="control-label"></label>
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+            
+                        </form>
+                        <div class="form-group">
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+</body>
+
+@*<h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,14 +56,15 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
+            
         </form>
     </div>
 </div>
 
-<div>
+<div class="cet">
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@
