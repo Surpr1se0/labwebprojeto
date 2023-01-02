@@ -576,14 +576,14 @@ body {
 
 
 
-    .about-login .fartodisto2 .about-rightcena {
+.about-login .fartodisto2 .about-rightcena {
 
-        background-color: white;
-        padding: 2rem 2rem;
-        padding-bottom: 4rem;
-        border-radius: 2rem;
-        margin: auto;
-    }
+    background-color: white;
+    padding: 2rem 2rem;
+    padding-bottom: 4rem;
+    border-radius: 2rem;
+    margin: auto;
+}
 
 a.buttonCat {
     -webkit-appearance: button;
