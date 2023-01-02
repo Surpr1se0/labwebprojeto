@@ -4,36 +4,29 @@
     ViewData["Title"] = "Index";
 }
 
-<body style="background-color: #004460">
+<body class="CategoriasBoddy">
     <main class="classmain">
         <section class="about-login">
-
             <div class="fartodisto2">
                 <div class="row">
-
-                    <div class="col-md-8 about-image nopadding">
+                    <div class="col-md-12 about-rightcena nopadding">
                         <h2>Producer</h2>
-                        <img alt="about-image" src="/Images/backgroundfinal.png" />
-                    </div>
-                    <div class="col-md-4 about-rightcena nopadding">
                         <div class="searchbar">
-                            <form class="d-flex" asp-controller="Produtoras" asp-action="Index" method="get">
+                            <form class="d-flex" asp-controller="Consolas" asp-action="Index" method="get">
                                 <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
                                 <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
                             </form>
                         </div>
-
                         <table class="table">
-                            @* <thead>
-                            <tr>
-                            <th>
-                            <h1>Categories</h1>
-                            </th>
-                            <th></th>
-                            </tr>
-                            </thead>*@
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Category
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
                             <tbody>
-
                                 @foreach (var item in Model)
                                 {
                                     <tr>
@@ -55,15 +48,9 @@
                                 Create New
                             </a>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
         </section>
-
-
     </main>
 </body>
