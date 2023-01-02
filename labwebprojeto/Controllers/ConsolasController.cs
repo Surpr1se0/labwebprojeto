@@ -20,9 +20,17 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Consolas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.Consolas.ToListAsync());
+            var consolas = from c in _context.Consolas
+                             select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                consolas = consolas.Where(j => j.Nome!.Contains(searchString));
+            }
+
+            return View(await consolas.ToListAsync());
         }
 
         // GET: Consolas/Details/5
