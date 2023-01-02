@@ -15,20 +15,34 @@ namespace labwebprojeto.Controllers
             _context = context;
         }
 
-        //Podemos adicionar um search para as 3 caixas
-        public IActionResult Index()
+        public IActionResult Index(string str1, string str2, string str3)
         {
+
             var cat = (from c in _context.Categoria
-                      select c).ToList();
+                       select c);
 
             var cons = (from c in _context.Consolas
-                       select c).ToList();
+                       select c);
 
             var prod = (from p in _context.Produtoras
-                    select p).ToList();
+                    select p);
+            
+            if(!String.IsNullOrEmpty(str1))
+            {
+               cat = cat.Where(x => x.Nome.Contains(str1));
+            }
 
+            if (!String.IsNullOrEmpty(str2))
+            {
+                cons = cons.Where(x => x.Nome.Contains(str2));
+            }
 
-            var tuple = new Tuple<List<Categoria>, List<Consola>, List<Produtora>>(cat, cons, prod);
+            if (!String.IsNullOrEmpty(str3))
+            {
+                prod = prod.Where(x => x.Nome.Contains(str3));
+            }
+
+            var tuple = new Tuple<List<Categoria>, List<Consola>, List<Produtora>>(cat.ToList(), cons.ToList(), prod.ToList());
 
             return View(tuple);
         }

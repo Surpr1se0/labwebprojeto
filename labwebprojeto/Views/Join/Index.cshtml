@@ -2,7 +2,10 @@
 @model Tuple<List<Categoria>, List<Consola>, List<Produtora>>
 
 <h3><strong>Category</strong></h3>
-
+<form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
+    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str1">
+    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+</form>
     @foreach(Categoria cat in Model.Item1)
     {
         <button class="btn btn-outline-success" type="submit" value="Filter">
@@ -12,6 +15,10 @@
     }
 
 <h3><strong>Console</strong></h3>
+<form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
+    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str2">
+    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+</form>
     @foreach (Consola cons in Model.Item2)
     {
         <button class="btn btn-outline-success" type="submit" value="Filter">
@@ -21,6 +28,10 @@
     }
 
 <h3><strong>Produtora</strong></h3>
+<form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
+    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str3">
+    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+</form>
     @foreach (Produtora prod in Model.Item3)
     {
         <button class="btn btn-outline-success" type="submit" value="Filter">
