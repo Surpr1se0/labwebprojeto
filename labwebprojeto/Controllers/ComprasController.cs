@@ -119,7 +119,7 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-
+            
             ViewBag.NomeJogo = jogoName;
             ViewBag.PrecoJogo= jogoPreco;
             ViewData["NomeUtilizador"] = userName;
