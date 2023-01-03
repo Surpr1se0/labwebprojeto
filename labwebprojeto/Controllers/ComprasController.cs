@@ -29,12 +29,33 @@ namespace labwebprojeto.Controllers
         public IActionResult Index(string SearchString)
         {
             var nome = GetCurrentUserName();
+            var IdUser = GetCurrentUserID();
             ViewData["userNome"] = nome;
 
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    categorias = categorias.Where(j => j.Nome!.Contains(searchString));
-            //}
+            //Lista de compras deste utilizador
+            var jogo = (from u in _context.Utilizadors
+                        join c in _context.Compras
+                        on IdUser equals c.IdUtilizador
+                        select c);
+            //id dos jogos comprados
+            var gamesBuy = (from j in _context.Jogos
+                            join c in jogo
+                            on j.IdJogos equals c.IdJogo
+                            select j);
+
+
+            if(!string.IsNullOrEmpty(SearchString))
+            {
+                var AppDbContext = _context.Compras
+                .Include(c => c.IdJogoNavigation)
+                .Where(c => c.IdJogoNavigation.Nome.Contains(SearchString))
+                .Include(c => c.IdUtilizadorNavigation)
+                .Where(c=>c.IdUtilizadorNavigation.IdUtilizador.Equals(IdUser))
+                .Include(c => c.IdJogoNavigation.IdConsolaNavigation)
+                .Include(c => c.IdJogoNavigation.IdProdutoraNavigation)
+                .Include(c => c.IdJogoNavigation.IdCategoriaNavigation);
+                return View(AppDbContext.ToList());
+            }
 
             var applicationDbContext = _context.Compras
                 .Include(c => c.IdJogoNavigation)
