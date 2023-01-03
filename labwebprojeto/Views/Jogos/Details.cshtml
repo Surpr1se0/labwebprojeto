@@ -1,13 +1,6 @@
 ﻿@model Jogo
 
-<!-- Page Content -->
-
 <body style="background-color: #004460; overflow: hidden" scroll="no">
-
-
-    <!-- Portfolio Item Heading -->
-    <!-- Portfolio Item Row -->
-
     <div class="row">
         <div class="col-12 nopadding">
             <div class="TESTE">
@@ -33,7 +26,7 @@
                 </div>
                 @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
                 {
-                    <div class="maisumbutton">                                  <!--Ver o MODEL-->
+                    <div class="maisumbutton">                                  
                         <a asp-controller="Compras" asp-action="Checkout" asp-route-id="@Model.IdJogos" class="btn btn-sm btn-outline-secondary">
                             Comprar
                         </a>
@@ -46,24 +39,15 @@
                     </div>
                 }
                 <div class="Versepinta">
-                    <ul>
-                        @foreach (string produtora in (List<string>)ViewData["Produtora"])
-                        {
-                            <li>@produtora</li>
-                        }
-                    </ul>
-                    <ul>
-                        @foreach (string categoria in (List<string>)ViewData["Categoria"])
-                        {
-                            <li>@categoria</li>
-                        }
-                    </ul>
-                    <ul>
-                        @foreach (string consola in (List<string>)ViewData["Consola"])
-                        {
-                            <li>@consola</li>
-                        }
-                    </ul>
+                        <a asp-controller="Jogos" asp-action="IndexProdutoras" asp-route-id="@Model.IdProdutora" class="btn btn-sm btn-outline-secondary">
+                            @Html.DisplayFor(model => model.IdProdutoraNavigation.Nome)
+                        </a>
+                        <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@Model.IdCategoria" class="btn btn-sm btn-outline-secondary">
+                            @Html.DisplayFor(model => model.IdCategoriaNavigation.Nome)
+                        </a>
+                        <a asp-controller="Jogos" asp-action="IndexConsolas" asp-route-id="@Model.IdConsola" class="btn btn-sm btn-outline-secondary">
+                            @Html.DisplayFor(model => model.IdConsolaNavigation.Nome)
+                        </a>
                 </div>
             </div>
         </div>

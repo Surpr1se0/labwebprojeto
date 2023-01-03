@@ -58,29 +58,6 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            var game = (from j in _context.Jogos
-                       select j)
-                       .Where(x=>x.IdJogos == id);
-
-            var cat = ((from j in game
-                        join c in _context.Categoria
-                      on j.IdCategoria equals c.IdCategoria
-                      select c.Nome).Distinct()).ToList();
-
-            var consola = ((from j in game
-                            join c in _context.Consolas
-                        on j.IdConsola equals c.IdConsola
-                        select c.Nome).Distinct()).ToList();
-
-            var prod = ((from j in game
-                         join c in _context.Produtoras
-                        on j.IdProdutora equals c.IdProdutora
-                        select c.Nome).Distinct()).ToList();
-
-            ViewData["Categoria"] = cat;
-            ViewData["Consola"] = consola;
-            ViewData["Produtora"] = prod;
-
             var jogo = await _context.Jogos
                 .Include(j => j.IdCategoriaNavigation)
                 .Include(j => j.IdConsolaNavigation)
@@ -132,26 +109,13 @@ namespace labwebprojeto.Controllers
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Created Successfully";
 
-                //Add Email Notification
-                var userClients = (from u in _context.Utilizadors
-                                 select u)
-                                 .Where(x => x.IsCliente == true);
-
-                //Lista de emails
-                var emailClients = (from u in userClients
-                                    select u.Email);
-
-                //favoritos que tem um cliente associado
-                var categoryClients = (from f in _context.Favoritos
-                                       join u in userClients
-                                       on f.IdUtilizador equals u.IdUtilizador
-                                       select f);
-
-                var favourites = categoryClients.Where(x => x.IdCategoria == jogoVM.IdCategoria);
-
+                //Send Email
+                var emailClient = GetClientEmails();
+                var CatClients = GetClientFavs();
+                var favourites = CatClients.Where(x => x.IdCategoria == jogoVM.IdCategoria);
                 if(favourites.Any())
                 {
-                    foreach (var c in emailClients)
+                    foreach (var c in emailClient)
                     {
                         await _emailService.SendEmailAsync(c, "New Game - " + jogoVM.Nome, "New game added!");
                     }
@@ -279,22 +243,19 @@ namespace labwebprojeto.Controllers
         /*--------CATEGORIAS*---------*/
         public async Task<IActionResult> IndexCategorias(int? id)
         {
-
             var jogos = (from j in _context.Jogos
                          select j)
                          .Where(x => x.IdCategoria == id);
-
             return View(await jogos.ToListAsync());
         }
 
         /*--------PRODUTORAS*---------*/
-        public async Task<IActionResult> IndexProdutoras(int? id)
+        public IActionResult IndexProdutoras(int? id)
         {
             var jogos = (from j in _context.Jogos
                          select j)
                          .Where(x => x.IdProdutora == id);
-
-            return View(await jogos.ToListAsync());
+            return View(jogos.ToList());
         }
 
         /*--------CONSOLAS*---------*/
@@ -303,8 +264,41 @@ namespace labwebprojeto.Controllers
             var jogos = (from j in _context.Jogos
                          select j)
                          .Where(x => x.IdConsola == id);
-
             return View(await jogos.ToListAsync());
+        }
+
+        /*--------CONSOLAS*---------*/
+        public IQueryable<string> GetClientEmails()
+        {
+            //Add Email Notification
+            var userClients = (from u in _context.Utilizadors
+                             select u)
+                             .Where(x => x.IsCliente == true);
+
+            //Lista de emails
+            var emailClients = (from u in userClients
+                                select u.Email);
+
+            return emailClients;
+        }
+
+        public IQueryable<Favorito> GetClientFavs()
+        {
+            var userClients = (from u in _context.Utilizadors
+                               select u)
+                 .Where(x => x.IsCliente == true);
+
+            //Lista de emails
+            var emailClients = (from u in userClients
+                                select u.Email);
+
+            //favoritos que tem um cliente associado
+            var categoryClients = (from f in _context.Favoritos
+                                   join u in userClients
+                                   on f.IdUtilizador equals u.IdUtilizador
+                                   select f);
+
+            return categoryClients;
         }
     }
 
