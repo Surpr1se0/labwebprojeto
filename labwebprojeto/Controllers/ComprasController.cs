@@ -54,6 +54,12 @@ namespace labwebprojeto.Controllers
                 .Include(c => c.IdJogoNavigation.IdConsolaNavigation)
                 .Include(c => c.IdJogoNavigation.IdProdutoraNavigation)
                 .Include(c => c.IdJogoNavigation.IdCategoriaNavigation);
+
+                bool isEmpty = !AppDbContext.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
                 return View(AppDbContext.ToList());
             }
 

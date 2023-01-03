@@ -37,6 +37,12 @@ namespace labwebprojeto.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 jogos = jogos.Where(j => j.Nome!.Contains(searchString));
+                bool isEmpty = !jogos.Any();
+
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");

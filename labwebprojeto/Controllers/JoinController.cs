@@ -30,20 +30,39 @@ namespace labwebprojeto.Controllers
             if(!String.IsNullOrEmpty(str1))
             {
                cat = cat.Where(x => x.Nome.Contains(str1));
+
+
+                bool isEmpty = !cat.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             if (!String.IsNullOrEmpty(str2))
             {
+
                 cons = cons.Where(x => x.Nome.Contains(str2));
+
+                bool isEmpty = !cons.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             if (!String.IsNullOrEmpty(str3))
             {
                 prod = prod.Where(x => x.Nome.Contains(str3));
+
+                bool isEmpty = !prod.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             var tuple = new Tuple<List<Categoria>, List<Consola>, List<Produtora>>(cat.ToList(), cons.ToList(), prod.ToList());
-
             return View(tuple);
         }
     }

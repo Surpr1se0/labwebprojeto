@@ -29,6 +29,11 @@ namespace labwebprojeto.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 categorias = categorias.Where(j => j.Nome!.Contains(searchString));
+                bool isEmpty = !categorias.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             return View(await categorias.ToListAsync());

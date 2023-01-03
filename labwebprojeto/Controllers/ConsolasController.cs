@@ -28,7 +28,14 @@ namespace labwebprojeto.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 consolas = consolas.Where(j => j.Nome!.Contains(searchString));
+
+                bool isEmpty = !consolas.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
+
 
             return View(await consolas.ToListAsync());
         }

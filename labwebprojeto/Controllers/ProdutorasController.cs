@@ -28,6 +28,12 @@ namespace labwebprojeto.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 produtoras = produtoras.Where(j => j.Nome!.Contains(searchString));
+
+                bool isEmpty = !produtoras.Any();
+                if (isEmpty)
+                {
+                    //Mostrar Mensagem com ViewData
+                }
             }
 
             return View(await produtoras.ToListAsync());

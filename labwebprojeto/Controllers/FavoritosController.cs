@@ -37,6 +37,13 @@ namespace labwebprojeto.Controllers
                 .Include(f => f.IdUtilizadorNavigation)
                 .Where(f => f.IdUtilizadorNavigation.IdUtilizador
                 == GetCurrentUserID());
+
+            bool isEmpty = !applicationDbContext.Any();
+            if (isEmpty)
+            {
+                //Mostrar Mensagem com ViewData
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
 
