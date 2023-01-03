@@ -90,14 +90,14 @@ namespace labwebprojeto.Controllers
             {
                 var result_pic = await _photoService.AddPhotoAsync(jogoVM.Foto);
                 var result_pic1 = await _photoService.AddPhotoAsync(jogoVM.Foto1);
-                var result_pic2 = await _photoService.AddPhotoAsync(jogoVM.Foto2);
+                var background = await _photoService.AddBackgroundAsync(jogoVM.Foto2);
                 var jogo = new Jogo
                 {
                     IdJogos = jogoVM.IdJogos,
                     Nome = jogoVM.Nome,
                     Foto = result_pic.Url.ToString(),
                     Foto1 = result_pic1.Url.ToString(),
-                    Foto2 = result_pic2.Url.ToString(),
+                    Foto2 = background.Url.ToString(),
                     IdCategoria = jogoVM.IdCategoria,
                     IdConsola = jogoVM.IdConsola,
                     IdProdutora = jogoVM.IdProdutora,
