@@ -25,59 +25,25 @@ namespace labwebprojeto.Controllers
             var consolas = from c in _context.Consolas
                              select c;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 consolas = consolas.Where(j => j.Nome!.Contains(searchString));
-
                 bool isEmpty = !consolas.Any();
                 if (isEmpty)
                 {
                     //Mostrar Mensagem com ViewData
                 }
             }
-
-
             return View(await consolas.ToListAsync());
         }
 
-        // GET: Consolas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Consolas == null)
-            {
-                return NotFound();
-            }
-
-            var consola = await _context.Consolas
-                .FirstOrDefaultAsync(m => m.IdConsola == id);
-            if (consola == null)
-            {
-                return NotFound();
-            }
-
-            return View(consola);
-        }
-
-        // GET: Consolas/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Consolas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdConsola,Nome")] Consola consola)
+        public async Task<IActionResult> Create([Bind("IdConsola,Nome")] Consola consola, string NewName)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(consola);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(consola);
+            consola.Nome = NewName;
+            _context.Add(consola);
+            await _context.SaveChangesAsync();
+            return PartialView("Listing", _context.Consolas);
         }
 
         // GET: Consolas/Edit/5
@@ -93,19 +59,17 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            return View(consola);
+            return PartialView("Edit", consola);
         }
 
         // POST: Consolas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdConsola,Nome")] Consola consola)
+        public string Edit(int id, [Bind("IdConsola,Nome")] Consola consola)
         {
             if (id != consola.IdConsola)
             {
-                return NotFound();
+                return null;
             }
 
             if (ModelState.IsValid)
@@ -113,30 +77,33 @@ namespace labwebprojeto.Controllers
                 try
                 {
                     _context.Update(consola);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ConsolaExists(consola.IdConsola))
                     {
-                        return NotFound();
+                        return null;
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(consola);
+            return consola.Nome;
         }
 
         // GET: Consolas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Consolas == null)
+            if (id == null)
             {
                 return NotFound();
+            }
+            else if (_context.Consolas == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Consolas' is null.");
             }
 
             var consola = await _context.Consolas
@@ -146,27 +113,12 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            return View(consola);
+            _context.Consolas.Remove(consola);
+            _context.SaveChanges();
+
+            return PartialView("Listing", _context.Consolas);
         }
 
-        // POST: Consolas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Consolas == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Consolas'  is null.");
-            }
-            var consola = await _context.Consolas.FindAsync(id);
-            if (consola != null)
-            {
-                _context.Consolas.Remove(consola);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
         private bool ConsolaExists(int id)
         {

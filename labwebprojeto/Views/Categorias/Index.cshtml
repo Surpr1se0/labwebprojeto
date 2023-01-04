@@ -24,9 +24,6 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Nome)
                                     </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Nome)
-                                    </th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -35,9 +32,6 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IdCategoria)
-                                        </td>
                                         <td id="Col_@item.IdCategoria">
                                             @Html.DisplayFor(modelItem => item.Nome)
                                         </td>
@@ -69,7 +63,7 @@
                                   data-ajax-failure="falha">
 
                                 <input id="inp" type="text" name="NewName" />
-                                <input type="submit" value="Create" class="" onclick="IsEmpty();"/>
+                                <input type="submit" value="Create" class=""/>
                             </form>
                         </div>
                     </div>

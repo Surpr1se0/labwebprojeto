@@ -104,7 +104,7 @@ namespace labwebprojeto.Controllers
             }
             else if(_context.Categoria == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Categoria' is null.");
             }
 
             var categoria = await _context.Categoria

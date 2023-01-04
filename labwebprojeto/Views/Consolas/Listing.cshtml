@@ -1,4 +1,4 @@
-﻿@model IEnumerable<labwebprojeto.Models.Categoria>
+﻿@model IEnumerable<labwebprojeto.Models.Consola>
 
 <table id="Tabela" class="table">
     <thead>
@@ -14,19 +14,19 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td id="Col_@item.IdCategoria">
+                <td id="Col_@item.IdConsola">
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdCategoria"
+                    <a asp-action="Edit" asp-route-id="@item.IdConsola"
                    data-ajax="true" data-ajax-method="get"
-                   data-ajax-mode="replace" data-ajax-update="#Col_@item.IdCategoria">
+                   data-ajax-mode="replace" data-ajax-update="#Col_@item.IdConsola">
 
                         Edit
                     </a>
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@item.IdCategoria"
+                    <a asp-action="Delete" asp-route-id="@item.IdConsola"
                    data-ajax="true" data-ajax-method="get"
                    data-ajax-mode="replace" data-ajax-update="#Tabela"
                    data-ajax-confirm="Are you sure?">

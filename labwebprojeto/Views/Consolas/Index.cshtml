@@ -5,6 +5,7 @@
 }
 
 <body class="CategoriasBoddy">
+
     <main class="classmain">
         <section class="about-login">
             <div class="fartodisto2">
@@ -17,12 +18,13 @@
                                 <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
                             </form>
                         </div>
-                        <table class="table">
+                        <table id="Tabela" class="table">
                             <thead>
                                 <tr>
                                     <th>
-                                        Category
+                                        @Html.DisplayNameFor(model => model.Nome)
                                     </th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -30,13 +32,24 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td id="Col_@item.IdConsola">
                                             @Html.DisplayFor(modelItem => item.Nome)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.IdConsola">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.IdConsola">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.IdConsola">Delete</a>
+                                            <a asp-action="Edit" asp-route-id="@item.IdConsola"
+                                           data-ajax="true" data-ajax-method="get"
+                                           data-ajax-mode="replace" data-ajax-update="#Col_@item.IdConsola">
+
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="Delete" asp-route-id="@item.IdConsola"
+                                           data-ajax="true" data-ajax-method="get"
+                                           data-ajax-mode="replace" data-ajax-update="#Tabela"
+                                           data-ajax-confirm="Are you sure?">
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 }
@@ -44,13 +57,24 @@
                         </table>
 
                         <div class="butNew">
-                            <a asp-controller="Consolas" asp-action="Create" class="btn btn-sm btn-outline-secondary">
-                                Create New
-                            </a>
+                            <form id="teste" asp-action="Create" data-ajax="true"
+                                  data-ajax-method="post" data-ajax-mode="replace"
+                                  data-ajax-update="#Tabela" data-ajax-success="sucesso"
+                                  data-ajax-failure="falha">
+
+                                <input id="inp" type="text" name="NewName" />
+                                <input type="submit" value="Create" class="" />
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+    <partial name="_Notification" />
+    <script>
+        function sucesso() {
+            $("#inp").val("");
+        }
+    </script>
 </body>
