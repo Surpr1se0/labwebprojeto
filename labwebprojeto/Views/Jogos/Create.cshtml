@@ -5,14 +5,21 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Jogo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-login">
+
+            <div class="fartodisto2">
+                <div class="row">
+
+                    <div id="divContent" class="col-md-12 about-rightcena nopadding">
+                        <h2>Create Games</h2>
+            <div class="scrollbeau" id="#tentarassim">
         <form asp-action="Create" form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div id="#tentarassim">
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -63,13 +70,22 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+                                </div>
         </form>
+                        </div>
+                        <div class="backtolist">
+                                <a asp-action="Index">Back to List</a>
+                            </div>
+
+    
     </div>
 </div>
+<</div>
+</section>
+</main>
+</body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{
