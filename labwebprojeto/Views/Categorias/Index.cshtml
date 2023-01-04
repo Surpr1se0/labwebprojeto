@@ -4,8 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-
 <body class="CategoriasBoddy">
+
     <main class="classmain">
         <section class="about-login">
             <div class="fartodisto2">
@@ -18,63 +18,69 @@
                             <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
                         </form>
                         </div>
-                        <table class="table">
-                           @* <thead>
+                        <table id="Tabela" class="table">
+                            <thead>
                                 <tr>
                                     <th>
-                                        <h1>Categories</h1>
+                                        @Html.DisplayNameFor(model => model.Nome)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Nome)
                                     </th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
-                            </thead>*@
+                            </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
                                         <td>
+                                            @Html.DisplayFor(modelItem => item.IdCategoria)
+                                        </td>
+                                        <td id="Col_@item.IdCategoria">
                                             @Html.DisplayFor(modelItem => item.Nome)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.IdCategoria">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.IdCategoria">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.IdCategoria">Delete</a>
+                                            <a asp-action="Edit" asp-route-id="@item.IdCategoria"
+                                           data-ajax="true" data-ajax-method="get"
+                                           data-ajax-mode="replace" data-ajax-update="#Col_@item.IdCategoria">
+
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="Delete" asp-route-id="@item.IdCategoria"
+                                           data-ajax="true" data-ajax-method="get"
+                                           data-ajax-mode="replace" data-ajax-update="#Tabela"
+                                           data-ajax-confirm="Are you sure?">
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
+
                         <div class="butNew">
-                            <a asp-controller="Categorias" asp-action="Create" class="btn btn-sm btn-outline-secondary">
-                                Create New
-                            </a>
+                            <form id="teste" asp-action="Create" data-ajax="true"
+                                  data-ajax-method="post" data-ajax-mode="replace"
+                                  data-ajax-update="#Tabela" data-ajax-success="sucesso"
+                                  data-ajax-failure="falha">
+
+                                <input id="inp" type="text" name="NewName" />
+                                <input type="submit" value="Create" class="" onclick="IsEmpty();"/>
+                            </form>
                         </div>
                     </div>
                     </div>
                     </div>
             </section>
-           
     </main>
-</body>
-
-@*<ejs-button id="custom" cssClass="e-custom" content="CUSTOM"></ejs-button>
-
-<style>
-    .e-custom {
-        border-radius: 0;
-        height: 100px;
-        width: 100px;
-    }
-        .e-custom, .e-custom:hover, .e-custom:focus, .e-custom:active {
-            background-color: #ff6e40;
-            color: #fff;
+    <partial name="_Notification" />
+    <script>
+        function sucesso() {
+            $("#inp").val("");
         }
-    button {
-        
-    }
-</style>
-
-<script>
-    document.getElementById('button').onclick = function () {
-        window.open("https://www.google.com");
-    };
-</script>*@
+    </script>
+</body>

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace labwebprojeto.Models
 {
+
     [Table("Categoria")]
     public class Categoria
     {

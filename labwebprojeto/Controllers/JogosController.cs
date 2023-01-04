@@ -131,7 +131,7 @@ namespace labwebprojeto.Controllers
             }
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Game Created Successfully";
+                TempData["Error"] = "Game Not Created";
             }
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome", jogoVM.IdCategoria);
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome", jogoVM.IdConsola);

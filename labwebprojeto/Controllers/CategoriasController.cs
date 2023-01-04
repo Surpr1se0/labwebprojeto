@@ -26,7 +26,7 @@ namespace labwebprojeto.Controllers
             var categorias = from c in _context.Categoria
                              select c;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 categorias = categorias.Where(j => j.Nome!.Contains(searchString));
                 bool isEmpty = !categorias.Any();
@@ -35,46 +35,16 @@ namespace labwebprojeto.Controllers
                     //Mostrar Mensagem com ViewData
                 }
             }
-
             return View(await categorias.ToListAsync());
         }
 
-        // GET: Categorias/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Categoria == null)
-            {
-                return NotFound();
-            }
-
-            var categoria = await _context.Categoria
-                .FirstOrDefaultAsync(m => m.IdCategoria == id);
-            if (categoria == null)
-            {
-                return NotFound();
-            }
-
-            return View(categoria);
-        }
-
-        // GET: Categorias/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Categorias/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCategoria,Nome")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("IdCategoria,Nome")] Categoria categoria, string NewName)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(categoria);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(categoria);
+            categoria.Nome = NewName;
+            _context.Add(categoria);
+            await _context.SaveChangesAsync();
+            return PartialView("Listing", _context.Categoria);
         }
 
         // GET: Categorias/Edit/5
@@ -90,17 +60,17 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            return View(categoria);
+            return PartialView("Edit", categoria);
         }
 
         // POST: Categorias/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCategoria,Nome")] Categoria categoria)
+        public string Edit(int id, [Bind("IdCategoria,Nome")] Categoria categoria)
         {
             if (id != categoria.IdCategoria)
             {
-                return NotFound();
+                return null;
             }
 
             if (ModelState.IsValid)
@@ -108,30 +78,33 @@ namespace labwebprojeto.Controllers
                 try
                 {
                     _context.Update(categoria);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CategoriaExists(categoria.IdCategoria))
                     {
-                        return NotFound();
+                        return null;
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return categoria.Nome;
         }
 
         // GET: Categorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Categoria == null)
+            if (id == null)
             {
                 return NotFound();
+            }
+            else if(_context.Categoria == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
             }
 
             var categoria = await _context.Categoria
@@ -141,26 +114,10 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            return View(categoria);
-        }
+            _context.Categoria.Remove(categoria);
+            _context.SaveChanges();
 
-        // POST: Categorias/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Categoria == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Categoria'  is null.");
-            }
-            var categoria = await _context.Categoria.FindAsync(id);
-            if (categoria != null)
-            {
-                _context.Categoria.Remove(categoria);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return PartialView("Listing", _context.Categoria);
         }
 
         private bool CategoriaExists(int id)
