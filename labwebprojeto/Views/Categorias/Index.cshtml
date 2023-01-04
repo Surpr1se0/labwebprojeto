@@ -4,8 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<body class="CategoriasBoddy">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Save() {
+            $('.validation').remove();
+            if ($('#inp').val() == '') 
+            {
+                alert('Please insert a value');
+                return false;
+            } 
+        }
+    </script>
+</head>
 
+<body class="CategoriasBoddy">
     <main class="classmain">
         <section class="about-login">
             <div class="fartodisto2">
@@ -55,7 +70,6 @@
                                 }
                             </tbody>
                         </table>
-
                         <div class="butNew">
                             <form id="teste" asp-action="Create" data-ajax="true"
                                   data-ajax-method="post" data-ajax-mode="replace"
@@ -63,7 +77,7 @@
                                   data-ajax-failure="falha">
 
                                 <input id="inp" type="text" name="NewName" />
-                                <input type="submit" value="Create" class=""/>
+                                <input type="submit" value="Create" class="" onclick="Save()" />
                             </form>
                         </div>
                     </div>
