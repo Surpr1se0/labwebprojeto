@@ -4,8 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<body style="background-color: #004460">
+
+<body >
     <main class="classmain">
+        @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
+{
+                 
         <section class="about-login">
 
             <div class="fartodisto2">
@@ -38,6 +42,11 @@
                 </div>
             </div>
         </section>
+        }
+        else {
+            <h1>This page is only for Admins and Funcs</h1>
+        }
+
     </main>
 </body>
 
