@@ -22,61 +22,28 @@ namespace labwebprojeto.Controllers
         // GET: Produtoras
         public async Task<IActionResult> Index(string searchString)
         {
-            var produtoras = from p in _context.Produtoras
-                           select p;
+            var produtoras = from c in _context.Produtoras
+                             select c;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 produtoras = produtoras.Where(j => j.Nome!.Contains(searchString));
-
                 bool isEmpty = !produtoras.Any();
                 if (isEmpty)
                 {
                     //Mostrar Mensagem com ViewData
                 }
             }
-
             return View(await produtoras.ToListAsync());
         }
 
-        // GET: Produtoras/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Produtoras == null)
-            {
-                return NotFound();
-            }
-
-            var produtora = await _context.Produtoras
-                .FirstOrDefaultAsync(m => m.IdProdutora == id);
-            if (produtora == null)
-            {
-                return NotFound();
-            }
-
-            return View(produtora);
-        }
-
-        // GET: Produtoras/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Produtoras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProdutora,Nome")] Produtora produtora)
+        public async Task<IActionResult> Create([Bind("IdProdutora,Nome")] Produtora produtora, string NewName)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(produtora);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(produtora);
+            produtora.Nome = NewName;
+            _context.Add(produtora);
+            await _context.SaveChangesAsync();
+            return PartialView("Listing", _context.Produtoras);
         }
 
         // GET: Produtoras/Edit/5
@@ -92,19 +59,17 @@ namespace labwebprojeto.Controllers
             {
                 return NotFound();
             }
-            return View(produtora);
+            return PartialView("Edit", produtora);
         }
 
         // POST: Produtoras/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProdutora,Nome")] Produtora produtora)
+        public string Edit(int id, [Bind("IdProdutora,Nome")] Produtora produtora)
         {
             if (id != produtora.IdProdutora)
             {
-                return NotFound();
+                return null;
             }
 
             if (ModelState.IsValid)
@@ -112,30 +77,33 @@ namespace labwebprojeto.Controllers
                 try
                 {
                     _context.Update(produtora);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProdutoraExists(produtora.IdProdutora))
                     {
-                        return NotFound();
+                        return null;
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(produtora);
+            return produtora.Nome;
         }
 
         // GET: Produtoras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Produtoras == null)
+            if (id == null)
             {
                 return NotFound();
+            }
+            else if (_context.Produtoras == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Produtora' is null.");
             }
 
             var produtora = await _context.Produtoras
@@ -145,26 +113,10 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            return View(produtora);
-        }
+            _context.Produtoras.Remove(produtora);
+            _context.SaveChanges();
 
-        // POST: Produtoras/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Produtoras == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Produtoras'  is null.");
-            }
-            var produtora = await _context.Produtoras.FindAsync(id);
-            if (produtora != null)
-            {
-                _context.Produtoras.Remove(produtora);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return PartialView("Listing", _context.Produtoras);
         }
 
         private bool ProdutoraExists(int id)
