@@ -31,8 +31,14 @@ namespace labwebprojeto.Data
                 optionsBuilder.UseSqlServer("name=DefaultConnection");
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            _SeedUsers(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
+
             _configureCategoria(modelBuilder);
             _configureUtilizador(modelBuilder);
             _configureCompras(modelBuilder);
@@ -42,10 +48,64 @@ namespace labwebprojeto.Data
             _configureProdutora(modelBuilder);
             _configureUtilizador(modelBuilder);
 
-            base.OnModelCreating(modelBuilder);
             OnModelCreatingPartial(modelBuilder);
         }
+
+        //*DATA_SEEDING*//
+        private void _SeedUsers(ModelBuilder modelBuilder)
+        {
+            /*ADMIN*/
+            IdentityUser user = new IdentityUser()
+            {
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                Email = "admin@gmail.com",
+                NormalizedEmail = "ADMIN@GMAIL.COM",
+                EmailConfirmed = true,
+                LockoutEnabled = false
+            };
+
+            PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
+            user.PasswordHash = passwordHasher.HashPassword(user, "Admin*123");
+            modelBuilder.Entity<IdentityUser>().HasData(user);
+
+            /*FUNC*/
+            IdentityUser user1 = new IdentityUser()
+            {
+                UserName = "Func",
+                NormalizedUserName = "FUNC",
+                Email = "func@gmail.com",
+                NormalizedEmail = "FUNC@GMAIL.COM",
+                EmailConfirmed = true,
+                LockoutEnabled = false
+            };
+
+            PasswordHasher<IdentityUser> passwordHasher1 = new PasswordHasher<IdentityUser>();
+            user1.PasswordHash = passwordHasher1.HashPassword(user1, "Func*123");
+            modelBuilder.Entity<IdentityUser>().HasData(user1);
+
+            /*USER_ROLES*/
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData
+            (
+                new IdentityUserRole<string>()
+                {
+                    RoleId = "27151075-3b07-4ff2-b975-a0ec4480354d", //ADMIN ID
+                    UserId = user.Id
+                },
+                new IdentityUserRole<string>()
+                {
+                    RoleId = "e2704b45-a586-406b-92f0-9227de8fe1f2", //FUNC ID
+                    UserId = user1.Id
+                }
+            );
+        }
+
+  
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        //*CONFIGURES*//
 
         #region helpers
         private void _configureCategoria(ModelBuilder modelBuilder)
@@ -152,6 +212,9 @@ namespace labwebprojeto.Data
                     .HasConstraintName("FK__Compra__Id_Utili__6A30C649");
             });
         }
+
         #endregion
+
+
     }
 }
