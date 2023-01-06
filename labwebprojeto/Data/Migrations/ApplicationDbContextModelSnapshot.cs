@@ -299,6 +299,15 @@ namespace labwebprojeto.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            ConcurrencyStamp = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            Name = "SystemADMIN",
+                            NormalizedName = "SystemADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,35 +402,19 @@ namespace labwebprojeto.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c6a76765-aee9-4053-adcc-33b337a7d49b",
+                            Id = "6fb1175d-3374-4304-bccb-78e18cca98a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e99321d7-a306-4e73-8b7b-0f321c0931b3",
-                            Email = "admin@gmail.com",
+                            ConcurrencyStamp = "ca737d2f-5141-41be-b9f8-a6258bae955b",
+                            Email = "sysadmin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJulYE4BjWNbR7Bs7ObRuhO1oJrhPCiPX3N07mYFqORtZcSPnzWgT7FTPKwHHpU8PQ==",
+                            NormalizedEmail = "SYSADMIN@GMAIL.COM",
+                            NormalizedUserName = "SYSADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFKdceF1hFz0XLtmEpbJdOMEFNYtVUEvbNpIQo9TJTV++Zdm5obdk9k+ShLbCAaAkw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6f896fa7-1f41-41fb-95db-336fdbc8d642",
+                            SecurityStamp = "8d7c9aef-5bd3-4ffa-8673-8d6ca43a97c1",
                             TwoFactorEnabled = false,
-                            UserName = "Admin"
-                        },
-                        new
-                        {
-                            Id = "c1aef0f8-880a-4f5b-80d9-28eff5a8f72e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ae4f393-5489-4403-b15f-4911d42b0d52",
-                            Email = "func@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "FUNC@GMAIL.COM",
-                            NormalizedUserName = "FUNC",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDuz5wilue6zM0h5OvZaRyJJnHEPdOIc9w0UkzFjg+zliHaF2eVWqf2C6Ra3J2FiHQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce2f56f1-1751-47fe-8193-f06dd648d6b9",
-                            TwoFactorEnabled = false,
-                            UserName = "Func"
+                            UserName = "SysAdmin"
                         });
                 });
 
@@ -491,13 +484,8 @@ namespace labwebprojeto.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c6a76765-aee9-4053-adcc-33b337a7d49b",
-                            RoleId = "27151075-3b07-4ff2-b975-a0ec4480354d"
-                        },
-                        new
-                        {
-                            UserId = "c1aef0f8-880a-4f5b-80d9-28eff5a8f72e",
-                            RoleId = "e2704b45-a586-406b-92f0-9227de8fe1f2"
+                            UserId = "6fb1175d-3374-4304-bccb-78e18cca98a2",
+                            RoleId = "02174cf0–9412–4cfe-afbf-59f706d72cf6"
                         });
                 });
 

@@ -54,54 +54,109 @@ namespace labwebprojeto.Data
         //*DATA_SEEDING*//
         private void _SeedUsers(ModelBuilder modelBuilder)
         {
-            /*ADMIN*/
+            /*SYS-ADMIN*/
             IdentityUser user = new IdentityUser()
             {
-                UserName = "Admin",
-                NormalizedUserName = "ADMIN",
-                Email = "admin@gmail.com",
-                NormalizedEmail = "ADMIN@GMAIL.COM",
+                UserName = "SysAdmin",
+                NormalizedUserName = "SYSADMIN",
+                Email = "sysadmin@gmail.com",
+                NormalizedEmail = "SYSADMIN@GMAIL.COM",
                 EmailConfirmed = true,
                 LockoutEnabled = false
             };
 
             PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
-            user.PasswordHash = passwordHasher.HashPassword(user, "Admin*123");
+            user.PasswordHash = passwordHasher.HashPassword(user, "SYSAdmin*123");
             modelBuilder.Entity<IdentityUser>().HasData(user);
 
-            /*FUNC*/
-            IdentityUser user1 = new IdentityUser()
-            {
-                UserName = "Func",
-                NormalizedUserName = "FUNC",
-                Email = "func@gmail.com",
-                NormalizedEmail = "FUNC@GMAIL.COM",
-                EmailConfirmed = true,
-                LockoutEnabled = false
-            };
-
-            PasswordHasher<IdentityUser> passwordHasher1 = new PasswordHasher<IdentityUser>();
-            user1.PasswordHash = passwordHasher1.HashPassword(user1, "Func*123");
-            modelBuilder.Entity<IdentityUser>().HasData(user1);
+            /*ROLES*/
+            modelBuilder.Entity<IdentityRole>().HasData
+            (
+                new IdentityRole
+                {
+                    Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                    Name = "SystemADMIN",
+                    NormalizedName = "SystemADMIN",
+                    ConcurrencyStamp = "02174cf0–9412–4cfe-afbf-59f706d72cf6"
+                }
+            );
 
             /*USER_ROLES*/
-
             modelBuilder.Entity<IdentityUserRole<string>>().HasData
             (
                 new IdentityUserRole<string>()
                 {
-                    RoleId = "27151075-3b07-4ff2-b975-a0ec4480354d", //ADMIN ID
+                    RoleId = "02174cf0–9412–4cfe-afbf-59f706d72cf6", //ADMIN ID
                     UserId = user.Id
-                },
-                new IdentityUserRole<string>()
-                {
-                    RoleId = "e2704b45-a586-406b-92f0-9227de8fe1f2", //FUNC ID
-                    UserId = user1.Id
                 }
             );
         }
 
-  
+        private void _SeedCategoria(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Categoria>().HasData
+            (
+                new Categoria
+                {
+                    IdCategoria = 1,
+                    Nome = "FPS"
+                },
+                new Categoria
+                {
+                    IdCategoria = 2,
+                    Nome = "Sports"
+                },
+                new Categoria
+                {
+                    IdCategoria = 3,
+                    Nome = "Action"
+                }
+            );
+        }
+
+        private void _SeedConsola(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Consola>().HasData
+            (
+                new Consola
+                {
+                    IdConsola = 1,
+                    Nome = "PS5"
+                },
+                new Consola
+                {
+                    IdConsola = 2,
+                    Nome = "XBox Series X"
+                },
+                new Consola
+                {
+                    IdConsola = 3,
+                    Nome = "PC"
+                }
+            );
+        }
+
+        private void _SeedProdutora(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produtora>().HasData
+            (
+                new Produtora
+                {
+                    IdProdutora = 1,
+                    Nome = "EA Games"
+                },
+                new Produtora
+                {
+                    IdProdutora = 2,
+                    Nome = "Rockstar Games"
+                },
+                new Produtora
+                {
+                    IdProdutora = 3,
+                    Nome = "Blizzard"
+                }
+            );
+        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
