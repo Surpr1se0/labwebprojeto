@@ -65,6 +65,8 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            public string? Role { get; set; } = "";
+
             [Required]
             [Display(Name = "UserName")]
             public string UserName { get; set; }
@@ -118,14 +120,12 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    //var user = (from u in _context.Utilizadors
-                    //            select u)
-                    //            .Where(user => user.Nome.Equals(Input.UserName));
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

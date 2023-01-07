@@ -34,8 +34,9 @@ namespace labwebprojeto.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            _SeedUsers(modelBuilder);
+            _SeedCategoria(modelBuilder);
+            _SeedConsola(modelBuilder);
+            _SeedProdutora(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
 
@@ -68,28 +69,6 @@ namespace labwebprojeto.Data
             PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
             user.PasswordHash = passwordHasher.HashPassword(user, "SYSAdmin*123");
             modelBuilder.Entity<IdentityUser>().HasData(user);
-
-            /*ROLES*/
-            modelBuilder.Entity<IdentityRole>().HasData
-            (
-                new IdentityRole
-                {
-                    Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-                    Name = "SystemADMIN",
-                    NormalizedName = "SystemADMIN",
-                    ConcurrencyStamp = "02174cf0–9412–4cfe-afbf-59f706d72cf6"
-                }
-            );
-
-            /*USER_ROLES*/
-            modelBuilder.Entity<IdentityUserRole<string>>().HasData
-            (
-                new IdentityUserRole<string>()
-                {
-                    RoleId = "02174cf0–9412–4cfe-afbf-59f706d72cf6", //ADMIN ID
-                    UserId = user.Id
-                }
-            );
         }
 
         private void _SeedCategoria(ModelBuilder modelBuilder)
@@ -154,6 +133,24 @@ namespace labwebprojeto.Data
                 {
                     IdProdutora = 3,
                     Nome = "Blizzard"
+                }
+            );
+        }
+
+        private void _SeedJogo(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Jogo>().HasData
+            (
+                new Jogo
+                {
+                    IdJogos = 1,
+                    Nome = "FIFA 23",
+                    Foto = "exemplo",
+                    Foto1 = "exemplo1",
+                    Foto2 = "exemplo2",
+                    IdCategoria = 2,
+                    IdConsola = 3,
+                    IdProdutora = 1
                 }
             );
         }

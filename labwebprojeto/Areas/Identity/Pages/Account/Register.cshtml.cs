@@ -136,15 +136,23 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+                    // Check if current user is sysAdmin
+                    if (Input.UserName == "SysAdmin"
+                        && Input.Password == "SysAdmin*123")
+                    {
+                        Input.Role = "Admin";
+                        await _context.SaveChangesAsync();
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+
                     //Inject new input data into the Users Model
-                    if(Input.Role == null)
+                    if (Input.Role == null)
                     {
                         Input.Role = "Client";
                         Utilizador new_utilizador = new Utilizador {
@@ -208,7 +216,8 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        $"Please confirm your account on the Can't Stop Website" +
+                        $"by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
