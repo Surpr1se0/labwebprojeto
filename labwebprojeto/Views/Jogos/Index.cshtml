@@ -7,6 +7,7 @@
 <partial name="_Notification" />
 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,55 +16,205 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/utadlabwebprojeto.styles.css" asp-append-version="true" />
     <link href="~/css/site.css" rel="stylesheet" />
-    <!-- Syncfusion ASP.NET Core controls styles -->
-    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.4.38/bootstrap5-dark.css" />
 </head>
 
-<body id="bloquear-selecao" style="background-color:#4618ac">
-
-    <form class="d-flex" asp-controller="Home" asp-action="Index" method="get">
-        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
-        <button class="btn" type="submit" value="Filter">Search</button>
-    </form>
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Can't Stop</h1>
-            <p class="lead">A website <strong> for gamers</strong> by gamers.</p>
-            <p>
-            </p>
+<body id="bloquear-selecao" style="background-color:#410698">
+    <section class="naoentendo">
+        <div class="hero-content section d-flex min-vh-100">
+            <div class="col-12 site-title">
+                <h2 id="bloquear-selecao" class="texto2">Welcome</h2>
+                <p id="bloquear-selecao" class="line typing-animation ">A website for gamers by gamers.</p>
+                <h1 id="bloquear-selecao" class="texto1">Can't Stop</h1>
+                <div id="bloquear-selecao" class="setacrl">
+                    <a href="#Second" class="sera2">
+                        <i class="fa fa-angle-double-down icone"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="@item.Foto" width="100%" height="235" alt="Imagem Exemplo">
-                        <div class="card-body">
-                            <p class="card-text">@item.Nome.ToUpper()</p>
-                            @* <h5 class="card-text2">@item.Descricao</h5>*@
-                            <input value="@Math.Round(@item.Preco,2)€">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a type="btn btn-success" button asp-controller="Jogos" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
-                                        Comprar
-                                    </a>
-                                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
-                                    {
-                                        <a asp-controller="Jogos" asp-action="Edit" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
-                                            Edit
-                                        </a>
-                                    }
+    <section id="Second">
+
+        <div class="containerIndex">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-3 box-shadow">
+                            <a asp-controller="Jogos" asp-action="Details" asp-route-id="@item.IdJogos">
+                                <img class="card-img-top" src="@item.Foto" alt="Imagem Exemplo">
+                            </a>
+                            <div class="colocarladoeasyway">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <p>@item.Nome.ToUpper()</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p>@Math.Round(@item.Preco,2)€</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="d-flex">
+                            <div class="btn-group">
+                                @if ((User.IsInRole("Admin")) || (User.IsInRole("Client")) || (User.IsInRole("Func")))
+                                {
+                                    @*<div class="btn-group">
+                            <a type="btn btn-success" button asp-controller="Home" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
+                            Buy
+                            </a>
+                            </div>*@
+
+                                }
+                                else
+                                {
+                                    @*<a type="btn btn-success" button asp-controller="Home" asp-action="Details" asp-route-id="@item.IdJogos" class="btn btn-sm btn-outline-secondary">
+                            Details
+                            </a>*@
+                                }
+
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            }
+
+                }
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="port-section" id="Portefolio">
+        <div class="section-title">
+            <h3>What are you searching for?</h3>
+        </div>
+        <div class="container">
+            <input type="radio" name="slider" id="item-1" checked>
+            <input type="radio" name="slider" id="item-2">
+            <input type="radio" name="slider" id="item-3">
+            <div class="cards">
+                <label class="card" for="item-1" id="song-1">
+                    <img src="/Images/card2.jpg" alt="">
+                    <h1>Consoles</h1>
+                    <button onclick="window.location.href='/Join'">Show me</button>
+                </label>
+
+                <label class="card" for="item-2" id="song-2">
+                    <img src="/Images/FirstCard.jpg" alt="">
+                    <h2>Categories</h2>
+                    <button onclick="window.location.href='/Join'">Show me</button>
+                </label>
+
+                <label class="card" for="item-3" id="song-3">
+                    <img src="/Images/card3.jpg" alt="">
+                    <h1>Producers</h1>
+                    <button onclick="window.location.href='/Join'">Show me</button>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center text-lg-start bg-white text-muted">
+        <!-- Section: Social media -->
+        <!-- Section: Social media -->
+        <!-- Section: Links  -->
+        <section class="footerclass">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3 text-secondary"></i>CAN'T STOP
+                        </h6>
+                        <p>
+                            Developed for the subject of Web Lab
+                            Can't Stop - Gaming Online Store, a store by gamers, for gamers.
+                            Copyright 2023 - Can't Stop
+                            All Rights Reserved
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Produced With:
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Syncfusion</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">JavaScript</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">C#</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">AspNet Core 6</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Developers
+                        </h6>
+                        <p>
+                            <a class="text-reset">Diogo Sousa</a>
+                        </p>
+                        <p>
+                            <a class="text-reset">Francisco Gouveia</a>
+                        </p>
+                        <p>
+                            <a class="text-reset">Pedro Oliveira</a>
+                        </p>
+                        <p>
+                            <a class="text-reset">Daniel Oliveira</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p>
+                            <i class="fas fa-home me-3 text-secondary"></i> Vila Real, Universidade de Trás-os-Montes e Alto Douro -
+                            Licenciatura em Engenharia Informática, 2023.
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope me-3 text-secondary"></i>
+                            suportecantstop@gmail.com
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+    </footer>
+    <!-- Footer -->
+    <script src="https://kit.fontawesome.com/d7325001d6.js" crossorigin="anonymous"></script>
 </body>
 </html>
+

@@ -13,11 +13,11 @@
 
 <body class="CategoriasBoddy">
     <main class="classmain">
-        <section class="about-login">
-            <div class="fartodisto2">
+        <section class="about-checkoutlista">
+            <div class="checkoutlista">
                 <div class="row">
                     <div class="col-md-12 about-rightcena nopadding">
-                        <h2>Index</h2>
+                        <h2>Utilizador</h2>
                         <div class="searchbar">
                             <form class="d-flex" asp-controller="Categorias" asp-action="Index" method="get">
                                 <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
@@ -25,8 +25,7 @@
                             </form>
                         </div>
 
-<div>
-    <h4>Utilizador</h4>
+<div class="detailsuti">
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -47,12 +46,10 @@
         }
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdUtilizador">Edit</a> |
+<div class="paratrocar">
     <a asp-action="Index">Back to List</a>
 </div>
-                        <div class="butNew">
-                        </div>
+                        
                     </div>
                 </div>
             </div>
