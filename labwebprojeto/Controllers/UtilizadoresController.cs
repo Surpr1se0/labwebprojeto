@@ -22,7 +22,11 @@ namespace labwebprojeto.Controllers
         // GET: Utilizadores
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Utilizadors.ToListAsync());
+            var list = (from u in _context.Utilizadors
+                        select u)
+                       .Where(x => x.IsFunc && x.IsAdmin == true);
+
+              return View(await list.ToListAsync());
         }
 
         // GET: Utilizadores/Details/5

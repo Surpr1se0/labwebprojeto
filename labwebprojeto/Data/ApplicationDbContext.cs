@@ -149,6 +149,7 @@ namespace labwebprojeto.Data
                     Foto = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112685/qomoenwxorzr3gkssezm.jpg",
                     Foto1 = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112684/yttpg2vaa2bwkpjysibe.jpg",
                     Foto2 = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112686/wy8lyivtkxskxapvkk4p.png",
+                    Preco = 15,
                     IdCategoria = 3,
                     IdConsola = 3,
                     IdProdutora = 3,

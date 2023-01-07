@@ -8,15 +8,14 @@
         <div>
             
         <input  id="tab1" type="radio" name="tabs" checked>
-        <label for="tab1">Categorias</label>
+        <label for="tab1">Categories</label>
 
             <input   id="tab2" type="radio" name="tabs">
-            <label for="tab2">Consolas</label>
+            <label for="tab2">Consoles</label>
 
             <input  id="tab3" type="radio" name="tabs">
-        <label for="tab3">Produtoras</label>
+        <label for="tab3">Producers</label>
         
-
 
         <section  id="content1">
             <p>
@@ -76,89 +75,6 @@
         </section>
         </div>
     </main>
-
-
-  @*  <div class="msmcena">
-<div id="ej2Tab">
-    <div class="e-tab-header">
-        <div class="oupa">
-            <h1>Categorias</h1>
-            </div>
-        <div class="oupa">
-                    <h1>Consolas</h1>
-        </div>
-        <div class="oupa">
-                    <h1>Produtoras</h1>
-                </div>
-    </div>
-    <div class="e-content">
-        <div class="podiadar">
-                <form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
-                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str1">
-                    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
-                </form>
-                @foreach (Categoria cat in Model.Item1)
-                {
-                    <div class="seraserasera">
-                    <button class="btn btn-outline-success" type="submit" value="Filter">
-                        <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@cat.IdCategoria">@Html.DisplayFor(modelItem => cat.Nome)</a>
-                    </button>
-                    <br>
-                    </div>
-                }
-
-
-               
-
-
-        </div>
-
-                <div class="podiadar">
-                <form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
-                <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str2">
-                <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
-            </form>
-            @foreach (Consola cons in Model.Item2)
-            {
-                <div class="seraserasera">
-                <button class="btn btn-outline-success" type="submit" value="Filter">
-                    <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@cons.IdConsola">@Html.DisplayFor(modelItem => cons.Nome)</a>
-                </button>
-                <br>
-                        </div>
-            }
-        </div>
-
-                <div class="podiadar">
-                <form class="d-flex" asp-controller="Join" asp-action="Index" method="get">
-                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="str3">
-                    <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
-                </form>
-                @foreach (Produtora prod in Model.Item3)
-                {
-                                <div class="seraserasera">
-                    <button class="btn btn-outline-success" type="submit" value="Filter">
-                        <a asp-controller="Jogos" asp-action="IndexCategorias" asp-route-id="@prod.IdProdutora">@Html.DisplayFor(modelItem => prod.Nome)</a>
-                    </button>
-                    <br>
-                    </div>
-                }
-
-        </div>
-    </div>
-</div>
-    </div>
-
-<script type="text/javascript">
-    var tabObj = new ej.navigations.Tab({
-        heightAdjustMode: "Auto"
-    });
-    tabObj.appendTo('#ej2Tab');
-</script>
-
-*@
-
-
 </body>
 
 

@@ -6,36 +6,91 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdUtilizador">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdUtilizador">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdUtilizador">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Save() {
+            $('.validation').remove();
+            if ($('#inp').val() == '') {
+                alert('Please insert a value');
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-login">
+            <div class="fartodisto2">
+                <div class="row">
+                    <div class="col-md-12 about-rightcena nopadding">
+                        <h2>Index</h2>
+                        <div class="searchbar">
+                            <form class="d-flex" asp-controller="Categorias" asp-action="Index" method="get">
+                                <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+                                <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+                            </form>
+                        </div>
+                        <table id="Tabela" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Users
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if(item.IsAdmin)
+                                            {
+                                                <label>Admin</label>
+                                            }
+                                            @if(item.IsFunc)
+                                            {
+                                                <label>Employee</label>
+                                            }
+                                        </td>
+                                        <td id="Col_@item.IdUtilizador">
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Delete" asp-route-id="@item.IdUtilizador"
+                                           data-ajax="true" data-ajax-method="get"
+                                           data-ajax-mode="replace" data-ajax-update="#Tabela"
+                                           data-ajax-confirm="Are you sure?">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="butNew">
+                            <form id="teste" asp-action="Create" data-ajax="true"
+                                  data-ajax-method="post" data-ajax-mode="replace"
+                                  data-ajax-update="#Tabela" data-ajax-success="sucesso"
+                                  data-ajax-failure="falha">
+
+                                <input id="inp" type="text" name="NewName" />
+                                <input type="submit" value="Create" class="" onclick="Save()" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        function sucesso() {
+            $("#inp").val("");
+        }
+    </script>
+</body>
