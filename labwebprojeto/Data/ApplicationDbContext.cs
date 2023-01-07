@@ -37,6 +37,7 @@ namespace labwebprojeto.Data
             _SeedCategoria(modelBuilder);
             _SeedConsola(modelBuilder);
             _SeedProdutora(modelBuilder);
+            _SeedJogo(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
 
@@ -144,13 +145,15 @@ namespace labwebprojeto.Data
                 new Jogo
                 {
                     IdJogos = 1,
-                    Nome = "FIFA 23",
-                    Foto = "exemplo",
-                    Foto1 = "exemplo1",
-                    Foto2 = "exemplo2",
-                    IdCategoria = 2,
+                    Nome = "The Witcher",
+                    Foto = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112685/qomoenwxorzr3gkssezm.jpg",
+                    Foto1 = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112684/yttpg2vaa2bwkpjysibe.jpg",
+                    Foto2 = "https://res.cloudinary.com/dghxejpvl/image/upload/v1673112686/wy8lyivtkxskxapvkk4p.png",
+                    IdCategoria = 3,
                     IdConsola = 3,
-                    IdProdutora = 1
+                    IdProdutora = 3,
+                    Descricao = "Jogo de Fantasia",
+                    Descricao1 = "Game Of The Year 2019"
                 }
             );
         }
