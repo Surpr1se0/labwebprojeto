@@ -14,6 +14,7 @@ using CloudinaryDotNet;
 using labwebprojeto.ViewModels;
 using Syncfusion.EJ2.Buttons;
 using Syncfusion.EJ2.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
@@ -27,6 +28,8 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Favoritos
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var nome = GetCurrentUserName();

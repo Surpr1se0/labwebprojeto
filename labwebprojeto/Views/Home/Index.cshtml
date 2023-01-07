@@ -17,14 +17,14 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 
-<body style="background-color:#410698">
+<body id="bloquear-selecao" style="background-color:#410698">
     <section class="naoentendo">
         <div class="hero-content section d-flex min-vh-100">
             <div class="col-12 site-title">
-                <h2 class="texto2">Welcome</h2>
-                <p class="line typing-animation ">A website for gamers by gamers.</p>
-                <h1 class="texto1">Can't Stop</h1>
-                <div class="setacrl">
+                <h2 id="bloquear-selecao" class="texto2">Welcome</h2>
+                <p id="bloquear-selecao" class="line typing-animation ">A website for gamers by gamers.</p>
+                <h1 id="bloquear-selecao" class="texto1">Can't Stop</h1>
+                <div id="bloquear-selecao" class="setacrl">
                     <a href="#Second" class="sera2">
                         <i class="fa fa-angle-double-down icone"></i>
                     </a>
@@ -47,7 +47,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-4">
-                    <div class="card mb-3 box-shadow">
+                    <div  class="card mb-3 box-shadow">
                             <a asp-controller="Jogos" asp-action="Details" asp-route-id="@item.IdJogos" >               
                         <img class="card-img-top" src="@item.Foto"  alt="Imagem Exemplo">
                             </a>

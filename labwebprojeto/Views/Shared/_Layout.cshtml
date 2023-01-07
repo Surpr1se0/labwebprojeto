@@ -28,9 +28,33 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
+                        {
                         <li>
                             <a href="/Categorias" class="nav-link text-light">Categories</a>
                         </li>
+                        <li>
+                            <a href="/Join/Index" class="nav-link text-light">Filtros</a>
+                        </li>
+                            <li>
+                                <a href="/Consolas" class="nav-link text-light">Consolas</a>
+                            </li>
+                            <li>
+                                <a href="/Produtoras" class="nav-link text-light">Produtoras</a>
+                            </li>
+                            <li>
+                                <a href="/Consolas" class="nav-link text-light">Consolas</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="/Join/Index" class="nav-link text-light">Filtros</a>
+                            </li>
+                            <li>
+                                <a href="/Favoritos" class="nav-link text-light">Favoritos</a>
+                            </li>
+                        }
                     </ul>
                 </div>
 

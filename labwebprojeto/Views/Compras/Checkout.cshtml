@@ -4,32 +4,40 @@
     ViewData["Title"] = "Checkout";
 }
 
-<h1>Checkout</h1>
 
-<h4>
-    <strong>Checkout for @ViewData["NomeUtilizador"]</strong>
-</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Checkout">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div>
-                <p>@ViewBag.PrecoJogo</p>
-            </div>
-            <div>
-                <p>@ViewBag.NomeJogo</p>
-            </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-        </form>
-    </div>
-</div>
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-checkout">
+            <div class="checkout">
+                <div class="row">
 
-<div>
-    <a asp-controller="Jogos" asp-action="Index"> Back to Index</a>
-</div>
+                    <div class="col-md-12 about-rightcena nopadding">
+                        <h2>
+                            <strong>Checkout for @ViewData["NomeUtilizador"]</strong>
+                        </h2>
+                        <hr />
+
+                                <form asp-action="Checkout">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div>
+                                <p>@ViewBag.PrecoJogo€</p>
+                                    </div>
+                                    <div>
+                                        <p>@ViewBag.NomeJogo</p>
+                                    </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                                </form>
+                                 <div>
+                            <a asp-controller="Jogos" asp-action="Index"> Back to Index</a>
+                        </div>
+                            </div>
+                        </div>
+                                    </div>
+                                </section>
+                            </main>
+                       </body>
 
 @section Scripts {
     @{

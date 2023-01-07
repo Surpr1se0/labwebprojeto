@@ -4,10 +4,10 @@
     ViewData["Title"] = "Favoritos";
 }
 
-<body class="CategoriasBoddy">
+<body id="bloquear-selecao" class="CategoriasBoddy">
     <main class="classmain">
-        <section class="about-login">
-            <div class="fartodisto2">
+        <section class="about-favoritos">
+            <div class="favoritos">
                 <div class="row">
                     <div class="col-md-12 about-rightcena nopadding">
                         <h2>Favourites</h2>
@@ -23,7 +23,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th class="category">
                                         Category
                                     </th>
                                     <th></th>
@@ -46,6 +46,12 @@
                         </table>
                         <div class="butNew">
                         </div>
+                        <div class="paraisto">
+                        <a asp-action="Create" asp-controller="Favoritos">
+                            <input value="Create a New Favorite" type="button" 
+                            </a>
+                        </div>
+                       
                     </div>
                 </div>
             </div>

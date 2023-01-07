@@ -14,9 +14,12 @@ html {
     padding-right: 0rem;
 }
 
+#bloquear-selecao {
+    user-select: none;
+}
 
 ::-webkit-scrollbar {
-    width:10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -27,16 +30,17 @@ html {
     background-color: lightgrey /* color of the tracking area */
 }
 
+.navbar {
+    padding-left:1rem;
+}
+
 html {
-  
     scroll-behavior: smooth;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     margin: 0;
-    
-
 }
 
 * {
@@ -345,72 +349,6 @@ body {
 .fartodisto .col-5 {
     padding-left: 3rem;
 }
-
-/*.about-login {
-    margin-left: 0rem;
-    margin: 1rem;
-}*/
-
-
-
-/*.about-login .about-image img {
-    width: 650px;
-    height: 550px;
-    border-style: unset;
-    padding-bottom: 0rem;
-    padding-right: 3rem;
-}
-
-
-.about-login .fartodisto .about-image {
-    padding: 0rem 13rem;
-}
-
-.about-login {
-    
-    
-}
-
-.about-login .fartodisto  {
-  
-        padding-right: 0rem;
-        padding: 0rem 0rem;
-        background-color: white;
-        padding: 0rem 0rem;
-        border-radius: 2rem;
-        
-}
-*/
-/*.classmain .fartodisto h3 {
-    color: blue;
-    padding-bottom: 3rem;
-    text-align: center;
-    font-family: fantasy;
-    font-weight: bold;
-    font-size: 40px;
-}
-
-.about-login .fartodisto .about-rightcena button {
-    padding: 0rem 0rem;
-}
-
-.about-login h2 {
-    text-align: center;
-    font-family: fantasy;
-    font-size: 50px;
-    color: white;
-    padding-top: 2rem;
-    padding-left: 10rem;
-}
-
-.form-floating {
-    padding: 0.2rem;
-}
-
-.checkbox {
-    padding: 0.2rem;
-}
-*/
 
 
 
@@ -984,7 +922,296 @@ body {
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS--------------------- */
 
+/*----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------*/
 
+.favoritos {
+    padding-left: 50rem;
+}
+
+.d-flex {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+
+
+.about-favoritos .favoritos .about-rightcena button {
+    padding: .4rem;
+}
+
+
+
+.about-favoritos .favoritos .about-rightcena h2 {
+    color: black;
+    text-align: center;
+    padding-top: 1.2rem;
+}
+
+
+.about-favoritos .favoritos .about-rightcena {
+    background-color: white;
+    position: relative;
+    padding-bottom: 0rem;
+    top: 8rem;
+    right: 19rem;
+    border-radius: 2rem;
+    margin: auto;
+}
+
+.about-favoritos .about-rightcena table {
+    padding-left: 8.5rem;
+}
+
+
+.about-favoritos .about-rightcena .butNew {
+    padding-top: 2rem;
+    position: relative;
+    bottom: 1rem;
+    text-align: center;
+    padding-bottom: 4rem;
+}
+
+#divContent {
+    height: 500px;
+}
+
+
+
+.scrollbeau {
+    overflow-y: scroll;
+    display: block;
+    height: 400px;
+}
+
+.backtolist {
+    position: relative;
+    left: 5rem;
+}
+
+.about-favoritos .favoritos .form-group h10 {
+    color: black;
+    padding: 0rem;
+    text-align: start;
+    font-size: 20px;
+}
+
+
+
+
+.table th {
+    position:relative;
+    left:3rem;
+}
+
+.favoritos a {
+    position:relative;
+    left:5rem;
+}
+.favoritos .paraisto a {
+    position:relative;
+    bottom:3rem;
+    left:10rem;
+}
+
+.favoritos .form-group {
+    padding-left: 5rem;
+    padding-top: 0.5rem;
+    padding-right: 5rem;
+}
+
+.favoritos .form-groupbutton {
+    padding-top: 0.0rem;
+    padding-bottom: 3rem;
+}
+
+
+/*----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------
+----------------------------------FAVORTIOS----------------------------------*/
+
+/*----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------*/
+
+
+
+.checkoutlista {
+    padding-left: 50rem;
+}
+
+.d-flex {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+
+
+.about-checkoutlista .checkoutlista .about-rightcena button {
+    padding: .4rem;
+}
+
+
+
+.about-checkoutlista .checkoutlista .about-rightcena h2 {
+    color: black;
+    text-align: center;
+    padding-top: 1.2rem;
+}
+
+
+.about-checkoutlista .checkoutlista .about-rightcena {
+    background-color: white;
+    position: relative;
+    padding-bottom: 0rem;
+    top: 8rem;
+    right: 19rem;
+    border-radius: 2rem;
+    margin: auto;
+}
+
+
+
+
+
+
+
+.checkoutlista p {
+    position: relative;
+    text-align: center;
+}
+
+
+
+
+
+
+.about-checkoutlista table {
+    padding: 3rem;
+}
+
+
+
+.about-checkoutlista  dd {
+    text-align:center;
+}
+
+.about-checkoutlista dt {
+    text-align:center;
+}
+
+
+.about-checkoutlista h1 {
+    position:relative;
+    color:black;
+    top:1rem;
+}
+
+.about-checkoutlista .adetails a {
+    position:relative;
+    left:14.4rem;
+}
+
+
+/*----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------
+----------------------------------Compras(INDEX E DETAILS)----------------------------------*/
+
+/*----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------*/
+
+.checkout {
+    padding-left: 50rem;
+}
+
+.d-flex {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.checkout table {
+    position:relative;
+   
+}
+
+
+.about-checkout .checkout .about-rightcena button {
+    padding: .4rem;
+}
+
+
+
+.about-checkout .checkout .about-rightcena h2 {
+    color: black;
+    text-align: center;
+    padding-top: 1.2rem;
+}
+
+
+.about-checkout .checkout .about-rightcena {
+    background-color: white;
+    position: relative;
+    padding-bottom: 0rem;
+    top: 8rem;
+    right: 19rem;
+    border-radius: 2rem;
+    margin: auto;
+}
+
+.about-checkout .about-rightcena table {
+    padding-left: 8.5rem;
+}
+
+
+
+
+
+
+.checkout p {
+    position:relative;
+    text-align:center;
+
+}
+
+
+
+.checkout a {
+    position: relative;
+    left: 13.7rem;
+}
+
+
+
+.checkout .form-group {
+    padding-left: 14.6rem;
+    padding-top: 0.5rem;
+    padding-right: 5rem;
+}
+
+.checkout .form-groupbutton {
+    padding-top: 0.0rem;
+    padding-bottom: 3rem;
+}
+
+
+
+
+
+
+
+
+
+/*----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------
+----------------------------------Compras----------------------------------*/
 
 /*---------------------- JOIN  ---------------------
 /*---------------------- JOIN  ---------------------
