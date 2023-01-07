@@ -1514,24 +1514,42 @@ input:checked + label {
 
 
 
+/*------------------------logout ----------------
+------------------------logout ----------------
+------------------------logout ----------------
+------------------------logout ----------------*/
+
+.checkoutlista .form-inline  {
+    padding-top:4rem;
+    margin-left:2rem;
+    margin-right:18rem;
+    position:relative;
+    left:10rem;
+    bottom: 2rem;
+    
+}
+
+    .checkoutlista .form-inline button {
+        background-color: #20c997;
+        border-radius: 2rem;
+    }
+
+    .checkoutlista  p {
+        position:relative;
+        padding-top:2rem;
+    }
 
 
-
-
-
-
-
-
-
-
-
+/*------------------------logout ----------------
+------------------------logout ----------------
+------------------------logout ----------------
+------------------------logout ----------------*/
 
 
 .footer {
-    width:95.4rem;
-    position:relative;
-    top:2rem;
-  
+    width: 95.4rem;
+    position: relative;
+    top: 2rem;
 }
 
 .footerclass {

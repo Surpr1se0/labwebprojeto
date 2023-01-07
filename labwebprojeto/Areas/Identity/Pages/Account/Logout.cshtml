@@ -4,7 +4,14 @@
     ViewData["Title"] = "Log out";
 }
 
-<header>
+
+
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-checkoutlista">
+            <div class="checkoutlista">
+                <div class="row">
+                    <div class="col-md-12 about-rightcena nopadding">
     <h1>@ViewData["Title"]</h1>
     @{
         if (User.Identity.IsAuthenticated)
@@ -18,4 +25,10 @@
             <p>You have successfully logged out of the application.</p>
         }
     }
-</header>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
