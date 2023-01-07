@@ -45,7 +45,11 @@ namespace labwebprojeto.Controllers
             bool isEmpty = !applicationDbContext.Any();
             if (isEmpty)
             {
-                //Mostrar Mensagem com ViewData
+                ViewData["empty_message"] = "There are no results...";
+            }
+            else
+            {
+                ViewData["empty_message"] = "";
             }
 
             return View(await applicationDbContext.ToListAsync());

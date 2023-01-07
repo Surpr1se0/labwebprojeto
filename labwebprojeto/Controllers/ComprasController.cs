@@ -34,18 +34,6 @@ namespace labwebprojeto.Controllers
             var IdUser = GetCurrentUserID();
             ViewData["userNome"] = nome;
 
-            //Lista de compras deste utilizador
-            var jogo = (from u in _context.Utilizadors
-                        join c in _context.Compras
-                        on IdUser equals c.IdUtilizador
-                        select c);
-            //id dos jogos comprados
-            var gamesBuy = (from j in _context.Jogos
-                            join c in jogo
-                            on j.IdJogos equals c.IdJogo
-                            select j);
-
-
             if(!string.IsNullOrEmpty(SearchString))
             {
                 var AppDbContext = _context.Compras
@@ -60,7 +48,11 @@ namespace labwebprojeto.Controllers
                 bool isEmpty = !AppDbContext.Any();
                 if (isEmpty)
                 {
-                    //Mostrar Mensagem com ViewData
+                    ViewData["empty_message"] = "There are no results...";
+                }
+                else
+                {
+                    ViewData["empty_message"] = "";
                 }
                 return View(AppDbContext.ToList());
             }

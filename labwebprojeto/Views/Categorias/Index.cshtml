@@ -33,6 +33,13 @@
                             <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
                         </form>
                         </div>
+                        
+                        <label style="text-align:center; 
+                                    position:relative;
+                                    left:13rem; 
+                                    top:8rem;">
+                        @ViewData["empty_message"]</label>
+
                         <table id="Tabela" class="table">
                             <thead>
                                 <tr>
@@ -43,6 +50,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 @foreach (var item in Model)
                                 {
@@ -70,6 +78,9 @@
                                 }
                             </tbody>
                         </table>
+
+
+
                         <div class="butNew">
                             <form id="teste" asp-action="Create" data-ajax="true"
                                   data-ajax-method="post" data-ajax-mode="replace"

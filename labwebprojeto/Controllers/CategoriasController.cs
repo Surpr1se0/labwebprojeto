@@ -34,7 +34,11 @@ namespace labwebprojeto.Controllers
                 bool isEmpty = !categorias.Any();
                 if (isEmpty)
                 {
-                    //Mostrar Mensagem com ViewData
+                    ViewData["empty_message"] = "There are no results...";
+                }
+                else
+                {
+                    ViewData["empty_message"] = "";
                 }
             }
             return View(await categorias.ToListAsync());

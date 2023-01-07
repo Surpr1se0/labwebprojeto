@@ -23,24 +23,10 @@ namespace labwebprojeto.Controllers
             _photoService = photoService;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index()
         {
             var jogos = from j in _context.Jogos
                         select j;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                jogos = jogos.Where(j => j.Nome!.Contains(searchString));
-
-
-                bool isEmpty = !jogos.Any();
-                if (isEmpty)
-                {
-                    //Mostrar Mensagem com ViewData
-                }
-            }
-
-
 
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
             ViewData["IdConsola"] = new SelectList(_context.Consolas, "IdConsola", "Nome");
@@ -65,6 +51,7 @@ namespace labwebprojeto.Controllers
 
             return View(jogo);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
