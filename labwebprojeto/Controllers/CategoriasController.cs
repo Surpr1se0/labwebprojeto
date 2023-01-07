@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Data;
 using labwebprojeto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
-    //In the future:[Authorize(Roles="Func, Admin")]
+    [Authorize(Roles="Client, Admin")]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;

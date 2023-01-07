@@ -46,6 +46,23 @@ namespace labwebprojeto.Data.Migrations
                     b.HasIndex("JogoIdJogos");
 
                     b.ToTable("Categoria");
+
+                    b.HasData(
+                        new
+                        {
+                            IdCategoria = 1,
+                            Nome = "FPS"
+                        },
+                        new
+                        {
+                            IdCategoria = 2,
+                            Nome = "Sports"
+                        },
+                        new
+                        {
+                            IdCategoria = 3,
+                            Nome = "Action"
+                        });
                 });
 
             modelBuilder.Entity("labwebprojeto.Models.Compra", b =>
@@ -103,6 +120,23 @@ namespace labwebprojeto.Data.Migrations
                     b.HasIndex("JogoIdJogos");
 
                     b.ToTable("Consola");
+
+                    b.HasData(
+                        new
+                        {
+                            IdConsola = 1,
+                            Nome = "PS5"
+                        },
+                        new
+                        {
+                            IdConsola = 2,
+                            Nome = "XBox Series X"
+                        },
+                        new
+                        {
+                            IdConsola = 3,
+                            Nome = "PC"
+                        });
                 });
 
             modelBuilder.Entity("labwebprojeto.Models.Favorito", b =>
@@ -228,6 +262,23 @@ namespace labwebprojeto.Data.Migrations
                     b.HasIndex("JogoIdJogos");
 
                     b.ToTable("Produtora");
+
+                    b.HasData(
+                        new
+                        {
+                            IdProdutora = 1,
+                            Nome = "EA Games"
+                        },
+                        new
+                        {
+                            IdProdutora = 2,
+                            Nome = "Rockstar Games"
+                        },
+                        new
+                        {
+                            IdProdutora = 3,
+                            Nome = "Blizzard"
+                        });
                 });
 
             modelBuilder.Entity("labwebprojeto.Models.Utilizador", b =>
@@ -299,15 +350,6 @@ namespace labwebprojeto.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-                            ConcurrencyStamp = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-                            Name = "SystemADMIN",
-                            NormalizedName = "SystemADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -398,24 +440,6 @@ namespace labwebprojeto.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "6fb1175d-3374-4304-bccb-78e18cca98a2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ca737d2f-5141-41be-b9f8-a6258bae955b",
-                            Email = "sysadmin@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SYSADMIN@GMAIL.COM",
-                            NormalizedUserName = "SYSADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFKdceF1hFz0XLtmEpbJdOMEFNYtVUEvbNpIQo9TJTV++Zdm5obdk9k+ShLbCAaAkw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8d7c9aef-5bd3-4ffa-8673-8d6ca43a97c1",
-                            TwoFactorEnabled = false,
-                            UserName = "SysAdmin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -480,13 +504,6 @@ namespace labwebprojeto.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "6fb1175d-3374-4304-bccb-78e18cca98a2",
-                            RoleId = "02174cf0–9412–4cfe-afbf-59f706d72cf6"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
