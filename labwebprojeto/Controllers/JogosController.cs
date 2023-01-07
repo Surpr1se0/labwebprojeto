@@ -127,7 +127,7 @@ namespace labwebprojeto.Controllers
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             if (!ModelState.IsValid)
             {
