@@ -28,31 +28,37 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                          @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
+                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
                         {
                             <li>
-                                <a href="/Join/Index" class="nav-link text-light">Filtros</a>
+                                <a href="/Join/Index" class="nav-link text-light">Search</a>
                             </li>
                             <li>
                                 <a href="/Categorias" class="nav-link text-light">Categories</a>
                             </li>
                             <li>
-                                <a href="/Consolas" class="nav-link text-light">Consolas</a>
+                                <a href="/Consolas" class="nav-link text-light">Consoles</a>
                             </li>
                             <li>
-                                <a href="/Produtoras" class="nav-link text-light">Produtoras</a>
-                            </li>
-                            <li>
-                                <a href="/Consolas" class="nav-link text-light">Consolas</a>
+                                <a href="/Produtoras" class="nav-link text-light">Producers</a>
                             </li>
                         }
-                        else
+                        @if(User.IsInRole("Client"))
                         {
                             <li>
-                                <a href="/Join/Index" class="nav-link text-light">Filtros</a>
+                                <a href="/Join/Index" class="nav-link text-light">Search</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Compras" asp-action="Index">Library</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Favoritos" asp-action="Index">Favorites</a>
+                            </li>
+                        }
+                        @if (!User.Identity.IsAuthenticated)
+                        {
                             <li>
-                                <a href="/Favoritos" class="nav-link text-light">Favoritos</a>
+                                <a href="/Join/Index" class="nav-link text-light">Search</a>
                             </li>
                         }
                     </ul>
@@ -76,24 +82,19 @@
                         <li>
                             <a href="/Identity/Account/Register" class="nav-link text-light justify-content-end">Sign up</a>
                         </li>
+
                         }
                     </ul>
                 </div>
-
-
-                @*Search bar was here*@
             </div>
-
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <!-- SE ADICIONARMOS AQUI O PARTIAL _NOTIFICATION ADICIONAMOS EM TODAS AS PÁGINAS -->
             @RenderBody()
         </main>
     </div>
 
-    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
