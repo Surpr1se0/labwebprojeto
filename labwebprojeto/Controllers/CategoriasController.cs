@@ -29,7 +29,8 @@ namespace labwebprojeto.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                categorias = categorias.Where(j => j.Nome!.Contains(searchString));
+                categorias = categorias
+                    .Where(j => j.Nome!.Contains(searchString));
                 bool isEmpty = !categorias.Any();
                 if (isEmpty)
                 {

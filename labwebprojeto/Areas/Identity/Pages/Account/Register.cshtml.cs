@@ -144,7 +144,7 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
                 {
                     // Check if current user is sysAdmin
                     if (Input.UserName == "SysAdmin"
-                        && Input.Password == "SysAdmin*123")
+                        && Input.Password == "SYSAdmin*123")
                     {
                         Input.Role = "Admin";
                         await _context.SaveChangesAsync();
