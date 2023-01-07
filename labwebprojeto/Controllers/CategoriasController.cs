@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
-    [Authorize(Roles="Client, Admin")]
+    [Authorize(Roles="Func, Admin")]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;

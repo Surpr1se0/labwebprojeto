@@ -1,11 +1,13 @@
 ﻿using labwebprojeto.Data;
 using labwebprojeto.Models;
 using labwebprojeto.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace labwebprojeto.Controllers
 {
+    [AllowAnonymous]
     public class JoinController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Data;
 using labwebprojeto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class UtilizadoresController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +26,7 @@ namespace labwebprojeto.Controllers
         {
             var list = (from u in _context.Utilizadors
                         select u)
-                       .Where(x => x.IsFunc && x.IsAdmin == true);
+                       .Where(x => x.IsFunc || x.IsAdmin == true);
 
               return View(await list.ToListAsync());
         }
@@ -126,12 +128,13 @@ namespace labwebprojeto.Controllers
 
             var utilizador = await _context.Utilizadors
                 .FirstOrDefaultAsync(m => m.IdUtilizador == id);
+
             if (utilizador == null)
             {
                 return NotFound();
             }
 
-            return View(utilizador);
+            return PartialView("Delete", utilizador);
         }
 
         // POST: Utilizadores/Delete/5

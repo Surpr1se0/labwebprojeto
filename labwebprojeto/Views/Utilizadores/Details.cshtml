@@ -4,7 +4,26 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+
+<body class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-login">
+            <div class="fartodisto2">
+                <div class="row">
+                    <div class="col-md-12 about-rightcena nopadding">
+                        <h2>Index</h2>
+                        <div class="searchbar">
+                            <form class="d-flex" asp-controller="Categorias" asp-action="Index" method="get">
+                                <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="SearchString">
+                                <button class="btn btn-outline-success" type="submit" value="Filter">Search</button>
+                            </form>
+                        </div>
 
 <div>
     <h4>Utilizador</h4>
@@ -16,15 +35,27 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
+
+        @if(User.IsInRole("Func"))
+        {
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Telefone)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telefone)
         </dd>
+        }
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdUtilizador">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+                        <div class="butNew">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>

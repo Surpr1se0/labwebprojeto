@@ -10,9 +10,11 @@ using labwebprojeto.Models;
 using labwebprojeto.Services.Interfaces;
 using labwebprojeto.ViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
+    [AllowAnonymous]
     public class JogosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -78,7 +80,7 @@ namespace labwebprojeto.Controllers
             return View(jogo);
         }
 
-        // GET: Jogos/Create
+        [Authorize(Roles = "Func, Admin")]
         public IActionResult Create()
         {
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
@@ -90,6 +92,7 @@ namespace labwebprojeto.Controllers
         // POST: Jogos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Create(CreateJogoViewModel jogoVM)
         {
             if (ModelState.IsValid)
@@ -141,6 +144,7 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Jogos/Edit/5
+        [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Jogos == null)
@@ -160,6 +164,7 @@ namespace labwebprojeto.Controllers
         }
 
         // POST: Jogos/Edit/5
+        [Authorize(Roles = "Func, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, 
@@ -201,6 +206,7 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Jogos/Delete/5
+        [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Jogos == null)
@@ -224,6 +230,7 @@ namespace labwebprojeto.Controllers
         // POST: Jogos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Jogos == null)

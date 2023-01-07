@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using labwebprojeto.Data;
 using labwebprojeto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
+    [Authorize(Roles = "Func, Admin")]
     public class ProdutorasController : Controller
     {
         private readonly ApplicationDbContext _context;

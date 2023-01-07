@@ -10,9 +10,11 @@ using labwebprojeto.Models;
 using System.Security.Claims;
 using labwebprojeto.ViewModels;
 using labwebprojeto.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
+    [Authorize]
     public class ComprasController : Controller
     {
         private readonly ApplicationDbContext _context;

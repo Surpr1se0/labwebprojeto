@@ -1,0 +1,44 @@
+﻿@model IEnumerable<labwebprojeto.Models.Utilizador>
+
+<table id="Tabela" class="table">
+    <thead>
+        <tr>
+            <th>
+                Role
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.IsAdmin)
+                    {
+                        <label>Admin</label>
+                    }
+                    @if (item.IsFunc)
+                    {
+                        <label>Employee</label>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                @if(User.IsInRole("Admin"))
+                {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.IdUtilizador">
+                        Details</a>
+                </td>  
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -4,8 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
@@ -38,8 +36,12 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Users
+                                        Role
                                     </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -49,39 +51,26 @@
                                 {
                                     <tr>
                                         <td>
-                                            @if(item.IsAdmin)
+                                            @if (item.IsAdmin)
                                             {
                                                 <label>Admin</label>
                                             }
-                                            @if(item.IsFunc)
+                                            @if (item.IsFunc)
                                             {
                                                 <label>Employee</label>
                                             }
                                         </td>
-                                        <td id="Col_@item.IdUtilizador">
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.Nome)
                                         </td>
                                         <td>
-                                            <a asp-action="Delete" asp-route-id="@item.IdUtilizador"
-                                           data-ajax="true" data-ajax-method="get"
-                                           data-ajax-mode="replace" data-ajax-update="#Tabela"
-                                           data-ajax-confirm="Are you sure?">
-                                                Delete
-                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.IdUtilizador">Details</a>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                         <div class="butNew">
-                            <form id="teste" asp-action="Create" data-ajax="true"
-                                  data-ajax-method="post" data-ajax-mode="replace"
-                                  data-ajax-update="#Tabela" data-ajax-success="sucesso"
-                                  data-ajax-failure="falha">
-
-                                <input id="inp" type="text" name="NewName" />
-                                <input type="submit" value="Create" class="" onclick="Save()" />
-                            </form>
                         </div>
                     </div>
                 </div>

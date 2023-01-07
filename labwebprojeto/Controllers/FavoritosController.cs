@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
+    [Authorize]
     public class FavoritosController : Controller
     {
         private readonly ApplicationDbContext _context;
