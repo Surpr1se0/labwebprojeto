@@ -12,46 +12,46 @@
                 <div class="row">
                     <div class="col-md-12 about-rightcena nopadding">
 
-                        <h1>Details</h1>
+                        <h1>Receipt</h1>
                         <br />
         <dt class = "col-sm-12">
-            @Html.DisplayNameFor(model => model.DataCompra)
+            Buy Date
         </dt>
         <dd class = "col-sm-12">
             @Html.DisplayFor(model => model.DataCompra)
         </dd>
         <dt class = "col-sm-12">
-            Nome do Jogo
+            Game Name
         </dt>
         <dd class = "col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.Nome)
         </dd>
         <dt class = "col-sm-12">
-            Preco do Jogo
+            Price
         </dt>
         <dd class="col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.Preco)
         </dd>
         <dt class="col-sm-12">
-            Categoria
+            Category
         </dt>
         <dd class="col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.IdConsolaNavigation.Nome)
         </dd>
         <dt class="col-sm-12">
-            Consola
+            Console
         </dt>
         <dd class="col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.IdCategoriaNavigation.Nome)
         </dd>
         <dt class="col-sm-12">
-            Produtora
+            Producer
         </dt>
         <dd class="col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.IdProdutoraNavigation.Nome)
         </dd>
         <dt class="col-sm-12">
-            Descricao
+            Description
         </dt>
         <dd class="col-sm-12">
             @Html.DisplayFor(model => model.IdJogoNavigation.Descricao)
