@@ -3,12 +3,17 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<body id="bloquear-selecao" class="CategoriasBoddy">
+    <main class="classmain">
+        <section class="about-login">
 
-<h4>Jogo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+            <div class="fartodisto2">
+                <div class="row">
+
+                    <div id="divContent" class="col-md-12 about-rightcena nopadding">
+                        <h2>Edit Game</h2>
+                        <div class="scrollbeau" id="#tentarassim">
+                            
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdJogos" />
@@ -62,20 +67,23 @@
                 <input asp-for="Descricao1" class="form-control" />
                 <span asp-validation-for="Descricao1" class="text-danger"></span>
             </div>
-            <form action="" method="post">
+@*            <form action="" method="post">
                 <input type="submit" name="submitButton" value="fav" />
-            </form>
+            </form>*@
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
+                        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                    </div>
+                </div>
+                <
+            </div>
+        </section>
+    </main>
+</body>
 
 @section Scripts {
     @{
