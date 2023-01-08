@@ -159,12 +159,14 @@ namespace labwebprojeto.Controllers
                 //Envio do Email
                 foreach (var c in emailClients)
                 { //foto nao funciona
-                    await _emailService.SendEmailAsync(c, "Agradecemos-te pela tua compra! - " + jogoName, 
-                        "Olá! Agradecemos-te pela tua recente transação na Loja. Os artigos" +
-                        " abaixo foram adicionados à tua lista de compra, onde os poderás visualizar." +
-                        "<br>" + jogoName + " - " + jogoPreco +"." +
-                        "<br> <img src=wwwroot/Images/logo.png>"
-                        );
+                    await _emailService.SendEmailAsync(c, "We thank you for your purchase! - " + jogoName, 
+                        "Hi! We Thank you for your recent transaction in the Store. Your itens (referenced below)" +
+                        "will be delivered to your library, were you can visualize them and see more details." +
+                        "The games below were added to your library: " +
+                        "<br>" + jogoName + " - " + jogoPreco + "." +
+                        "For more details, please contact the support team" +
+                        "@suportecantstop@gmail.com");
+
                 }
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "Game Bought Successfully";
