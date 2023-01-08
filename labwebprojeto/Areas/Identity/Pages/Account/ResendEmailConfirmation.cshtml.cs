@@ -78,7 +78,9 @@ namespace labwebprojeto.Areas.Identity.Pages.Account
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,
-                "Confirm your email",
+                "Hello! Welcome to the CantStop WebStore Site!" +
+                "Confirm your email" +
+                "If you are having any trouble seeing this message, please contact the support team @suportecanstop@gmail.com",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
