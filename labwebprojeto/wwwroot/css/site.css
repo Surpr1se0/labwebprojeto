@@ -1056,8 +1056,8 @@ body {
     background-color: white;
     position: relative;
     padding-bottom: 0rem;
-    top: 8rem;
-    right: 19rem;
+    top: 5rem;
+    right: 15rem;
     border-radius: 2rem;
     margin: auto;
 }
@@ -1079,7 +1079,10 @@ body {
 
 
 .about-checkoutlista table {
-    padding: 3rem;
+    padding:3rem;
+    position:relative;
+    bottom:1.5rem;
+
 }
 
 
@@ -1570,3 +1573,24 @@ input:checked + label {
 -------------------UTILIZADOR----------------
 -------------------UTILIZADOR----------------
 -------------------UTILIZADOR----------------*/
+
+
+
+/*--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------*/
+
+.confimated {
+    position: relative;
+    left: 16rem;
+    top: 8rem;
+    padding-left: 20rem;
+    margin-right:40rem;
+}
+
+
+/*--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------
+--------------------AVISOS-----------------------*/
