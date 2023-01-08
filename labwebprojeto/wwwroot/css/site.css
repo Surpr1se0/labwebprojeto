@@ -817,10 +817,10 @@ body {
 
 .table {
     overflow-y: scroll;
-    height: 300px;
+    height: 200px;
     display: block;
     position:relative;
-    left:10rem;
+    left:0rem;
 }
 
 
