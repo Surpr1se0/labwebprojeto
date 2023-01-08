@@ -102,7 +102,7 @@ namespace labwebprojeto.Controllers
         [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Create(CreateJogoViewModel jogoVM)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 var result_pic = await _photoService.AddPhotoAsync(jogoVM.Foto);
                 var result_pic1 = await _photoService.AddPhotoAsync(jogoVM.Foto1);
