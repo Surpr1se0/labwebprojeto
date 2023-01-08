@@ -102,7 +102,7 @@ namespace labwebprojeto.Controllers
         [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Create(CreateJogoViewModel jogoVM)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var result_pic = await _photoService.AddPhotoAsync(jogoVM.Foto);
                 var result_pic1 = await _photoService.AddPhotoAsync(jogoVM.Foto1);
@@ -159,10 +159,7 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            var jogo = await _context.Jogos
-                .Include(x => x.IdCategoria)
-                .Include(x => x.IdConsola)
-                .FindAsync(id);
+            var jogo = await _context.Jogos.FindAsync(id);
             if (jogo == null)
             {
                 return NotFound();
@@ -189,7 +186,7 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
