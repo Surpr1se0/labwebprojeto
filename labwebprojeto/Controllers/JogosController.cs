@@ -159,7 +159,10 @@ namespace labwebprojeto.Controllers
                 return NotFound();
             }
 
-            var jogo = await _context.Jogos.FindAsync(id);
+            var jogo = await _context.Jogos
+                .Include(x => x.IdCategoria)
+                .Include(x => x.IdConsola)
+                .FindAsync(id);
             if (jogo == null)
             {
                 return NotFound();

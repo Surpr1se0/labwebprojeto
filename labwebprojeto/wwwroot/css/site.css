@@ -769,21 +769,48 @@ body {
 }
 
 
-.Sigaquesiga h1, h2 {
+.Sigasiga h1, h2 {
     color: white;
+    position: relative;
+    
+}
+
+.managecount {
+    position: relative;
+    padding-left:21rem;
+}
+
+.elidar h1 {
+    position: relative;
+    left:6.8rem
+}
+
+.managecount h2 {
+    position: relative;
+    left:10rem;
+    padding-left:3.7rem;
 }
 
 
 .paratodos h3 {
     color: white;
+    position: relative;
+    left: 10rem;
 }
 
 
 
-
+.managecount hr{
+    color:white;
+    width:97rem;
+    position:relative;
+    right:22rem;
+}
 
 .sigasiga {
-    padding-left:2rem;
+    padding-left: 0rem;
+    position: relative;
+    left: 10rem;
 }
 
 
@@ -792,16 +819,20 @@ body {
     overflow-y: scroll;
     height: 200px;
     display: block;
+    position:relative;
+    left:0rem;
 }
 
 
-
-
+.personaldata {
+    background-image: url(/Images/TESTE.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /*----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS---------------------
 ----------------------CATEGORIAS INDEX, CREATE, DETAILS--------------------- */
-
 .CategoriasBoddy {
     background-image: url(/Images/TESTE.jpg);
     background-repeat: no-repeat;
@@ -964,11 +995,6 @@ body {
 
 
 
-.scrollbeau {
-    overflow-y: scroll;
-    display: block;
-    height: 400px;
-}
 
 .backtolist {
     position: relative;
@@ -1595,3 +1621,33 @@ input:checked + label {
 --------------------AVISOS-----------------------
 --------------------AVISOS-----------------------
 --------------------AVISOS-----------------------*/
+
+
+/*------------------------USER--------------------
+------------------------USER--------------------
+------------------------USER--------------------
+------------------------USER--------------------*/
+
+.about-rightcena .butNew2  {
+    padding-top: 2rem;
+    position: relative;
+    bottom: 1rem;
+    text-align: center;
+ 
+    
+}
+
+
+    .about-rightcena .butNew2 button {
+        border-radius: 1rem;
+        text-align: center;
+        background-color: #20c997;
+        border-style:none;
+    }
+
+
+/*------------------------USER--------------------
+------------------------USER--------------------
+------------------------USER--------------------
+------------------------USER--------------------*/
+
