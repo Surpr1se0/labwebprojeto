@@ -126,43 +126,28 @@ namespace labwebprojeto.Controllers
             return View(favVM);
         }
 
-        // GET: Favoritos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Favoritos == null)
+            if (id == null)
             {
                 return NotFound();
             }
+            else if (_context.Favoritos == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Consolas' is null.");
+            }
 
-            var favorito = await _context.Favoritos
-                .Include(f => f.IdCategoriaNavigation)
-                .Include(f => f.IdUtilizadorNavigation)
+            var fav = await _context.Favoritos
                 .FirstOrDefaultAsync(m => m.IdFavorito == id);
-            if (favorito == null)
+            if (fav == null)
             {
                 return NotFound();
             }
 
-            return View(favorito);
-        }
+            _context.Favoritos.Remove(fav);
+            _context.SaveChanges();
 
-        // POST: Favoritos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Favoritos == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Favoritos'  is null.");
-            }
-            var favorito = await _context.Favoritos.FindAsync(id);
-            if (favorito != null)
-            {
-                _context.Favoritos.Remove(favorito);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return PartialView("Listing", _context.Favoritos);
         }
 
         private bool FavoritoExists(int id)
