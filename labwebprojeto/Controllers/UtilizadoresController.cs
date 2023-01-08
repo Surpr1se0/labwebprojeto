@@ -22,13 +22,27 @@ namespace labwebprojeto.Controllers
         }
 
         // GET: Utilizadores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var list = (from u in _context.Utilizadors
                         select u)
                        .Where(x => x.IsFunc || x.IsAdmin == true);
 
-              return View(await list.ToListAsync());
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                list = list
+                    .Where(j => j.Nome!.Contains(searchString));
+                bool isEmpty = !list.Any();
+                if (isEmpty)
+                {
+                    ViewData["empty_message"] = "There are no results...";
+                }
+                else
+                {
+                    ViewData["empty_message"] = "";
+                }
+            }
+                return View(await list.ToListAsync());
         }
 
         // GET: Utilizadores/Details/5

@@ -34,7 +34,7 @@
                                 <a href="/Utilizadores/Index" class="nav-link text-light">Users</a>
                             </li>
                         }
-                        @if ((User.IsInRole("Admin")) || (User.IsInRole("Func")))
+                        @if ((User.IsInRole("Admin")))
                         {
                             <li>
                                 <a href="/Join/Index" class="nav-link text-light">Search</a>
@@ -55,7 +55,28 @@
                                 <a href="/Compras" class="nav-link text-light">Library</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Create">Create Games</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Index">Inventory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Create">Create Game</a>
+                            </li>
+                        }
+                        @if(User.IsInRole("Func"))
+                        {
+                            <li>
+                                <a href="/Join/Index" class="nav-link text-light">Search</a>
+                            </li>
+                            <li>
+                                <a href="/Favoritos" class="nav-link text-light">Favorites</a>
+                            </li>
+                            <li>
+                                <a href="/Compras" class="nav-link text-light">Library</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Index">Inventory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Create">Create Game</a>
                             </li>
                         }
                         @if(User.IsInRole("Client"))

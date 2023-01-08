@@ -1,0 +1,39 @@
+﻿@model IEnumerable<labwebprojeto.Models.Jogo>
+
+<table id="Tabela" class="table">
+    <thead>
+        <tr>
+            <th>
+                Games
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdJogos">
+
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.IdJogos"
+                        data-ajax="true" data-ajax-method="get"
+                        data-ajax-mode="replace" data-ajax-update="#Tabela"
+                        data-ajax-confirm="Are you sure?">
+
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

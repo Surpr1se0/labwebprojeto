@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace labwebprojeto.Controllers
 {
-    [AllowAnonymous]
     public class JogosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -38,13 +37,21 @@ namespace labwebprojeto.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                jogos = jogos.Where(j => j.Nome!.Contains(searchString));
+                jogos = jogos
+                    .Where(j => j.Nome!.Contains(searchString))
+                    .Include(j => j.IdCategoriaNavigation)
+                    .Include(j => j.IdConsolaNavigation)
+                    .Include(j => j.IdProdutoraNavigation);
                 bool isEmpty = !jogos.Any();
-
                 if (isEmpty)
                 {
-                    //Mostrar Mensagem com ViewData
+                    ViewData["empty_message"] = "There are no results...";
                 }
+                else
+                {
+                    ViewData["empty_message"] = "";
+                }
+                return View(jogos.ToList());
             }
 
             ViewData["IdCategoria"] = new SelectList(_context.Categoria, "IdCategoria", "Nome");
@@ -209,42 +216,26 @@ namespace labwebprojeto.Controllers
         [Authorize(Roles = "Func, Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Jogos == null)
+            if (id == null)
             {
                 return NotFound();
             }
+            else if (_context.Jogos == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Categoria' is null.");
+            }
 
-            var jogo = await _context.Jogos
-                .Include(j => j.IdCategoriaNavigation)
-                .Include(j => j.IdConsolaNavigation)
-                .Include(j => j.IdProdutoraNavigation)
+            var jogos = await _context.Jogos
                 .FirstOrDefaultAsync(m => m.IdJogos == id);
-            if (jogo == null)
+            if (jogos == null)
             {
                 return NotFound();
             }
 
-            return View(jogo);
-        }
+            _context.Jogos.Remove(jogos);
+            _context.SaveChanges();
 
-        // POST: Jogos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func, Admin")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Jogos == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Jogos'  is null.");
-            }
-            var jogo = await _context.Jogos.FindAsync(id);
-            if (jogo != null)
-            {
-                _context.Jogos.Remove(jogo);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return PartialView("Listing", _context.Jogos);
         }
 
         private bool JogoExists(int id)
