@@ -60,6 +60,7 @@ namespace labwebprojeto.Controllers
             var applicationDbContext = _context.Compras
                 .Include(c => c.IdJogoNavigation)
                 .Include(c => c.IdUtilizadorNavigation)
+                .Where(c => c.IdUtilizadorNavigation.IdUtilizador.Equals(IdUser))
                 .Include(c => c.IdJogoNavigation.IdConsolaNavigation)
                 .Include(c => c.IdJogoNavigation.IdProdutoraNavigation)
                 .Include(c => c.IdJogoNavigation.IdCategoriaNavigation);
