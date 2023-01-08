@@ -10,14 +10,15 @@
 }
 
 
-<body style="background-color:#004460">
+<body style="background-color:#410698">
+    <div class="elidar">
     <h1 style="color:white">Manage your account</h1>
 
-    <div >
+    <div class="managecount" >
     <h2>Change your account settings</h2>
     <hr />
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 tabbar">
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
@@ -27,6 +28,7 @@
         </div>
     </div>
 </div>
+    </div>
 </body>
 @section Scripts {
     @RenderSection("Scripts", required: false)
