@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<labwebprojeto.Models.Favorito>
 
-<table class="table" id="Tabela">
+<table id="Tabela" class="table">
     <thead>
         <tr>
             <th class="category">
@@ -18,9 +18,9 @@
                 </td>
                 <td>
                     <a asp-action="Delete" asp-route-id="@item.IdFavorito"
-                   data-ajax="true" data-ajax-method="get"
-                   data-ajax-mode="replace" data-ajax-update="#Tabela"
-                   data-ajax-confirm="Are you sure?">
+                        data-ajax="true" data-ajax-method="get"
+                        data-ajax-mode="replace" data-ajax-update="#Tabela"
+                        data-ajax-confirm="Are you sure?">
                         Delete
                     </a>
                 </td>

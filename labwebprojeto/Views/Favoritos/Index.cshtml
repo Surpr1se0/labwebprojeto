@@ -28,34 +28,8 @@
                             @ViewData["empty_message"]
                         </label>
 
-                        <table class="table" id="Tabela">
-                            <thead>
-                                <tr>
-                                    <th class="category">
-                                        Category
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem=>item.IdCategoriaNavigation.Nome)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Delete" asp-route-id="@item.IdFavorito"
-                                                data-ajax="true" data-ajax-method="get"
-                                                data-ajax-mode="replace" data-ajax-update="#Tabela"
-                                                data-ajax-confirm="Are you sure?">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+<partial name="Listing" model="Model" />
+
                         <div class="butNew">
                         </div>
                         <div class="paraisto">
