@@ -54,6 +54,9 @@
                             <li>
                                 <a href="/Compras" class="nav-link text-light">Library</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Jogos" asp-action="Create">Create Games</a>
+                            </li>
                         }
                         @if(User.IsInRole("Client"))
                         {
@@ -66,6 +69,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Favoritos" asp-action="Index">Favorites</a>
                             </li>
+
                         }
                         @if (!User.Identity.IsAuthenticated)
                         {
