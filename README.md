@@ -28,3 +28,5 @@ Check JsonFile
 **Para o Toastr**:   
 https://github.com/CodeSeven/toastr  
 
+**Nova API KEY SendGrid**  
+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
