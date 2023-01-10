@@ -2,7 +2,7 @@
 
 **SendGrid Password:**   
 email: tomarradas9@gmail.com    
-pass: omeuprimodecuecas159_    
+pass: omeuprimonaotemcuecas420_    
 dotnet user-secrets set SendGridKey <key>  
 apiKey: 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    
 
