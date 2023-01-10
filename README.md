@@ -4,7 +4,7 @@
 email: tomarradas9@gmail.com    
 pass: omeuprimonaotemcuecas420_    
 dotnet user-secrets set SendGridKey <key>  
-apiKey: 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    
+apiKey: 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
 
 **Enable user secrets**:  
 dotnet user-secrets init -p labwebprojeto (todos os comandos tem de levar o -p labwebprojeto)
@@ -27,6 +27,3 @@ Check JsonFile
 
 **Para o Toastr**:   
 https://github.com/CodeSeven/toastr  
-
-**Nova API KEY SendGrid**  
-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
